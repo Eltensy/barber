@@ -1,0 +1,111 @@
+<diagram program="umletino" version="15.1"><zoom_level>14</zoom_level><help_text>lt=-
+r1=M
+m1=
+r2=1
+m2=</help_text><element><id>UMLClass</id><coordinates><x>938</x><y>504</y><w>112</w><h>168</h></coordinates><panel_attributes>Відгуки
+--
+id
+client_id
+barber_id
+текст
+рейтинг
+дата і час</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>560</x><y>700</y><w>168</w><h>140</h></coordinates><panel_attributes>Клієнт
+--
+id
+ім'я
+прізвище
+номер телефону
+email
+пароль
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>714</x><y>574</y><w>252</w><h>182</h></coordinates><panel_attributes>lt=-
+r1=1
+m1=
+r2=M
+m2=
+</panel_attributes><additional_attributes>10;110;160;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>560</x><y>378</y><w>168</w><h>224</h></coordinates><panel_attributes>Барбер
+--
+id
+iм'я
+прізвище
+номер телефону
+email
+пароль
+фото профілю
+опис
+файл-портфоліо
+
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>224</x><y>462</y><w>168</w><h>182</h></coordinates><panel_attributes>Записи
+--
+id
+client_id
+guest_id
+barber_id
+service_id
+дата
+час
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>896</x><y>294</y><w>210</w><h>154</h></coordinates><panel_attributes>Розклад
+--
+id
+barber_id
+день тижня
+початок робочого дня
+кінець робочого дня</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>812</x><y>112</y><w>168</w><h>168</h></coordinates><panel_attributes>Адмін
+--
+id
+ім'я
+прізвище
+номер телефону
+email
+пароль</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>224</x><y>714</y><w>168</w><h>126</h></coordinates><panel_attributes>Гість
+--
+id
+ім'я
+прізвище
+номер телефону
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>574</x><y>84</y><w>126</w><h>168</h></coordinates><panel_attributes>Послуги
+--
+id
+barber_id
+назва
+тривалість
+опис
+ціна</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>224</x><y>154</y><w>252</w><h>168</h></coordinates><panel_attributes>Історія відвідувань
+--
+id
+номер телефону відвідувача
+номер телефону барбера
+назва послуги
+дата
+час
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>714</x><y>476</y><w>252</w><h>126</h></coordinates><panel_attributes>lt=-
+r1=1
+m1=
+r2=M
+m2=
+</panel_attributes><additional_attributes>10;20;160;70</additional_attributes></element><element><id>Relation</id><coordinates><x>378</x><y>546</y><w>210</w><h>238</h></coordinates><panel_attributes>lt=-
+r1=M
+m1=
+r2=1
+m2=</panel_attributes><additional_attributes>10;10;130;150</additional_attributes></element><element><id>Relation</id><coordinates><x>378</x><y>462</y><w>210</w><h>112</h></coordinates><panel_attributes>lt=-
+r1=M
+m1=
+r2=1
+m2=</panel_attributes><additional_attributes>10;60;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>294</x><y>630</y><w>56</w><h>112</h></coordinates><panel_attributes>lt=-
+r1=1
+m1=
+r2=1
+m2=</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>630</x><y>238</y><w>56</w><h>168</h></coordinates><panel_attributes>lt=-
+r1=M
+m1=
+r2=1
+m2=</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>714</x><y>350</y><w>210</w><h>98</h></coordinates><panel_attributes>lt=-
+r1=1
+m1=
+r2=M
+m2=
+</panel_attributes><additional_attributes>10;50;130;20</additional_attributes></element></diagram>
