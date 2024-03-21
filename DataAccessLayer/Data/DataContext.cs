@@ -1,6 +1,8 @@
 ﻿using DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
+// Testing branch merge through pull request
+
 namespace DataAccessLayer.Data
 {
     public class DataContext : DbContext
