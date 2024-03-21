@@ -7,7 +7,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 // Added comment for testing purposes
 // Rostyk Hui
-
+// Анекдот про двох геїв у басейні
 
 IConfigurationRoot configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")  // Джерело конфігурації
