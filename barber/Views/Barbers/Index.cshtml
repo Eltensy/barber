@@ -1,0 +1,122 @@
+﻿@model List<barber.Models.Barber>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Our Barbers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .barbers-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .barber-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            padding: 20px;
+        }
+
+        .barber-photo {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .barber-info h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .barber-info p {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info-button,
+        .book-button {
+            background-color: #905B22;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+            .info-button:hover,
+            .book-button:hover {
+                background-color: #684116;
+            }
+
+        /* Стилі для кнопок переміщення */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination-button {
+            background-color: #905B22;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin: 0 10px;
+        }
+
+            .pagination-button:hover {
+                background-color: #684116;
+            }
+    </style>
+</head>
+<body>
+
+    <h1>Our Barbers</h1>
+
+    <div class="barbers-container">
+        @foreach (var barber in Model)
+        {
+            <div class="barber-card">
+                <img src="@barber.PhotoUri" alt="@barber.Name" class="barber-photo">
+                <div class="barber-info">
+                    <h2>@barber.Name @barber.Surname</h2>
+                    <p>@barber.Description</p>
+                    <div class="buttons">
+                        <a href="@Url.Action("index", "BarberInformation", new { id = barber.Id })" class="info-button">Інформація</a>
+                        <a href="@Url.Action("Book", "Barber", new { id = barber.Id })" class="book-button">Записатись</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+@*     <!-- Кнопки переміщення -->
+    <div class="pagination">
+        <a href="#" class="pagination-button">Назад</a>
+        <a href="#" class="pagination-button">Вперед</a>
+    </div> *@
+
+</body>
+</html>

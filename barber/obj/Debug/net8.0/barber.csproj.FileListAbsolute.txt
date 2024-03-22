@@ -1,0 +1,358 @@
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\appsettings.Development.json
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\appsettings.json
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\barber.staticwebassets.runtime.json
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\barber.exe
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\barber.deps.json
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\barber.runtimeconfig.json
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\barber.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\barber.pdb
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Npgsql.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Serilog.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Serilog.AspNetCore.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Serilog.Extensions.Hosting.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Serilog.Extensions.Logging.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Serilog.Formatting.Compact.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Serilog.Settings.Configuration.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Serilog.Sinks.Console.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Serilog.Sinks.File.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Serilog.Sinks.PeriodicBatching.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Serilog.Sinks.Seq.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\barber.csproj.AssemblyReference.cache
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\barber.GeneratedMSBuildEditorConfig.editorconfig
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\barber.AssemblyInfoInputs.cache
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\barber.AssemblyInfo.cs
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\barber.csproj.CoreCompileInputs.cache
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\barber.MvcApplicationPartsAssemblyInfo.cache
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\barber.RazorAssemblyInfo.cache
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\barber.RazorAssemblyInfo.cs
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\barber.sourcelink.json
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\staticwebassets.build.json
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\staticwebassets.development.json
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\staticwebassets\msbuild.barber.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\staticwebassets\msbuild.build.barber.props
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.barber.props
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.barber.props
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\staticwebassets.pack.json
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\scopedcss\bundle\barber.styles.css
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\scopedcss\projectbundle\barber.bundle.scp.css
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\barber.csproj.Up2Date
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\barber.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\refint\barber.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\barber.pdb
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\barber.genruntimeconfig.cache
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\obj\Debug\net8.0\ref\barber.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Humanizer.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\System.CodeDom.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\System.Composition.AttributedModel.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\System.Composition.Convention.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\System.Composition.Hosting.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\System.Composition.Runtime.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\System.Composition.TypedParts.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookGitDev\barber\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\appsettings.json
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\barber.staticwebassets.runtime.json
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\barber.exe
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\barber.deps.json
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\barber.runtimeconfig.json
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\barber.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\barber.pdb
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Humanizer.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Mono.TextTemplating.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Npgsql.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Serilog.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Serilog.AspNetCore.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Serilog.Extensions.Hosting.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Serilog.Extensions.Logging.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Serilog.Formatting.Compact.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Serilog.Settings.Configuration.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Serilog.Sinks.Console.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Serilog.Sinks.File.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Serilog.Sinks.PeriodicBatching.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\Serilog.Sinks.Seq.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\System.CodeDom.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\System.Composition.AttributedModel.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\System.Composition.Convention.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\System.Composition.Hosting.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\System.Composition.Runtime.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\System.Composition.TypedParts.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\barber.csproj.AssemblyReference.cache
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\barber.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\barber.AssemblyInfoInputs.cache
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\barber.AssemblyInfo.cs
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\barber.csproj.CoreCompileInputs.cache
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\barber.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\barber.RazorAssemblyInfo.cache
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\barber.RazorAssemblyInfo.cs
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\staticwebassets\msbuild.barber.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\staticwebassets\msbuild.build.barber.props
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.barber.props
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.barber.props
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\scopedcss\bundle\barber.styles.css
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\scopedcss\projectbundle\barber.bundle.scp.css
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\barber.csproj.CopyComplete
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\barber.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\refint\barber.dll
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\barber.pdb
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\barber.genruntimeconfig.cache
+C:\Users\asus\Downloads\barber-dev\barber-dev\barber\obj\Debug\net8.0\ref\barber.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\appsettings.json
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\barber.staticwebassets.runtime.json
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\barber.exe
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\barber.deps.json
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\barber.runtimeconfig.json
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\barber.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\barber.pdb
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Humanizer.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Mono.TextTemplating.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Npgsql.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Serilog.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Serilog.AspNetCore.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Serilog.Extensions.Hosting.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Serilog.Extensions.Logging.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Serilog.Formatting.Compact.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Serilog.Settings.Configuration.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Serilog.Sinks.Console.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Serilog.Sinks.File.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Serilog.Sinks.PeriodicBatching.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\Serilog.Sinks.Seq.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\System.CodeDom.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\System.Composition.AttributedModel.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\System.Composition.Convention.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\System.Composition.Hosting.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\System.Composition.Runtime.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\System.Composition.TypedParts.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\barber.csproj.AssemblyReference.cache
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\barber.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\barber.AssemblyInfoInputs.cache
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\barber.AssemblyInfo.cs
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\barber.csproj.CoreCompileInputs.cache
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\barber.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\barber.RazorAssemblyInfo.cache
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\barber.RazorAssemblyInfo.cs
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\staticwebassets\msbuild.barber.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\staticwebassets\msbuild.build.barber.props
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.barber.props
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.barber.props
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\scopedcss\bundle\barber.styles.css
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\scopedcss\projectbundle\barber.bundle.scp.css
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\barber.csproj.CopyComplete
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\barber.dll
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\refint\barber.dll
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\barber.pdb
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\barber.genruntimeconfig.cache
+C:\Users\Anton\Desktop\barber-dev\barber\obj\Debug\net8.0\ref\barber.dll

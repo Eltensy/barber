@@ -1,0 +1,154 @@
+﻿@{
+    var barber = ViewBag.Barber as barber.Models.Barber;
+    var reviews = ViewBag.Reviews as List<barber.Models.Review>;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@barber.Name - Barber Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .barber-photo {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .barber-description {
+            margin-bottom: 20px; 
+            font-size: 20px;
+            line-height: 1.4;
+        }
+
+        .barber-info {
+            text-align: center;
+        }
+
+            .barber-info h2 {
+                margin-top: 0;
+            }
+
+        .barber-details {
+            margin-bottom: 20px;
+        }
+
+        .contacts {
+            float: left;
+            margin-right: 20px;
+        }
+
+            .contacts h3 {
+                margin-top: 0;
+            }
+
+            .contacts p {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+        h3.reviews {
+            margin-top: 100px;           
+        }
+
+        .review-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+
+            .review-item:last-child {
+                border-bottom: none;
+            }
+
+        .review-text {
+            margin: 0;
+            font-size: 17.5px;
+            line-height: 1.4;
+        }
+
+        .review-details {
+            font-style: italic;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .review-rating {
+            color: #ffd700;
+        }
+
+        .time-btn {
+            margin: 5px;
+            padding: 5px 5px;
+            font-size: 14px;
+        }
+        .time {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       <div class="row">
+           <div class="col-sm-8">
+            <div class="barber-info">
+                <img src="@barber.PhotoUri" alt="@barber.Name" class="barber-photo">
+                <h2>@barber.Name @barber.Surname</h2>
+                <p class="barber-description">@barber.Description</p>
+
+                <div class="contacts">
+                    <div class="barber-details">
+                        <p><a href="tel:@barber.Phone">Phone: @barber.Phone</a></p>
+                        <p><a href="mailto:@barber.Email">Email: @barber.Email</a></p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-sm time">
+                <h4>Виберіть час:</h4>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-secondary time-btn">9:00 AM</button>
+                    <button type="button" class="btn btn-secondary time-btn">10:00 AM</button>
+                    <button type="button" class="btn btn-secondary time-btn">11:00 AM</button>
+                    <button type="button" class="btn btn-secondary time-btn">12:00 PM</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-secondary time-btn">1:00 PM</button>
+                    <button type="button" class="btn btn-secondary time-btn">2:00 PM</button>
+                    <button type="button" class="btn btn-secondary time-btn">3:00 PM</button>
+                    <button type="button" class="btn btn-secondary time-btn">4:00 PM</button>
+                </div>
+            </div>
+       </div>
+        <h3 class="reviews">Reviews:</h3>
+        <div class="reviews">
+            @foreach (var review in reviews)
+            {
+                <div class="review-item">
+                    <p class="review-text">@review.Text</p>
+                    <p class="review-details">By: Client @review.fk_ClientId | Date: @review.Date.ToShortDateString()</p>
+                    <p class="review-rating">Rating: @review.Rating/5</p>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
+
