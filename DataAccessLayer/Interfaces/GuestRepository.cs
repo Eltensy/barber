@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
-    public class GuestRepository 
+    public class GuestRepository
     {
-        private readonly DataContext _dataContext;
+        private DataContext _context;
 
-        public GuestRepository(DataContext dataContext) 
+        public GuestRepository(DataContext context) 
         {
-            _dataContext = dataContext;
+            _context = context;
         }
+
     }
 }
