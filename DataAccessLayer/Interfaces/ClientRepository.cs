@@ -1,4 +1,4 @@
-using DataAccessLayer.Data;
+﻿using DataAccessLayer.Data;
 using DataAccessLayer.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,41 +9,41 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
-    public class GuestRepository : IGuestRepository, IDisposable
+    public class ClientRepository : IClientRepository, IDisposable
     {
         private DataContext _context;
 
         private bool _disposed = false;
 
-        public GuestRepository(DataContext context) 
+        public ClientRepository(DataContext context) 
         {
             this._context = context;
         }
 
-        public IEnumerable<Guest> GetGuests()
+        public IEnumerable<Client> GetClients()
         {
-            return _context.Guests.ToList();
+            return _context.Clients.ToList();
         }
 
-        public Guest GetGuestByID(int guestId)
+        public Client GetClientByID(int clientId)
         {
-            return _context.Guests.Find(guestId);
+            return _context.Clients.Find(clientId);
         }
 
-        public void InsertGuest(Guest guest)
+        public void InsertClient(Client client)
         {
-            _context.Guests.Add(guest);
+            _context.Clients.Add(client);
         }
 
-        public void DeleteGuest(int guestId)
+        public void DeleteClient(int clientId)
         {
-            Guest guest = _context.Guests.Find(guestId);
-            _context.Guests.Remove(guest);
+            Client client = _context.Clients.Find(clientId);
+            _context.Clients.Remove(client);
         }
 
-        public void UpdateGuest(Guest guest)
+        public void UpdateClient(Client client)
         {
-            _context.Entry(guest).State = EntityState.Modified;
+            _context.Entry(client).State = EntityState.Modified;
         }
 
         public void Save()
@@ -68,6 +68,5 @@ namespace DataAccessLayer.Interfaces
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
     }
 }

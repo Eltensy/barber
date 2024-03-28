@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
-    public interface IGuestRepository
+    public interface IGuestRepository : IDisposable
     {
-        Task<Guest> AddGuestAsync(Guest guest);
-
-        Task<Guest> DeleteGuestAsync(int id);
+        IEnumerable<Guest> GetGuests();
+        Guest GetGuestByID(int guestId);
+        void InsertGuest(Guest guest);
+        void DeleteGuest(int guestId);
+        void UpdateGuest(Guest guest);
+        void Save();
     }
 }

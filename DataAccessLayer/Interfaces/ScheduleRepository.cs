@@ -1,4 +1,4 @@
-using DataAccessLayer.Data;
+﻿using DataAccessLayer.Data;
 using DataAccessLayer.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,41 +9,41 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
-    public class GuestRepository : IGuestRepository, IDisposable
+    public class ScheduleRepository : IScheduleRepository, IDisposable
     {
         private DataContext _context;
 
         private bool _disposed = false;
 
-        public GuestRepository(DataContext context) 
+        public ScheduleRepository(DataContext context) 
         {
             this._context = context;
         }
 
-        public IEnumerable<Guest> GetGuests()
+        public IEnumerable<Schedule> GetSchedules()
         {
-            return _context.Guests.ToList();
+            return _context.Schedules.ToList();
         }
 
-        public Guest GetGuestByID(int guestId)
+        public Schedule GetScheduleByID(int scheduleId)
         {
-            return _context.Guests.Find(guestId);
+            return _context.Schedules.Find(scheduleId);
         }
 
-        public void InsertGuest(Guest guest)
+        public void InsertSchedule(Schedule schedule)
         {
-            _context.Guests.Add(guest);
+            _context.Schedules.Add(schedule);
         }
 
-        public void DeleteGuest(int guestId)
+        public void DeleteSchedule(int scheduleId)
         {
-            Guest guest = _context.Guests.Find(guestId);
-            _context.Guests.Remove(guest);
+            Schedule schedule = _context.Schedules.Find(scheduleId);
+            _context.Schedules.Remove(schedule);
         }
 
-        public void UpdateGuest(Guest guest)
+        public void UpdateSchedule(Schedule schedule)
         {
-            _context.Entry(guest).State = EntityState.Modified;
+            _context.Entry(schedule).State = EntityState.Modified;
         }
 
         public void Save()
@@ -68,6 +68,5 @@ namespace DataAccessLayer.Interfaces
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
     }
 }
