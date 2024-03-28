@@ -9,41 +9,41 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
-    public class GuestRepository : IGuestRepository, IDisposable
+    public class ServiceRepository : IServiceRepository, IDisposable
     {
         private DataContext _context;
 
         private bool _disposed = false;
 
-        public GuestRepository(DataContext context) 
+        public ServiceRepository(DataContext context) 
         {
             this._context = context;
         }
 
-        public IEnumerable<Guest> GetGuests()
+        public IEnumerable<Service> GetServices()
         {
-            return _context.Guests.ToList();
+            return _context.Services.ToList();
         }
 
-        public Guest GetGuestByID(int guestId)
+        public Service GetServiceByID(int serviceId)
         {
-            return _context.Guests.Find(guestId);
+            return _context.Services.Find(serviceId);
         }
 
-        public void InsertGuest(Guest guest)
+        public void InsertService(Service service)
         {
-            _context.Guests.Add(guest);
+            _context.Services.Add(service);
         }
 
-        public void DeleteGuest(int guestId)
+        public void DeleteService(int serviceId)
         {
-            Guest guest = _context.Guests.Find(guestId);
-            _context.Guests.Remove(guest);
+            Service service = _context.Services.Find(serviceId);
+            _context.Services.Remove(service);
         }
 
-        public void UpdateGuest(Guest guest)
+        public void UpdateService(Service service)
         {
-            _context.Entry(guest).State = EntityState.Modified;
+            _context.Entry(service).State = EntityState.Modified;
         }
 
         public void Save()

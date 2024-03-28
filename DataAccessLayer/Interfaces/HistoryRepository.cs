@@ -9,41 +9,41 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
-    public class GuestRepository : IGuestRepository, IDisposable
+    public class HistoryRepository : IHistoryRepository, IDisposable
     {
         private DataContext _context;
 
         private bool _disposed = false;
 
-        public GuestRepository(DataContext context) 
+        public HistoryRepository(DataContext context) 
         {
             this._context = context;
         }
 
-        public IEnumerable<Guest> GetGuests()
+        public IEnumerable<History> GetHistorys()
         {
-            return _context.Guests.ToList();
+            return _context.History.ToList();
         }
 
-        public Guest GetGuestByID(int guestId)
+        public History GetHistoryByID(int historyId)
         {
-            return _context.Guests.Find(guestId);
+            return _context.History.Find(historyId);
         }
 
-        public void InsertGuest(Guest guest)
+        public void InsertHistory(History history)
         {
-            _context.Guests.Add(guest);
+            _context.History.Add(history);
         }
 
-        public void DeleteGuest(int guestId)
+        public void DeleteHistory(int historyId)
         {
-            Guest guest = _context.Guests.Find(guestId);
-            _context.Guests.Remove(guest);
+            History history = _context.History.Find(historyId);
+            _context.History.Remove(history);
         }
 
-        public void UpdateGuest(Guest guest)
+        public void UpdateHistory(History history)
         {
-            _context.Entry(guest).State = EntityState.Modified;
+            _context.Entry(history).State = EntityState.Modified;
         }
 
         public void Save()
