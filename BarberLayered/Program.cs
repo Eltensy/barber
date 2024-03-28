@@ -3,20 +3,26 @@ using DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using BarberLayered.Filters;
+using Serilog;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-
-// Added comment for testing purposes
-// Rostyk Hui
-// Анекдот про двох геїв у басейні
 
 IConfigurationRoot configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")  // Джерело конфігурації
     .Build();
 
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(configuration)
+    .CreateLogger();
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddControllers(config => config.Filters.Add<LogActionFilter>());
+builder.Services.AddScoped<LogActionFilter>();
 
 builder.Services.AddDbContext<DataAccessLayer.Data.DataContext>(options =>
 {

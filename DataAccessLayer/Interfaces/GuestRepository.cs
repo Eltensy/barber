@@ -1,4 +1,4 @@
-﻿using DataAccessLayer.Data;
+using DataAccessLayer.Data;
 using DataAccessLayer.Entities;
 using System;
 using System.Collections.Generic;
@@ -68,5 +68,6 @@ namespace DataAccessLayer.Interfaces
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
     }
 }
