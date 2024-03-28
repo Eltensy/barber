@@ -29,12 +29,11 @@ namespace BuinessLogicLayer.Services
                                  Surname = guest.Surname,
                                  Phone = guest.Phone
                              };
-            return guestsDtos;
+            return guestsDtos.ToList();
         }
-
         public GuestDto GetGuestById(int guestId)
         {
-            var guest = _guestRepository.GetGuestById(guestId);
+            var guest = _guestRepository.GetGuestByID(guestId);
             var guestDto = new GuestDto()
             { 
                 Id = guest.Id, 
@@ -42,23 +41,37 @@ namespace BuinessLogicLayer.Services
                 Surname = guest.Surname, 
                 Phone = guest.Phone
             };
-
             return guestDto;
         }
-        public void InsertGuest(Guest guest)
+        public void InsertGuest(GuestDto guestDto)
         {
+            Guest guest = new Guest()
+            {
+                Id = guestDto.Id,
+                Name = guestDto.Name,
+                Surname = guestDto.Surname,
+                Phone = guestDto.Phone
+            };
             _guestRepository.InsertGuest(guest);
+            _guestRepository.Save();
         }
-
         public void DeleteGuest(int guestId)
         {
             _guestRepository.DeleteGuest(guestId);
+            _guestRepository.Save();
         }
-
-
-        public void UpdateGuest(Guest guest)
+        public void UpdateGuest(GuestDto guestDto)
         {
+            Guest guest = new Guest()
+            {
+                Id = guestDto.Id,
+                Name = guestDto.Name,
+                Surname = guestDto.Surname,
+                Phone = guestDto.Phone
+            };
+
             _guestRepository.UpdateGuest(guest);
+            _guestRepository.Save();
         }
     }
 }

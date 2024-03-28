@@ -1,5 +1,7 @@
 ﻿using DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Npgsql;
 
 namespace DataAccessLayer.Data
 {
@@ -10,6 +12,19 @@ namespace DataAccessLayer.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("appsettings.json")
+                   .Build();
+                var connectionString = configuration.GetConnectionString("BarberBook_Connection");
+                optionsBuilder.UseNpgsql(connectionString);
+            }
         }
 
         public DbSet<Admin> Admins { get; set; }

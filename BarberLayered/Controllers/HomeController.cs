@@ -1,9 +1,12 @@
+using BarberLayered.Filters;
 using BarberLayered.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace BarberLayered.Controllers
 {
+    //[ServiceFilter(typeof(LogActionFilter))]
+    [ServiceFilter(typeof(LogActionFilter))]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -19,6 +22,11 @@ namespace BarberLayered.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult Registration()
         {
             return View();
         }
