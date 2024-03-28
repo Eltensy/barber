@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿@* <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,6 +25,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Index">Registration</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -45,5 +48,120 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+ *@
+
+
+@{
+    var currentPath = Context.Request.Path;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Barber Shop</title>
+    <style>
+
+         .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1; }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18.5px;
+            margin: 0 10px;
+        }
+
+        header a:hover {
+            color: #f5a742;
+            /* text-decoration: underline;  */
+        }
+
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/BarberShop/Index">BarberBook</a>
+
+        @if (currentPath != null && !currentPath.StartsWithSegments("/Barbers"))
+        {
+            <a href="/Barbers/Index" style="margin: auto;">Наші барбери</a>
+        }
+
+        <div class="dropdown">
+            <a href="#" style="margin: auto;">Увійти</a>
+            <div class="dropdown-content">
+                <a href="/Account/Login">Увійти</a>
+                <a href="/Account/Register">Зареєструватись</a>
+            </div>
+        </div>
+    </header>
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <footer>
+        &copy; 2024 - Barber Shop
+    </footer>
+
 </body>
 </html>

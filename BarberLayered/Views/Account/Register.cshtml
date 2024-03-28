@@ -1,0 +1,174 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 400px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            width: 50%;
+            padding: 10px 20px;
+            background-color: #905B22;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #f5a742;
+        }
+
+        .login-text {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+            font-size: 16px;
+        }
+
+            .login-text a {
+                color: #905B22;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+                .login-text a:hover {
+                    color: #f5a742;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 style="text-align: center;">Register</h2>
+        <form asp-controller="Account" asp-action="Register" method="post">
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter your first name" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter your last name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="+38(__)_______" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="user@gmail.com" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+            </div>
+            <div class="button-container">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+        <div class="login-text">
+            Already have an account? <a href="/Account/Login">Login</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var inputFields = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
+            inputFields.forEach(function (input) {
+                input.addEventListener('focus', function () {
+                    this.placeholder = '';
+                });
+                input.addEventListener('blur', function () {
+                    this.placeholder = this.getAttribute('placeholder');
+                });
+            });
+
+            var phoneInput = document.getElementById('phone');
+            phoneInput.addEventListener('input', function () {
+                // Перевірка телефонного номеру
+                var phonePattern = /^\+38\(\d{3}\)\d{7}$/;
+                if (!phonePattern.test(this.value)) {
+                    this.setCustomValidity('Please enter a valid phone number in the format +38(___)_______');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+
+            var passwordInput = document.getElementById('password');
+            passwordInput.addEventListener('input', function () {
+                // Перевірка пароля
+                if (this.value.length < 8) {
+                    this.setCustomValidity('Password must be at least 8 characters long');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+
+            var confirmPasswordInput = document.getElementById('confirmPassword');
+            confirmPasswordInput.addEventListener('input', function () {
+                // Перевірка збігу паролей
+                var password = document.getElementById('password').value;
+                if (this.value !== password) {
+                    this.setCustomValidity('Passwords do not match');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

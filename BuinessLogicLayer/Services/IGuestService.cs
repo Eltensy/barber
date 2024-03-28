@@ -12,8 +12,8 @@ namespace BuinessLogicLayer.Services
     {
         List<GuestDto> GetGuests();
         GuestDto GetGuestById(int guestId);
-        void InsertGuest(Guest guest);
+        void InsertGuest(GuestDto guestDto);
         void DeleteGuest(int guestId);
-        void UpdateGuest(Guest guest);
+        void UpdateGuest(GuestDto guestDto);
     }
 }
