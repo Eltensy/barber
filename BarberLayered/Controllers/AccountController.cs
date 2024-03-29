@@ -9,27 +9,15 @@ namespace BarberLayered.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly ILogger<AccountController> _logger;
-        private readonly ILoginService _loginService;
-        //private readonly IRegisterService _registerService;
-
-        public AccountController(ILogger<AccountController> logger, ILoginService loginService, IRegisterService registerService)
-        {
-            _logger = logger;
-            _loginService = loginService;
-            //_registerService = registerService;
-        }
         // GET: /Account/Index
         public IActionResult Index()
         {
-            _logger.LogInformation("Visited the Account Index page");
             return View();
         }
 
         // GET: /Account/Login
         public IActionResult Login()
         {
-            _logger.LogInformation("Visited Login page");
             return View();
         }
 
@@ -37,25 +25,37 @@ namespace BarberLayered.Controllers
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
-            int result = _loginService.Login(email, password);
-            if (result == 0)
+            IClientRepository _clientRepository = new ClientRepository(new DataAccessLayer.Data.DataContext());
+            //IBarberRepository _barberRepository = new BarberRepository(new DataAccessLayer.Data.DataContext());
+            
+
+            var client = _clientRepository.GetClients().First(x => x.Email == email);
+
+            HashAlgorithm sha = SHA256.Create();
+            var bytes = Encoding.ASCII.GetBytes(password);
+            byte[] hashedPassword;
+            hashedPassword = sha.ComputeHash(bytes);
+
+            if (client != null)
             {
-                _logger.LogInformation("User typed wrong password!");
-                throw new Exception("Wrong password!");
-            }
-            else if (result == 1)
-            {
-                _logger.LogInformation("Client logged in successfully!");
-                return RedirectToAction("Register");
-            }
-            else if (result == 2)
-            {
-                _logger.LogInformation("Barber logged in!");
-                throw new Exception("Barber logged in!");
+                if (client.Password.Equals(Encoding.ASCII.GetString(hashedPassword)))
+                {
+                    return RedirectToAction("Register");
+                }
+                else
+                    throw new Exception();
+
             }
             else
             {
-                _logger.LogInformation("LoginSevice returned -1!");
+                //var barber = _barberRepository.GetBarbers().First(x => x.Email == email);
+                //if (barber != null)
+                //{
+                //    if (barber.Password.Equals(Encoding.ASCII.GetString(hashedPassword)))
+                //        result = 0;
+                //    else
+                //        result = 2;
+                //}
                 throw new Exception();
             }
         }
@@ -63,39 +63,38 @@ namespace BarberLayered.Controllers
         // GET: /Account/Register
         public IActionResult Register()
         {
-            _logger.LogInformation("Visited Register page");
             return View();
         }
 
         // POST: /Account/Register
         [HttpPost]
-        //public IActionResult Register(string firstName, string lastName, string phone, string email, string password, string confirmPassword)
-        //{
-        //    if (!password.Equals(confirmPassword))
-        //    {
-        //        _logger.LogInformation("Passowrd and confirmPassword are not equal!");
-        //        throw new Exception();
-        //    }
-        //    int result = _registerService.Register(firstName, lastName, phone, email, password);
-            
-        //    if (result == 0) // Client signed up successfully
-        //    {
-        //        _logger.LogInformation("User signed up successfully!");
-        //        return RedirectToAction("Login");
-        //    }
-        //    else
-        //    {
-        //        _logger.LogInformation("RegisterSevice returned -1!");
-        //        throw new Exception();
-        //    }
+        public IActionResult Register(string firstName, string lastName, string phone, string email, string password, string confirmPassword)
+        {
+            IRegisterService _registerService = new RegisterService(new DataAccessLayer.Interfaces.ClientRepository(new DataAccessLayer.Data.DataContext()));
 
-        //}
+            if (!password.Equals(confirmPassword))
+            {
+                throw new Exception();
+            }
+            int result = _registerService.Register(firstName, lastName, phone, email, password);
+            
+            if (result == 0) // Client with such email already exists
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                throw new Exception();
+            }
+
+            //return RedirectToAction("Login");
+        }
 
         // POST: /Account/Logout
         [HttpPost]
         public IActionResult Logout()
         {
-            _logger.LogInformation("Logout!");
+
             return RedirectToAction("Index", "BarberShop");
         }
     }
