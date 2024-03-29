@@ -1,0 +1,111 @@
+﻿@{
+    var barber = ViewBag.Barber as BarberLayered.Models.Barber;
+    var services = ViewBag.Services as List<BarberLayered.Models.Service>;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .barber-photo {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .barber-info {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+            .barber-info h2 {
+                margin-top: 0;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 20px;
+            border-bottom: 1px solid #ccc;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .service-button {
+            background-color: #905B22;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+            .service-button:hover {
+                background-color: #684116;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="@barber.PhotoUri" alt="@barber.Name" class="barber-photo">
+        <div class="barber-info">
+            <h2>@barber.Name @barber.Surname</h2>
+        </div>
+
+        <h1>Services</h1>
+
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Duration (m)</th>
+                <th>Price (₴)</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var service in services)
+            {
+                <tr>
+                    <td>@service.Title</td>
+                    <td>@service.Description</td>
+                    <td>@service.Duration.Minute</td>
+                    <td>@service.Price</td>
+                    <td><a href="#" class="service-button">Записатись</a></td>
+                    @* <td><a href="@Url.Action("Index", "Appointment", new { id = barber.Id })" class="service-button">Записатись</a></td> *@
+                </tr>
+            }
+        </table>
+    </div>
+
+</body>
+</html>
