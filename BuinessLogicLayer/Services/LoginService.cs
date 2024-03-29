@@ -33,10 +33,10 @@ namespace BuinessLogicLayer.Services
             {
                 if (client.Password.Equals(Encoding.ASCII.GetString(hashedPassword)))
                 {
-                    result = 0;
+                    result = 1;
                 }
                 else
-                    result = 1;
+                    result = 0;
                
             }
             else
@@ -45,9 +45,9 @@ namespace BuinessLogicLayer.Services
                 if (barber != null)
                 {
                     if (barber.Password.Equals(Encoding.ASCII.GetString(hashedPassword)))
-                        result = 0;
-                    else
                         result = 2;
+                    else
+                        result = 0;
                 }
 
             }
