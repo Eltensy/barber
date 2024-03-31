@@ -14,6 +14,7 @@ namespace DataAccessLayer.Interfaces
         void InsertBarber(Barber barber);
         void DeleteBarber(int barberId);
         void UpdateBarber(Barber barber);
+        Barber? GetBarberByEmail(string email);
         void Save();
     }
 }

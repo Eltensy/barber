@@ -11,9 +11,9 @@ namespace BuinessLogicLayer.Services
 {
     public class BarberService : IBarberService
     {
-        private readonly BarberRepository _barberRepository;
+        private readonly IBarberRepository _barberRepository;
 
-        public BarberService(BarberRepository barberRepository)
+        public BarberService(IBarberRepository barberRepository)
         {
             _barberRepository = barberRepository;
         }
@@ -84,6 +84,28 @@ namespace BuinessLogicLayer.Services
 
             _barberRepository.UpdateBarber(barber);
             _barberRepository.Save();
+        }
+
+        public BarberDto? GetBarberByEmail(string email)
+        {
+            Barber? barber = _barberRepository.GetBarberByEmail(email);
+            BarberDto? barberDto = null;
+            if(barber != null) {
+                barberDto = new BarberDto()
+                {
+                    Id = barber.Id,
+                    Name = barber.Name,
+                    Surname = barber.Surname,
+                    Email = barber.Email,
+                    Phone = barber.Phone,
+                    Password = barber.Password,
+                    PhotoUri = barber.PhotoUri,
+                    Description = barber.Description,
+                    PortfolioUri = barber.PortfolioUri
+                };
+            }
+            
+            return barberDto;
         }
     }
 }

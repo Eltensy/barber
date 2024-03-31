@@ -11,9 +11,9 @@ namespace BuinessLogicLayer.Services
 {
     public class ClientService : IClientService
     {
-        private readonly ClientRepository _clientRepository;
+        private readonly IClientRepository _clientRepository;
 
-        public ClientService(ClientRepository clientRepository)
+        public ClientService(IClientRepository clientRepository)
         {
             _clientRepository = clientRepository;
         }
@@ -79,6 +79,24 @@ namespace BuinessLogicLayer.Services
 
             _clientRepository.UpdateClient(client);
             _clientRepository.Save();
+        }
+        public ClientDto? GetClientByEmail(string email)
+        {
+            Client? client = _clientRepository.GetClientByEmail(email);
+            ClientDto? clientDto = null;
+            if(client != null)
+            {
+                clientDto = new ClientDto()
+                {
+                    Id = client.Id,
+                    Name = client.Name,
+                    Surname = client.Surname,
+                    Phone = client.Phone,
+                    Email = client.Email,
+                    Password = client.Password
+                };
+            }
+            return clientDto;
         }
     }
 }

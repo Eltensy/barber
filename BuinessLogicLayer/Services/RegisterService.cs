@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Entities;
+﻿using BuinessLogicLayer.DTOs;
+using DataAccessLayer.Entities;
 using DataAccessLayer.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,35 +12,40 @@ namespace BuinessLogicLayer.Services
 {
     public class RegisterService : IRegisterService
     {
-        private readonly ClientRepository _clientRepository;
-        HashAlgorithm sha = SHA256.Create();
+        //private readonly IClientRepository _clientRepository;
+        private readonly IClientService _clientService;
+        readonly HashAlgorithm sha = SHA256.Create();
         byte[] hashedPassword;
-        public RegisterService(ClientRepository clientRepository)
+        public RegisterService(IClientService clientService)
         {
-            _clientRepository = clientRepository;
+            _clientService = clientService;
         }
-        public int Register(string name, string surname, string phone, string email, string password)
+        //public int Register(string name, string surname, string phone, string email, string password)
+        public int Register(ClientDto clientDto)
         {
             int result = -1;
 
-            var existingClient = _clientRepository.GetClients().Where(x => x.Email == email);
+            var existingClient = _clientService.GetClientByEmail(clientDto.Email);
 
-            if (!existingClient.Any())
+            if (existingClient == null)
             {
-                //var bytes = Convert.FromBase64String(password);
-                byte[] bytes = Encoding.ASCII.GetBytes(password);
+                //byte[] bytes = Encoding.ASCII.GetBytes(clientDto.Password);
+                byte[] bytes = Encoding.UTF8.GetBytes(clientDto.Password);
+
+
 
                 hashedPassword = sha.ComputeHash(bytes);
-                Client newClient = new Client()
+                string encryptedPass = "bros immaculate";
+                ClientDto newClient = new ClientDto()
                 {
-                    Name = name,
-                    Surname = surname,
-                    Phone = phone,
-                    Email = email,
+                    Name = clientDto.Name,
+                    Surname = clientDto.Surname,
+                    Phone = clientDto.Phone,
+                    Email = clientDto.Email,
                     Password = Encoding.ASCII.GetString(hashedPassword)
+                    //Password = encryptedPass
                 };
-                _clientRepository.InsertClient(newClient);
-                _clientRepository.Save();
+                _clientService.InsertClient(newClient);
                 result = 0;
 
             }

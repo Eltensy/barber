@@ -10,12 +10,12 @@ namespace BuinessLogicLayer.Services
 {
     public class LoginService : ILoginService
     {
-        private readonly ClientRepository _clientRepository;
-        private readonly BarberRepository _barberRepository;
-        HashAlgorithm sha = SHA256.Create();
+        private readonly IBarberRepository _barberRepository;
+        private readonly IClientRepository _clientRepository;
+        readonly HashAlgorithm sha = SHA256.Create();
         byte[] hashedPassword;
 
-        public LoginService(ClientRepository clientRepository, BarberRepository barberRepository)
+        public LoginService(IClientRepository clientRepository, IBarberRepository barberRepository)
         {
             _clientRepository = clientRepository;
             _barberRepository = barberRepository;
@@ -23,7 +23,8 @@ namespace BuinessLogicLayer.Services
         public int Login(string email, string password)
         {
             int result = -1;
-            var client = _clientRepository.GetClients().First(x => x.Email == email);
+            //var client = _clientRepository.GetClients().First(x => x.Email == email);
+            var client = _clientRepository.GetClientByEmail(email);
 
             var bytes = Encoding.ASCII.GetBytes(password);
 
@@ -33,10 +34,10 @@ namespace BuinessLogicLayer.Services
             {
                 if (client.Password.Equals(Encoding.ASCII.GetString(hashedPassword)))
                 {
-                    result = 0;
+                    result = 1;
                 }
                 else
-                    result = 1;
+                    result = 0;
                
             }
             else
@@ -45,9 +46,9 @@ namespace BuinessLogicLayer.Services
                 if (barber != null)
                 {
                     if (barber.Password.Equals(Encoding.ASCII.GetString(hashedPassword)))
-                        result = 0;
-                    else
                         result = 2;
+                    else
+                        result = 0;
                 }
 
             }

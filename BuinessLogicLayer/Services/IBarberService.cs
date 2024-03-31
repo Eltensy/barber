@@ -14,5 +14,6 @@ namespace BuinessLogicLayer.Services
         void InsertBarber(BarberDto barberDto);
         void DeleteBarber(int barberId);
         void UpdateBarber(BarberDto barberDto);
+        BarberDto? GetBarberByEmail(string email);
     }
 }

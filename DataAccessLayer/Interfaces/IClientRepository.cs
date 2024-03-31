@@ -14,6 +14,7 @@ namespace DataAccessLayer.Interfaces
         void InsertClient(Client client);
         void DeleteClient(int clientId);
         void UpdateClient(Client client);
+        Client? GetClientByEmail(string email);
         void Save();
     }
 }

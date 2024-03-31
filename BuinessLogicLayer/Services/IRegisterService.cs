@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BuinessLogicLayer.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace BuinessLogicLayer.Services
 {
     public interface IRegisterService
     {
-        int Register(string name, string surname, string phone, string email, string password);
+        //int Register(string name, string surname, string phone, string email, string password);
+        int Register(ClientDto clientDto);
     }
 }

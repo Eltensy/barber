@@ -6,17 +6,13 @@ namespace BarberLayered.Controllers
 {
     public class RegisterController : Controller
     {
-        private IRegisterService _registerService;
+        private readonly IRegisterService _registerService;
 
-        public RegisterController()
+        public RegisterController(IRegisterService registerService)
         {
-            _registerService = new RegisterService(new ClientRepository(new DataAccessLayer.Data.DataContext()));
+            _registerService = registerService;
         }
 
-        //public RegisterController(IRegisterService registerService)
-        //{
-        //    _registerService = registerService;
-        //}
         public IActionResult Index()
         {
             return View();
