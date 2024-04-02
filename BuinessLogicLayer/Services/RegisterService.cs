@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using BCrypt;
 
 namespace BuinessLogicLayer.Services
 {
@@ -14,40 +15,35 @@ namespace BuinessLogicLayer.Services
     {
         //private readonly IClientRepository _clientRepository;
         private readonly IClientService _clientService;
-        readonly HashAlgorithm sha = SHA256.Create();
-        byte[] hashedPassword;
+
         public RegisterService(IClientService clientService)
         {
             _clientService = clientService;
         }
-        //public int Register(string name, string surname, string phone, string email, string password)
+
         public int Register(ClientDto clientDto)
         {
             int result = -1;
+            string hashedPassword;
 
             var existingClient = _clientService.GetClientByEmail(clientDto.Email);
 
             if (existingClient == null)
             {
-                //byte[] bytes = Encoding.ASCII.GetBytes(clientDto.Password);
-                byte[] bytes = Encoding.UTF8.GetBytes(clientDto.Password);
+                hashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(clientDto.Password);
 
-
-
-                hashedPassword = sha.ComputeHash(bytes);
-                string encryptedPass = "bros immaculate";
                 ClientDto newClient = new ClientDto()
                 {
                     Name = clientDto.Name,
                     Surname = clientDto.Surname,
                     Phone = clientDto.Phone,
                     Email = clientDto.Email,
-                    Password = Encoding.ASCII.GetString(hashedPassword)
-                    //Password = encryptedPass
+                    Password = hashedPassword
                 };
-                _clientService.InsertClient(newClient);
-                result = 0;
 
+                _clientService.InsertClient(newClient);
+
+                result = 0;
             }
 
             return result;

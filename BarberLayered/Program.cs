@@ -10,7 +10,7 @@ using BuinessLogicLayer.Services;
 using DataAccessLayer.Interfaces;
 
 IConfigurationRoot configuration = new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json")  // Джерело конфігурації
+    .AddJsonFile("appsettings.json")
     .Build();
 
 
