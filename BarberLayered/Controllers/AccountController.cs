@@ -1,4 +1,6 @@
-﻿using BuinessLogicLayer.Services;
+﻿using BuinessLogicLayer.DTOs;
+using BuinessLogicLayer.Services;
+using DataAccessLayer.Data;
 using DataAccessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
@@ -9,6 +11,20 @@ namespace BarberLayered.Controllers
 {
     public class AccountController : Controller
     {
+        private ILoginService _loginService;
+        private IRegisterService _registerService;
+
+        public AccountController(ILoginService loginService, IRegisterService registerService)
+        {
+            _loginService = loginService;
+            _registerService = registerService;
+        }
+
+        //public AccountController(IRegisterService registerService)
+        //{
+        //    _registerService = registerService;
+        //}
+
         // GET: /Account/Index
         public IActionResult Index()
         {
@@ -25,40 +41,23 @@ namespace BarberLayered.Controllers
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
-            IClientRepository _clientRepository = new ClientRepository(new DataAccessLayer.Data.DataContext());
-            //IBarberRepository _barberRepository = new BarberRepository(new DataAccessLayer.Data.DataContext());
-            
+            int result = _loginService.Login(email, password);
 
-            var client = _clientRepository.GetClients().First(x => x.Email == email);
-
-            HashAlgorithm sha = SHA256.Create();
-            var bytes = Encoding.ASCII.GetBytes(password);
-            byte[] hashedPassword;
-            hashedPassword = sha.ComputeHash(bytes);
-
-            if (client != null)
+            switch (result)
             {
-                if (client.Password.Equals(Encoding.ASCII.GetString(hashedPassword)))
-                {
-                    return RedirectToAction("Register");
-                }
-                else
-                    throw new Exception();
+                case 0:
+                    return RedirectToAction("Login");
+                case 1:
+                    return RedirectToAction("User");
+                case 2:
+                    return RedirectToAction("Home");
+                default:
+                    return View();
 
-            }
-            else
-            {
-                //var barber = _barberRepository.GetBarbers().First(x => x.Email == email);
-                //if (barber != null)
-                //{
-                //    if (barber.Password.Equals(Encoding.ASCII.GetString(hashedPassword)))
-                //        result = 0;
-                //    else
-                //        result = 2;
-                //}
-                throw new Exception();
             }
         }
+
+
 
         // GET: /Account/Register
         public IActionResult Register()
@@ -70,13 +69,19 @@ namespace BarberLayered.Controllers
         [HttpPost]
         public IActionResult Register(string firstName, string lastName, string phone, string email, string password, string confirmPassword)
         {
-            IRegisterService _registerService = new RegisterService(new DataAccessLayer.Interfaces.ClientRepository(new DataAccessLayer.Data.DataContext()));
-
             if (!password.Equals(confirmPassword))
             {
                 throw new Exception();
             }
-            int result = _registerService.Register(firstName, lastName, phone, email, password);
+            var newClient = new ClientDto()
+            {
+                Name = firstName,
+                Surname = lastName,
+                Phone = phone,
+                Email = email, 
+                Password = password 
+            };
+            int result = _registerService.Register(newClient);
             
             if (result == 0) // Client with such email already exists
             {

@@ -6,12 +6,7 @@ namespace BarberLayered.Controllers
 {
     public class LoginController : Controller
     {
-        private ILoginService _loginService;
-
-        public LoginController()
-        {
-            _loginService = new LoginService(new ClientRepository(new DataAccessLayer.Data.DataContext()), new BarberRepository(new DataAccessLayer.Data.DataContext()));
-        }
+        private readonly ILoginService _loginService;
 
         public LoginController(ILoginService loginService)
         {

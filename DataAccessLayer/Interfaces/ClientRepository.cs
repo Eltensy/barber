@@ -47,6 +47,12 @@ namespace DataAccessLayer.Interfaces
             _context.Entry(client).State = EntityState.Modified;
         }
 
+        public Client? GetClientByEmail(string email)
+        {
+            Client? client = _context.Clients.SingleOrDefault(x => x.Email.Equals(email));
+            return client;
+        }
+
         public void Save()
         {
             _context.SaveChanges();

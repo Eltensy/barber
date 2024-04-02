@@ -6,6 +6,8 @@ using Microsoft.Extensions.Options;
 using BarberLayered.Filters;
 using Serilog;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using BuinessLogicLayer.Services;
+using DataAccessLayer.Interfaces;
 
 IConfigurationRoot configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")  // Джерело конфігурації
@@ -23,6 +25,14 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddControllers(config => config.Filters.Add<LogActionFilter>());
 builder.Services.AddScoped<LogActionFilter>();
+
+builder.Services.AddScoped<IBarberRepository, BarberRepository>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+
+builder.Services.AddScoped<IBarberService, BarberService>();
+builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IRegisterService, RegisterService>();
 
 builder.Services.AddDbContext<DataAccessLayer.Data.DataContext>(options =>
 {

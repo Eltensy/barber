@@ -14,5 +14,6 @@ namespace BuinessLogicLayer.Services
         void InsertClient(ClientDto clientDto);
         void DeleteClient(int clientId);
         void UpdateClient(ClientDto clientDto);
+        ClientDto? GetClientByEmail(string email);
     }
 }

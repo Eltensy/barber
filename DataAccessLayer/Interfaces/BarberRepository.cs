@@ -12,7 +12,7 @@ namespace DataAccessLayer.Interfaces
 {
     public class BarberRepository : IBarberRepository, IDisposable
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         private bool _disposed = false;
 
@@ -45,6 +45,12 @@ namespace DataAccessLayer.Interfaces
         public void UpdateBarber(Barber barber)
         {
             _context.Entry(barber).State = EntityState.Modified;
+        }
+
+        public Barber? GetBarberByEmail(string email)
+        {
+            Barber? barber = _context.Barbers.SingleOrDefault(x => x.Email.Equals(email));
+            return barber;
         }
 
         public void Save()
