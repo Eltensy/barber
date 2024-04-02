@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using BCrypt;
 
 namespace BuinessLogicLayer.Services
 {
@@ -12,8 +13,8 @@ namespace BuinessLogicLayer.Services
     {
         private readonly IBarberRepository _barberRepository;
         private readonly IClientRepository _clientRepository;
-        readonly HashAlgorithm sha = SHA256.Create();
-        byte[] hashedPassword;
+        //readonly HashAlgorithm sha = SHA256.Create();
+        //byte[] hashedPassword;
 
         public LoginService(IClientRepository clientRepository, IBarberRepository barberRepository)
         {
@@ -23,34 +24,29 @@ namespace BuinessLogicLayer.Services
         public int Login(string email, string password)
         {
             int result = -1;
-            //var client = _clientRepository.GetClients().First(x => x.Email == email);
+            string storedPassword;
+
+
             var client = _clientRepository.GetClientByEmail(email);
-
-            var bytes = Encoding.ASCII.GetBytes(password);
-
-            hashedPassword = sha.ComputeHash(bytes);
-
             if (client != null)
             {
-                if (client.Password.Equals(Encoding.ASCII.GetString(hashedPassword)))
+                storedPassword = client.Password;
+                if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPassword))
                 {
                     result = 1;
                 }
-                else
-                    result = 0;
-               
             }
             else
             {
                 var barber = _barberRepository.GetBarbers().First(x => x.Email == email);
                 if (barber != null)
                 {
-                    if (barber.Password.Equals(Encoding.ASCII.GetString(hashedPassword)))
+                    storedPassword = barber.Password;
+                    if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPassword))
+                    {
                         result = 2;
-                    else
-                        result = 0;
+                    }
                 }
-
             }
 
             return result;
