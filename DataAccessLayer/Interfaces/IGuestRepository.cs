@@ -9,11 +9,11 @@ namespace DataAccessLayer.Interfaces
 {
     public interface IGuestRepository : IDisposable
     {
-        IEnumerable<Guest> GetGuests();
-        Guest GetGuestByID(int guestId);
-        void InsertGuest(Guest guest);
-        void DeleteGuest(int guestId);
-        void UpdateGuest(Guest guest);
-        void Save();
+        Task<IEnumerable<Guest>> GetGuests();
+        Task<Guest?> GetGuestByID(int guestId);
+        Task InsertGuest(Guest guest);
+        Task DeleteGuest(int guestId);
+        Task UpdateGuest(Guest guest);
+        Task Save();
     }
 }

@@ -9,11 +9,11 @@ namespace BuinessLogicLayer.Services
 {
     public interface IBarberService
     {
-        List<BarberDto> GetBarbers();
-        BarberDto GetBarberById(int barberId);
-        void InsertBarber(BarberDto barberDto);
-        void DeleteBarber(int barberId);
-        void UpdateBarber(BarberDto barberDto);
-        BarberDto? GetBarberByEmail(string email);
+        Task<List<BarberDto>> GetBarbers();
+        Task<BarberDto?> GetBarberById(int barberId);
+        Task InsertBarber(BarberDto barberDto);
+        Task DeleteBarber(int barberId);
+        Task UpdateBarber(BarberDto barberDto);
+        Task<BarberDto?> GetBarberByEmail(string email);
     }
 }

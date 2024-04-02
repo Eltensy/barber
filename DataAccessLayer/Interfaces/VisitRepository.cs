@@ -12,7 +12,7 @@ namespace DataAccessLayer.Interfaces
 {
     public class VisitRepository : IVisitRepository, IDisposable
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         private bool _disposed = false;
 
@@ -21,35 +21,38 @@ namespace DataAccessLayer.Interfaces
             this._context = context;
         }
 
-        public IEnumerable<Visit> GetVisits()
+        public async Task<IEnumerable<Visit>> GetVisits()
         {
-            return _context.Visits.ToList();
+            return await _context.Visits.ToListAsync();
         }
 
-        public Visit GetVisitByID(int visitId)
+        public async Task<Visit?> GetVisitByID(int visitId)
         {
-            return _context.Visits.Find(visitId);
+            return await _context.Visits.FindAsync(visitId);
         }
 
-        public void InsertVisit(Visit visit)
+        public async Task InsertVisit(Visit visit)
         {
-            _context.Visits.Add(visit);
+            await _context.Visits.AddAsync(visit);
+            await Save();
         }
 
-        public void DeleteVisit(int visitId)
+        public async Task DeleteVisit(int visitId)
         {
-            Visit visit = _context.Visits.Find(visitId);
-            _context.Visits.Remove(visit);
+            Visit? visit = await _context.Visits.FindAsync(visitId);
+            if(null != visit) _context.Visits.Remove(visit);
+            await Save();
         }
 
-        public void UpdateVisit(Visit visit)
+        public async Task UpdateVisit(Visit visit)
         {
             _context.Entry(visit).State = EntityState.Modified;
+            await Save();
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         protected virtual void Dispose(bool disposing)

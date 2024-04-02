@@ -9,10 +9,10 @@ namespace BuinessLogicLayer.Services
 {
     public interface IAdminService
     {
-        List<AdminDto> GetAdmins();
-        AdminDto GetAdminById(int adminId);
-        void InsertAdmin(AdminDto adminDto);
-        void DeleteAdmin(int adminId);
-        void UpdateAdmin(AdminDto adminDto);
+        Task<List<AdminDto>> GetAdmins();
+        Task<AdminDto?> GetAdminById(int adminId);
+        Task InsertAdmin(AdminDto adminDto);
+        Task DeleteAdmin(int adminId);
+        Task UpdateAdmin(AdminDto adminDto);
     }
 }

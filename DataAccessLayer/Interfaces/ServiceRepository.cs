@@ -12,7 +12,7 @@ namespace DataAccessLayer.Interfaces
 {
     public class ServiceRepository : IServiceRepository, IDisposable
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         private bool _disposed = false;
 
@@ -21,35 +21,38 @@ namespace DataAccessLayer.Interfaces
             this._context = context;
         }
 
-        public IEnumerable<Service> GetServices()
+        public async Task<IEnumerable<Service>> GetServices()
         {
-            return _context.Services.ToList();
+            return await _context.Services.ToListAsync();
         }
 
-        public Service GetServiceByID(int serviceId)
+        public async Task<Service?> GetServiceByID(int serviceId)
         {
-            return _context.Services.Find(serviceId);
+            return await _context.Services.FindAsync(serviceId);
         }
 
-        public void InsertService(Service service)
+        public async Task InsertService(Service service)
         {
-            _context.Services.Add(service);
+            await _context.Services.AddAsync(service);
+            await Save();
         }
 
-        public void DeleteService(int serviceId)
+        public async Task DeleteService(int serviceId)
         {
-            Service service = _context.Services.Find(serviceId);
-            _context.Services.Remove(service);
+            Service? service = await _context.Services.FindAsync(serviceId);
+            if(null != service) _context.Services.Remove(service);
+            await Save();
         }
 
-        public void UpdateService(Service service)
+        public async Task UpdateService(Service service)
         {
             _context.Entry(service).State = EntityState.Modified;
+            await Save();
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         protected virtual void Dispose(bool disposing)

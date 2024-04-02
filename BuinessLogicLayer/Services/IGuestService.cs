@@ -10,10 +10,10 @@ namespace BuinessLogicLayer.Services
 {
     public interface IGuestService
     {
-        List<GuestDto> GetGuests();
-        GuestDto GetGuestById(int guestId);
-        void InsertGuest(GuestDto guestDto);
-        void DeleteGuest(int guestId);
-        void UpdateGuest(GuestDto guestDto);
+        Task<List<GuestDto>> GetGuests();
+        Task<GuestDto?> GetGuestById(int guestId);
+        Task InsertGuest(GuestDto guestDto);
+        Task DeleteGuest(int guestId);
+        Task UpdateGuest(GuestDto guestDto);
     }
 }

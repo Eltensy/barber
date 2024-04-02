@@ -9,11 +9,11 @@ namespace DataAccessLayer.Interfaces
 {
     public interface IScheduleRepository : IDisposable
     {
-        IEnumerable<Schedule> GetSchedules();
-        Schedule GetScheduleByID(int scheduleId);
-        void InsertSchedule(Schedule schedule);
-        void DeleteSchedule(int scheduleId);
-        void UpdateSchedule(Schedule schedule);
-        void Save();
+        Task<IEnumerable<Schedule>> GetSchedules();
+        Task<Schedule?> GetScheduleByID(int scheduleId);
+        Task InsertSchedule(Schedule schedule);
+        Task DeleteSchedule(int scheduleId);
+        Task UpdateSchedule(Schedule schedule);
+        Task Save();
     }
 }

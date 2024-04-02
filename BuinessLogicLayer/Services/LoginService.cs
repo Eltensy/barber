@@ -10,21 +10,20 @@ namespace BuinessLogicLayer.Services
 {
     public class LoginService : ILoginService
     {
-        private readonly IBarberRepository _barberRepository;
-        private readonly IClientRepository _clientRepository;
+        private readonly IBarberService _barberService;
+        private readonly IClientService _clientService;
         readonly HashAlgorithm sha = SHA256.Create();
         byte[] hashedPassword;
 
-        public LoginService(IClientRepository clientRepository, IBarberRepository barberRepository)
+        public LoginService(IClientService clientService, IBarberService barberService)
         {
-            _clientRepository = clientRepository;
-            _barberRepository = barberRepository;
+            _clientService = clientService;
+            _barberService = barberService;
         }
-        public int Login(string email, string password)
+        public async Task<int> Login(string email, string password)
         {
             int result = -1;
-            //var client = _clientRepository.GetClients().First(x => x.Email == email);
-            var client = _clientRepository.GetClientByEmail(email);
+            var client = await _clientService.GetClientByEmail(email);
 
             var bytes = Encoding.ASCII.GetBytes(password);
 
@@ -42,7 +41,7 @@ namespace BuinessLogicLayer.Services
             }
             else
             {
-                var barber = _barberRepository.GetBarbers().First(x => x.Email == email);
+                var barber = await _barberService.GetBarberByEmail(email);
                 if (barber != null)
                 {
                     if (barber.Password.Equals(Encoding.ASCII.GetString(hashedPassword)))

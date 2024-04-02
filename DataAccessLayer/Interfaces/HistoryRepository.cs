@@ -12,7 +12,7 @@ namespace DataAccessLayer.Interfaces
 {
     public class HistoryRepository : IHistoryRepository, IDisposable
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         private bool _disposed = false;
 
@@ -21,35 +21,38 @@ namespace DataAccessLayer.Interfaces
             this._context = context;
         }
 
-        public IEnumerable<History> GetHistorys()
+        public async Task<IEnumerable<History>> GetHistorys()
         {
-            return _context.History.ToList();
+            return await _context.History.ToListAsync();
         }
 
-        public History GetHistoryByID(int historyId)
+        public async Task<History?> GetHistoryByID(int historyId)
         {
-            return _context.History.Find(historyId);
+            return await _context.History.FindAsync(historyId);
         }
 
-        public void InsertHistory(History history)
+        public async Task InsertHistory(History history)
         {
-            _context.History.Add(history);
+            await _context.History.AddAsync(history);
+            await Save();
         }
 
-        public void DeleteHistory(int historyId)
+        public async Task DeleteHistory(int historyId)
         {
-            History history = _context.History.Find(historyId);
-            _context.History.Remove(history);
+            History? history = await _context.History.FindAsync(historyId);
+            if(null != history) _context.History.Remove(history);
+            await Save();
         }
 
-        public void UpdateHistory(History history)
+        public async Task UpdateHistory(History history)
         {
             _context.Entry(history).State = EntityState.Modified;
+            await Save();
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         protected virtual void Dispose(bool disposing)

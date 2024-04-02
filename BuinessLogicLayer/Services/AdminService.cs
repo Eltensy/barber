@@ -17,30 +17,34 @@ namespace BuinessLogicLayer.Services
         {
             _adminRepository = adminRepository;
         }
-        public void DeleteAdmin(int adminId)
+        public async Task DeleteAdmin(int adminId)
         {
-            _adminRepository.DeleteAdmin(adminId);
-            _adminRepository.Save();
+            await _adminRepository.DeleteAdmin(adminId);
         }
 
-        public AdminDto GetAdminById(int adminId)
+        public async Task<AdminDto?> GetAdminById(int adminId)
         {
-            var admin = _adminRepository.GetAdminByID(adminId);
-            var adminDto = new AdminDto()
+            var admin = await _adminRepository.GetAdminByID(adminId);
+
+            AdminDto? adminDto = null;
+            if(null !=  admin)
             {
-                Id = admin.Id,
-                Name = admin.Name,
-                Surname = admin.Surname,
-                Phone = admin.Phone,
-                Email = admin.Email,
-                Password = admin.Password
-            };
+                adminDto = new AdminDto()
+                {
+                    Id = admin.Id,
+                    Name = admin.Name,
+                    Surname = admin.Surname,
+                    Phone = admin.Phone,
+                    Email = admin.Email,
+                    Password = admin.Password
+                };
+            }
             return adminDto;
         }
 
-        public List<AdminDto> GetAdmins()
+        public async Task<List<AdminDto>> GetAdmins()
         {
-            var admins = _adminRepository.GetAdmins();
+            var admins = await _adminRepository.GetAdmins();
             var adminsDtos = from admin in admins
                               select new AdminDto()
                               {
@@ -54,7 +58,7 @@ namespace BuinessLogicLayer.Services
             return adminsDtos.ToList();
         }
 
-        public void InsertAdmin(AdminDto adminDto)
+        public async Task InsertAdmin(AdminDto adminDto)
         {
             Admin admin = new Admin()
             {
@@ -65,11 +69,10 @@ namespace BuinessLogicLayer.Services
                 Email = adminDto.Email,
                 Password = adminDto.Password
             };
-            _adminRepository.InsertAdmin(admin);
-            _adminRepository.Save();
+            await _adminRepository.InsertAdmin(admin);
         }
 
-        public void UpdateAdmin(AdminDto adminDto)
+        public async Task UpdateAdmin(AdminDto adminDto)
         {
             Admin admin = new Admin()
             {
@@ -81,8 +84,7 @@ namespace BuinessLogicLayer.Services
                 Password = adminDto.Password
             };
 
-            _adminRepository.UpdateAdmin(admin);
-            _adminRepository.Save();
+            await _adminRepository.UpdateAdmin(admin);
         }
     }
 }

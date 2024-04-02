@@ -9,7 +9,6 @@ namespace BuinessLogicLayer.Services
 {
     public interface IRegisterService
     {
-        //int Register(string name, string surname, string phone, string email, string password);
-        int Register(ClientDto clientDto);
+        Task<int> Register(ClientDto clientDto);
     }
 }

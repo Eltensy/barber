@@ -21,41 +21,44 @@ namespace DataAccessLayer.Interfaces
             this._context = context;
         }
 
-        public IEnumerable<Barber> GetBarbers()
+        public async Task<IEnumerable<Barber>> GetBarbers()
         {
-            return _context.Barbers.ToList();
+            return await _context.Barbers.ToListAsync();
         }
 
-        public Barber GetBarberByID(int barberId)
+        public async Task<Barber?> GetBarberByID(int barberId)
         {
-            return _context.Barbers.Find(barberId);
+            return await _context.Barbers.FindAsync(barberId);
         }
 
-        public void InsertBarber(Barber barber)
+        public async Task InsertBarber(Barber barber)
         {
-            _context.Barbers.Add(barber);
+            await _context.Barbers.AddAsync(barber);
+            await Save();
         }
 
-        public void DeleteBarber(int barberId)
+        public async Task DeleteBarber(int barberId)
         {
-            Barber barber = _context.Barbers.Find(barberId);
-            _context.Barbers.Remove(barber);
+            Barber? barber = await _context.Barbers.FindAsync(barberId);
+            if(null != barber) _context.Barbers.Remove(barber);
+            await Save();
         }
 
-        public void UpdateBarber(Barber barber)
+        public async Task UpdateBarber(Barber barber)
         {
             _context.Entry(barber).State = EntityState.Modified;
+            await Save();
         }
 
-        public Barber? GetBarberByEmail(string email)
+        public async Task<Barber?> GetBarberByEmail(string email)
         {
-            Barber? barber = _context.Barbers.SingleOrDefault(x => x.Email.Equals(email));
+            Barber? barber = await _context.Barbers.SingleOrDefaultAsync(x => x.Email.Equals(email));
             return barber;
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         protected virtual void Dispose(bool disposing)

@@ -9,12 +9,12 @@ namespace DataAccessLayer.Interfaces
 {
     public interface IBarberRepository : IDisposable
     {
-        IEnumerable<Barber> GetBarbers();
-        Barber GetBarberByID(int barberId);
-        void InsertBarber(Barber barber);
-        void DeleteBarber(int barberId);
-        void UpdateBarber(Barber barber);
-        Barber? GetBarberByEmail(string email);
-        void Save();
+        Task<IEnumerable<Barber>> GetBarbers();
+        Task<Barber?> GetBarberByID(int barberId);
+        Task InsertBarber(Barber barber);
+        Task DeleteBarber(int barberId);
+        Task UpdateBarber(Barber barber);
+        Task<Barber?> GetBarberByEmail(string email);
+        Task Save();
     }
 }

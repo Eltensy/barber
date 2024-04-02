@@ -12,7 +12,7 @@ namespace DataAccessLayer.Interfaces
 {
     public class GuestRepository : IGuestRepository, IDisposable
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         private bool _disposed = false;
 
@@ -21,35 +21,38 @@ namespace DataAccessLayer.Interfaces
             this._context = context;
         }
 
-        public IEnumerable<Guest> GetGuests()
+        public async Task<IEnumerable<Guest>> GetGuests()
         {
-            return _context.Guests.ToList();
+            return await _context.Guests.ToListAsync();
         }
 
-        public Guest GetGuestByID(int guestId)
+        public async Task<Guest?> GetGuestByID(int guestId)
         {
-            return _context.Guests.Find(guestId);
+            return await _context.Guests.FindAsync(guestId);
         }
 
-        public void InsertGuest(Guest guest)
+        public async Task InsertGuest(Guest guest)
         {
-            _context.Guests.Add(guest);
+            await _context.Guests.AddAsync(guest);
+            await Save();
         }
 
-        public void DeleteGuest(int guestId)
+        public async Task DeleteGuest(int guestId)
         {
-            Guest guest = _context.Guests.Find(guestId);
-            _context.Guests.Remove(guest);
+            Guest? guest = await _context.Guests.FindAsync(guestId);
+            if(null != guest) _context.Guests.Remove(guest);
+            await Save();
         }
 
-        public void UpdateGuest(Guest guest)
+        public async Task UpdateGuest(Guest guest)
         {
             _context.Entry(guest).State = EntityState.Modified;
+            await Save();
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         protected virtual void Dispose(bool disposing)

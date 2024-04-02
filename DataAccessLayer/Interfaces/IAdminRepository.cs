@@ -9,11 +9,11 @@ namespace DataAccessLayer.Interfaces
 {
     public interface IAdminRepository : IDisposable
     {
-        IEnumerable<Admin> GetAdmins();
-        Admin GetAdminByID(int adminId);
-        void InsertAdmin(Admin admin);
-        void DeleteAdmin(int adminId);
-        void UpdateAdmin(Admin admin);
-        void Save();
+        Task<IEnumerable<Admin>> GetAdmins();
+        Task<Admin?> GetAdminByID(int adminId);
+        Task InsertAdmin(Admin admin);
+        Task DeleteAdmin(int adminId);
+        Task UpdateAdmin(Admin admin);
+        Task Save();
     }
 }

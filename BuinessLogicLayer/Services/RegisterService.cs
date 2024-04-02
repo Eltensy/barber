@@ -12,7 +12,6 @@ namespace BuinessLogicLayer.Services
 {
     public class RegisterService : IRegisterService
     {
-        //private readonly IClientRepository _clientRepository;
         private readonly IClientService _clientService;
         readonly HashAlgorithm sha = SHA256.Create();
         byte[] hashedPassword;
@@ -20,8 +19,7 @@ namespace BuinessLogicLayer.Services
         {
             _clientService = clientService;
         }
-        //public int Register(string name, string surname, string phone, string email, string password)
-        public int Register(ClientDto clientDto)
+        public async Task<int> Register(ClientDto clientDto)
         {
             int result = -1;
 
@@ -45,7 +43,7 @@ namespace BuinessLogicLayer.Services
                     Password = Encoding.ASCII.GetString(hashedPassword)
                     //Password = encryptedPass
                 };
-                _clientService.InsertClient(newClient);
+                await _clientService.InsertClient(newClient);
                 result = 0;
 
             }

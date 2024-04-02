@@ -12,7 +12,7 @@ namespace DataAccessLayer.Interfaces
 {
     public class ClientRepository : IClientRepository, IDisposable
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         private bool _disposed = false;
 
@@ -21,41 +21,44 @@ namespace DataAccessLayer.Interfaces
             this._context = context;
         }
 
-        public IEnumerable<Client> GetClients()
+        public async Task<IEnumerable<Client>> GetClients()
         {
-            return _context.Clients.ToList();
+            return await _context.Clients.ToListAsync();
         }
 
-        public Client GetClientByID(int clientId)
+        public async Task<Client?> GetClientByID(int clientId)
         {
-            return _context.Clients.Find(clientId);
+            return await _context.Clients.FindAsync(clientId);
         }
 
-        public void InsertClient(Client client)
+        public async Task InsertClient(Client client)
         {
-            _context.Clients.Add(client);
+            await _context.Clients.AddAsync(client);
+            await Save();
         }
 
-        public void DeleteClient(int clientId)
+        public async Task DeleteClient(int clientId)
         {
-            Client client = _context.Clients.Find(clientId);
-            _context.Clients.Remove(client);
+            Client? client = await _context.Clients.FindAsync(clientId);
+            if(null != client) _context.Clients.Remove(client);
+            await Save();
         }
 
-        public void UpdateClient(Client client)
+        public async Task UpdateClient(Client client)
         {
             _context.Entry(client).State = EntityState.Modified;
+           await Save();
         }
 
-        public Client? GetClientByEmail(string email)
+        public async Task<Client?> GetClientByEmail(string email)
         {
-            Client? client = _context.Clients.SingleOrDefault(x => x.Email.Equals(email));
+            Client? client = await _context.Clients.SingleOrDefaultAsync(x => x.Email.Equals(email));
             return client;
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         protected virtual void Dispose(bool disposing)

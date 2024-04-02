@@ -9,11 +9,11 @@ namespace DataAccessLayer.Interfaces
 {
     public interface IReviewRepository : IDisposable
     {
-        IEnumerable<Review> GetReviews();
-        Review GetReviewByID(int reviewId);
-        void InsertReview(Review review);
-        void DeleteReview(int reviewId);
-        void UpdateReview(Review review);
-        void Save();
+        Task<IEnumerable<Review>> GetReviews();
+        Task<Review?> GetReviewByID(int reviewId);
+        Task InsertReview(Review review);
+        Task DeleteReview(int reviewId);
+        Task UpdateReview(Review review);
+        Task Save();
     }
 }

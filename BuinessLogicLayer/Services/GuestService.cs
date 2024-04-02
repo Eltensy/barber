@@ -18,9 +18,9 @@ namespace BuinessLogicLayer.Services
         {
             _guestRepository = guestRepository;
         }
-        public List<GuestDto> GetGuests()
+        public async Task<List<GuestDto>> GetGuests()
         {
-            var guests = _guestRepository.GetGuests();
+            var guests = await _guestRepository.GetGuests();
             var guestsDtos = from guest in guests
                              select new GuestDto()
                              {
@@ -31,19 +31,23 @@ namespace BuinessLogicLayer.Services
                              };
             return guestsDtos.ToList();
         }
-        public GuestDto GetGuestById(int guestId)
+        public async Task<GuestDto?> GetGuestById(int guestId)
         {
-            var guest = _guestRepository.GetGuestByID(guestId);
-            var guestDto = new GuestDto()
-            { 
-                Id = guest.Id, 
-                Name = guest.Name, 
-                Surname = guest.Surname, 
-                Phone = guest.Phone
-            };
+            var guest = await _guestRepository.GetGuestByID(guestId);
+            GuestDto? guestDto = null;
+            if (guest != null)
+            {
+                guestDto = new GuestDto()
+                {
+                    Id = guest.Id,
+                    Name = guest.Name,
+                    Surname = guest.Surname,
+                    Phone = guest.Phone
+                };
+            }
             return guestDto;
         }
-        public void InsertGuest(GuestDto guestDto)
+        public async Task InsertGuest(GuestDto guestDto)
         {
             Guest guest = new Guest()
             {
@@ -52,15 +56,13 @@ namespace BuinessLogicLayer.Services
                 Surname = guestDto.Surname,
                 Phone = guestDto.Phone
             };
-            _guestRepository.InsertGuest(guest);
-            _guestRepository.Save();
+            await _guestRepository.InsertGuest(guest);
         }
-        public void DeleteGuest(int guestId)
+        public async Task DeleteGuest(int guestId)
         {
-            _guestRepository.DeleteGuest(guestId);
-            _guestRepository.Save();
+            await _guestRepository.DeleteGuest(guestId);
         }
-        public void UpdateGuest(GuestDto guestDto)
+        public async Task UpdateGuest(GuestDto guestDto)
         {
             Guest guest = new Guest()
             {
@@ -70,8 +72,7 @@ namespace BuinessLogicLayer.Services
                 Phone = guestDto.Phone
             };
 
-            _guestRepository.UpdateGuest(guest);
-            _guestRepository.Save();
+            await _guestRepository.UpdateGuest(guest);
         }
     }
 }

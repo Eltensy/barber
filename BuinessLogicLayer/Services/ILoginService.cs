@@ -8,6 +8,6 @@ namespace BuinessLogicLayer.Services
 {
     public interface ILoginService
     {
-        int Login(string email, string password);
+        Task<int> Login(string email, string password);
     }
 }

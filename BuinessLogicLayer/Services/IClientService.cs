@@ -9,11 +9,11 @@ namespace BuinessLogicLayer.Services
 {
     public interface IClientService
     {
-        List<ClientDto> GetClients();
-        ClientDto GetClientById(int clientId);
-        void InsertClient(ClientDto clientDto);
-        void DeleteClient(int clientId);
-        void UpdateClient(ClientDto clientDto);
-        ClientDto? GetClientByEmail(string email);
+        Task<List<ClientDto>> GetClients();
+        Task<ClientDto?> GetClientById(int clientId);
+        Task InsertClient(ClientDto clientDto);
+        Task DeleteClient(int clientId);
+        Task UpdateClient(ClientDto clientDto);
+        Task<ClientDto?> GetClientByEmail(string email);
     }
 }
