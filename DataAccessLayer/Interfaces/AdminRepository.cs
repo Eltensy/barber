@@ -12,7 +12,7 @@ namespace DataAccessLayer.Interfaces
 {
     public class AdminRepository : IAdminRepository, IDisposable
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         private bool _disposed = false;
 
@@ -21,35 +21,38 @@ namespace DataAccessLayer.Interfaces
             this._context = context;
         }
 
-        public IEnumerable<Admin> GetAdmins()
+        public async Task<IEnumerable<Admin>> GetAdmins()
         {
-            return _context.Admins.ToList();
+            return await _context.Admins.ToListAsync();
         }
 
-        public Admin GetAdminByID(int adminId)
+        public async Task<Admin?> GetAdminByID(int adminId)
         {
-            return _context.Admins.Find(adminId);
+            return await _context.Admins.FindAsync(adminId);
         }
 
-        public void InsertAdmin(Admin admin)
+        public async Task InsertAdmin(Admin admin)
         {
-            _context.Admins.Add(admin);
+            await _context.Admins.AddAsync(admin);
+            await Save();
         }
 
-        public void DeleteAdmin(int adminId)
+        public async Task DeleteAdmin(int adminId)
         {
-            Admin admin = _context.Admins.Find(adminId);
-            _context.Admins.Remove(admin);
+            Admin? admin = await _context.Admins.FindAsync(adminId);
+            if(null != admin) _context.Admins.Remove(admin);
+            await Save();
         }
 
-        public void UpdateAdmin(Admin admin)
+        public async Task UpdateAdmin(Admin admin)
         {
             _context.Entry(admin).State = EntityState.Modified;
+            await Save();
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         protected virtual void Dispose(bool disposing)

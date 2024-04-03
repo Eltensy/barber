@@ -17,9 +17,9 @@ namespace BuinessLogicLayer.Services
         {
             _clientRepository = clientRepository;
         }
-        public List<ClientDto> GetClients()
+        public async Task<List<ClientDto>> GetClients()
         {
-            var clients = _clientRepository.GetClients();
+            var clients = await _clientRepository.GetClients();
             var clientsDtos = from client in clients
                              select new ClientDto()
                              {
@@ -30,23 +30,29 @@ namespace BuinessLogicLayer.Services
                                  Email = client.Email,
                                  Password = client.Password
                              };
+ 
             return clientsDtos.ToList();
         }
-        public ClientDto GetClientById(int clientId)
+        public async Task<ClientDto?> GetClientById(int clientId)
         {
-            var client = _clientRepository.GetClientByID(clientId);
-            var clientDto = new ClientDto()
+            var client = await _clientRepository.GetClientByID(clientId);
+
+            ClientDto? clientDto = null;
+            if (null != client)
             {
-                Id = client.Id,
-                Name = client.Name,
-                Surname = client.Surname,
-                Phone = client.Phone,
-                Email = client.Email,
-                Password = client.Password
-            };
+                clientDto = new ClientDto()
+                {
+                    Id = client.Id,
+                    Name = client.Name,
+                    Surname = client.Surname,
+                    Phone = client.Phone,
+                    Email = client.Email,
+                    Password = client.Password
+                };
+            }
             return clientDto;
         }
-        public void InsertClient(ClientDto clientDto)
+        public async Task InsertClient(ClientDto clientDto)
         {
             Client client = new Client()
             {
@@ -57,15 +63,13 @@ namespace BuinessLogicLayer.Services
                 Email = clientDto.Email,
                 Password = clientDto.Password
             };
-            _clientRepository.InsertClient(client);
-            _clientRepository.Save();
+            await _clientRepository.InsertClient(client);
         }
-        public void DeleteClient(int clientId)
+        public async Task DeleteClient(int clientId)
         {
-            _clientRepository.DeleteClient(clientId);
-            _clientRepository.Save();
+            await _clientRepository.DeleteClient(clientId);
         }
-        public void UpdateClient(ClientDto clientDto)
+        public async Task UpdateClient(ClientDto clientDto)
         {
             Client client = new Client()
             {
@@ -77,12 +81,11 @@ namespace BuinessLogicLayer.Services
                 Password = clientDto.Password
             };
 
-            _clientRepository.UpdateClient(client);
-            _clientRepository.Save();
+            await _clientRepository.UpdateClient(client);
         }
-        public ClientDto? GetClientByEmail(string email)
+        public async Task<ClientDto?> GetClientByEmail(string email)
         {
-            Client? client = _clientRepository.GetClientByEmail(email);
+            Client? client = await _clientRepository.GetClientByEmail(email);
             ClientDto? clientDto = null;
             if(client != null)
             {

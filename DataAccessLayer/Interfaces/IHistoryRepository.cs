@@ -9,11 +9,11 @@ namespace DataAccessLayer.Interfaces
 {
     public interface IHistoryRepository : IDisposable
     {
-        IEnumerable<History> GetHistorys();
-        History GetHistoryByID(int historyId);
-        void InsertHistory(History history);
-        void DeleteHistory(int historyId);
-        void UpdateHistory(History history);
-        void Save();
+        Task<IEnumerable<History>> GetHistorys();
+        Task<History?> GetHistoryByID(int historyId);
+        Task InsertHistory(History history);
+        Task DeleteHistory(int historyId);
+        Task UpdateHistory(History history);
+        Task Save();
     }
 }

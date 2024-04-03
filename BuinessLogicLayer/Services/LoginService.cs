@@ -1,4 +1,4 @@
-﻿using DataAccessLayer.Interfaces;
+using DataAccessLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,23 +11,21 @@ namespace BuinessLogicLayer.Services
 {
     public class LoginService : ILoginService
     {
-        private readonly IBarberRepository _barberRepository;
-        private readonly IClientRepository _clientRepository;
-        //readonly HashAlgorithm sha = SHA256.Create();
-        //byte[] hashedPassword;
+        private readonly IBarberService _barberService;
+        private readonly IClientService _clientService;
 
-        public LoginService(IClientRepository clientRepository, IBarberRepository barberRepository)
+
+        public LoginService(IClientService clientService, IBarberService barberService)
         {
-            _clientRepository = clientRepository;
-            _barberRepository = barberRepository;
+            _clientService = clientService;
+            _barberService = barberService;
         }
-        public int Login(string email, string password)
+        public async Task<int> Login(string email, string password)
         {
             int result = -1;
             string storedPassword;
 
-
-            var client = _clientRepository.GetClientByEmail(email);
+            var client = await _clientService.GetClientByEmail(email);
             if (client != null)
             {
                 storedPassword = client.Password;
@@ -38,7 +36,7 @@ namespace BuinessLogicLayer.Services
             }
             else
             {
-                var barber = _barberRepository.GetBarbers().First(x => x.Email == email);
+                var barber = await _barberService.GetBarberByEmail(email);
                 if (barber != null)
                 {
                     storedPassword = barber.Password;

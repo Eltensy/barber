@@ -11,8 +11,8 @@ namespace BarberLayered.Controllers
 {
     public class AccountController : Controller
     {
-        private ILoginService _loginService;
-        private IRegisterService _registerService;
+        private readonly ILoginService _loginService;
+        private readonly IRegisterService _registerService;
 
         public AccountController(ILoginService loginService, IRegisterService registerService)
         {
@@ -39,9 +39,9 @@ namespace BarberLayered.Controllers
 
         // POST: /Account/Login
         [HttpPost]
-        public IActionResult Login(string email, string password)
+        public async Task<IActionResult> Login(string email, string password)
         {
-            int result = _loginService.Login(email, password);
+            int result = await _loginService.Login(email, password);
 
             switch (result)
             {
@@ -67,7 +67,7 @@ namespace BarberLayered.Controllers
 
         // POST: /Account/Register
         [HttpPost]
-        public IActionResult Register(string firstName, string lastName, string phone, string email, string password, string confirmPassword)
+        public async Task<IActionResult> Register(string firstName, string lastName, string phone, string email, string password, string confirmPassword)
         {
             if (!password.Equals(confirmPassword))
             {
@@ -81,7 +81,7 @@ namespace BarberLayered.Controllers
                 Email = email, 
                 Password = password 
             };
-            int result = _registerService.Register(newClient);
+            int result = await _registerService.Register(newClient);
             
             if (result == 0) // Client with such email already exists
             {

@@ -9,11 +9,11 @@ namespace DataAccessLayer.Interfaces
 {
     public interface IServiceRepository : IDisposable
     {
-        IEnumerable<Service> GetServices();
-        Service GetServiceByID(int serviceId);
-        void InsertService(Service service);
-        void DeleteService(int serviceId);
-        void UpdateService(Service service);
-        void Save();
+        Task<IEnumerable<Service>> GetServices();
+        Task<Service?> GetServiceByID(int serviceId);
+        Task InsertService(Service service);
+        Task DeleteService(int serviceId);
+        Task UpdateService(Service service);
+        Task Save();
     }
 }

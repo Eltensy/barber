@@ -9,12 +9,12 @@ namespace DataAccessLayer.Interfaces
 {
     public interface IClientRepository : IDisposable
     {
-        IEnumerable<Client> GetClients();
-        Client GetClientByID(int clientId);
-        void InsertClient(Client client);
-        void DeleteClient(int clientId);
-        void UpdateClient(Client client);
-        Client? GetClientByEmail(string email);
-        void Save();
+        Task<IEnumerable<Client>> GetClients();
+        Task<Client?> GetClientByID(int clientId);
+        Task InsertClient(Client client);
+        Task DeleteClient(int clientId);
+        Task UpdateClient(Client client);
+        Task<Client?> GetClientByEmail(string email);
+        Task Save();
     }
 }

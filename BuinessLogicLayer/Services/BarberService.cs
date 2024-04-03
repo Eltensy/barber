@@ -18,30 +18,34 @@ namespace BuinessLogicLayer.Services
             _barberRepository = barberRepository;
         }
 
-        public void DeleteBarber(int barberId)
+        public async Task DeleteBarber(int barberId)
         {
-            _barberRepository.DeleteBarber(barberId);
-            _barberRepository.Save();
+           await _barberRepository.DeleteBarber(barberId);
         }
 
-        public BarberDto GetBarberById(int barberId)
+        public async Task<BarberDto?> GetBarberById(int barberId)
         {
-            var barber = _barberRepository.GetBarberByID(barberId);
-            var barberDto = new BarberDto()
+            var barber = await _barberRepository.GetBarberByID(barberId);
+
+            BarberDto? barberDto = null;
+            if ((null != barber))
             {
-                Id = barber.Id,
-                Name = barber.Name,
-                Surname = barber.Surname,
-                Phone = barber.Phone,
-                Email = barber.Email,
-                Password = barber.Password
-            };
+                barberDto = new BarberDto()
+                {
+                    Id = barber.Id,
+                    Name = barber.Name,
+                    Surname = barber.Surname,
+                    Phone = barber.Phone,
+                    Email = barber.Email,
+                    Password = barber.Password
+                };
+            }
             return barberDto;
         }
 
-        public List<BarberDto> GetBarbers()
+        public async Task<List<BarberDto>> GetBarbers()
         {
-            var barbers = _barberRepository.GetBarbers();
+            var barbers = await _barberRepository.GetBarbers();
             var barbersDtos = from barber in barbers
                               select new BarberDto()
                               {
@@ -55,7 +59,7 @@ namespace BuinessLogicLayer.Services
             return barbersDtos.ToList();
         }
 
-        public void InsertBarber(BarberDto barberDto)
+        public async Task InsertBarber(BarberDto barberDto)
         {
             Barber barber = new Barber()
             {
@@ -66,11 +70,10 @@ namespace BuinessLogicLayer.Services
                 Email = barberDto.Email,
                 Password = barberDto.Password
             };
-            _barberRepository.InsertBarber(barber);
-            _barberRepository.Save();
+            await _barberRepository.InsertBarber(barber);
         }
 
-        public void UpdateBarber(BarberDto barberDto)
+        public async Task UpdateBarber(BarberDto barberDto)
         {
             Barber barber = new Barber()
             {
@@ -82,13 +85,12 @@ namespace BuinessLogicLayer.Services
                 Password = barberDto.Password
             };
 
-            _barberRepository.UpdateBarber(barber);
-            _barberRepository.Save();
+            await _barberRepository.UpdateBarber(barber);
         }
 
-        public BarberDto? GetBarberByEmail(string email)
+        public async Task<BarberDto?> GetBarberByEmail(string email)
         {
-            Barber? barber = _barberRepository.GetBarberByEmail(email);
+            Barber? barber = await _barberRepository.GetBarberByEmail(email);
             BarberDto? barberDto = null;
             if(barber != null) {
                 barberDto = new BarberDto()

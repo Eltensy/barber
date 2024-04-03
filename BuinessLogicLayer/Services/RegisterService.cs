@@ -1,4 +1,4 @@
-﻿using BuinessLogicLayer.DTOs;
+using BuinessLogicLayer.DTOs;
 using DataAccessLayer.Entities;
 using DataAccessLayer.Interfaces;
 using System;
@@ -13,20 +13,18 @@ namespace BuinessLogicLayer.Services
 {
     public class RegisterService : IRegisterService
     {
-        //private readonly IClientRepository _clientRepository;
         private readonly IClientService _clientService;
 
         public RegisterService(IClientService clientService)
         {
             _clientService = clientService;
         }
-
-        public int Register(ClientDto clientDto)
+        public async Task<int> Register(ClientDto clientDto)
         {
             int result = -1;
             string hashedPassword;
 
-            var existingClient = _clientService.GetClientByEmail(clientDto.Email);
+            var existingClient = await _clientService.GetClientByEmail(clientDto.Email);
 
             if (existingClient == null)
             {
@@ -40,8 +38,8 @@ namespace BuinessLogicLayer.Services
                     Email = clientDto.Email,
                     Password = hashedPassword
                 };
-
-                _clientService.InsertClient(newClient);
+                
+                await _clientService.InsertClient(newClient);
 
                 result = 0;
             }

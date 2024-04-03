@@ -12,7 +12,7 @@ namespace DataAccessLayer.Interfaces
 {
     public class ScheduleRepository : IScheduleRepository, IDisposable
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         private bool _disposed = false;
 
@@ -21,35 +21,38 @@ namespace DataAccessLayer.Interfaces
             this._context = context;
         }
 
-        public IEnumerable<Schedule> GetSchedules()
+        public async Task<IEnumerable<Schedule>> GetSchedules()
         {
-            return _context.Schedules.ToList();
+            return await _context.Schedules.ToListAsync();
         }
 
-        public Schedule GetScheduleByID(int scheduleId)
+        public async Task<Schedule?> GetScheduleByID(int scheduleId)
         {
-            return _context.Schedules.Find(scheduleId);
+            return await _context.Schedules.FindAsync(scheduleId);
         }
 
-        public void InsertSchedule(Schedule schedule)
+        public async Task InsertSchedule(Schedule schedule)
         {
-            _context.Schedules.Add(schedule);
+            await _context.Schedules.AddAsync(schedule);
+            await Save();
         }
 
-        public void DeleteSchedule(int scheduleId)
+        public async Task DeleteSchedule(int scheduleId)
         {
-            Schedule schedule = _context.Schedules.Find(scheduleId);
-            _context.Schedules.Remove(schedule);
+            Schedule? schedule = await _context.Schedules.FindAsync(scheduleId);
+            if(null != schedule) _context.Schedules.Remove(schedule);
+            await Save();
         }
 
-        public void UpdateSchedule(Schedule schedule)
+        public async Task UpdateSchedule(Schedule schedule)
         {
             _context.Entry(schedule).State = EntityState.Modified;
+            await Save();
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         protected virtual void Dispose(bool disposing)

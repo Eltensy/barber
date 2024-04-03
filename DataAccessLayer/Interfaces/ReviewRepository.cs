@@ -12,7 +12,7 @@ namespace DataAccessLayer.Interfaces
 {
     public class ReviewRepository : IReviewRepository, IDisposable
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         private bool _disposed = false;
 
@@ -21,35 +21,38 @@ namespace DataAccessLayer.Interfaces
             this._context = context;
         }
 
-        public IEnumerable<Review> GetReviews()
+        public async Task<IEnumerable<Review>> GetReviews()
         {
-            return _context.Reviews.ToList();
+            return await _context.Reviews.ToListAsync();
         }
 
-        public Review GetReviewByID(int reviewId)
+        public async Task<Review?> GetReviewByID(int reviewId)
         {
-            return _context.Reviews.Find(reviewId);
+            return await _context.Reviews.FindAsync(reviewId);
         }
 
-        public void InsertReview(Review review)
+        public async Task InsertReview(Review review)
         {
-            _context.Reviews.Add(review);
+            await _context.Reviews.AddAsync(review);
+            await Save();
         }
 
-        public void DeleteReview(int reviewId)
+        public async Task DeleteReview(int reviewId)
         {
-            Review review = _context.Reviews.Find(reviewId);
-            _context.Reviews.Remove(review);
+            Review? review = await _context.Reviews.FindAsync(reviewId);
+            if (null != review) _context.Reviews.Remove(review);
+            await Save();
         }
 
-        public void UpdateReview(Review review)
+        public async Task UpdateReview(Review review)
         {
             _context.Entry(review).State = EntityState.Modified;
+            await Save();
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _context.SaveChanges();
+           await _context.SaveChangesAsync();
         }
 
         protected virtual void Dispose(bool disposing)
