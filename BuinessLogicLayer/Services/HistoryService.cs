@@ -1,0 +1,90 @@
+﻿using BuinessLogicLayer.DTOs;
+using DataAccessLayer.Entities;
+using DataAccessLayer.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BuinessLogicLayer.Services
+{
+    public class HistoryService : IHistoryService
+    {
+        private readonly IHistoryRepository _historyRepository;
+        public HistoryService(IHistoryRepository historyRepository)
+        {
+            _historyRepository = historyRepository;
+        }
+
+        public async Task<List<HistoryDto>> GetHistorys()
+        {
+            var histories = await _historyRepository.GetHistorys();
+            var historiesDtos = from history in histories
+                             select new HistoryDto()
+                             {
+                                 Id = history.Id,
+                                 ClientPhone = history.ClientPhone,
+                                 BarberPhone = history.BarberPhone,
+                                 Service = history.Service,
+                                 Date = history.Date,
+                                 Time = history.Time
+                             };
+
+            return historiesDtos.ToList();
+        }
+
+        public async Task<HistoryDto?> GetHistoryByID(int historyId)
+        {
+            History? history = await _historyRepository.GetHistoryByID(historyId);
+            HistoryDto? historyDto = null;
+            if (history != null)
+            {
+                historyDto = new HistoryDto()
+                {
+                    Id = history.Id,
+                    ClientPhone = history.ClientPhone,
+                    BarberPhone = history.BarberPhone,
+                    Service = history.Service,
+                    Date = history.Date,
+                    Time = history.Time
+                };
+            }
+            return historyDto;
+        }
+
+        public async Task InsertHistory(HistoryDto historyDto)
+        {
+            History history = new History()
+            {
+                Id = historyDto.Id,
+                ClientPhone = historyDto.ClientPhone,
+                BarberPhone = historyDto.BarberPhone,
+                Service = historyDto.Service,
+                Date = historyDto.Date,
+                Time = historyDto.Time
+            };
+
+            await _historyRepository.InsertHistory(history);
+        }
+
+        public async Task DeleteHistory(int historyId)
+        {
+            await _historyRepository.DeleteHistory(historyId);
+        }
+
+        public async Task UpdateHistory(HistoryDto historyDto)
+        {
+            History history = new History()
+            {
+                Id = historyDto.Id,
+                ClientPhone = historyDto.ClientPhone,
+                BarberPhone = historyDto.BarberPhone,
+                Service = historyDto.Service,
+                Date = historyDto.Date,
+                Time = historyDto.Time
+            };
+            await _historyRepository.UpdateHistory(history);
+        }
+    }
+}

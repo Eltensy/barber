@@ -29,6 +29,8 @@ namespace BuinessLogicLayer.Services
             if (existingClient == null)
             {
                 hashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(clientDto.Password);
+                byte[] bytes = Encoding.UTF8.GetBytes(clientDto.Password);
+                byte[] bytes = Encoding.UTF8.GetBytes(clientDto.Password);
 
                 ClientDto newClient = new ClientDto()
                 {
