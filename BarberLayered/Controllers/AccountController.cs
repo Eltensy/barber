@@ -20,11 +20,6 @@ namespace BarberLayered.Controllers
             _registerService = registerService;
         }
 
-        //public AccountController(IRegisterService registerService)
-        //{
-        //    _registerService = registerService;
-        //}
-
         // GET: /Account/Index
         public IActionResult Index()
         {

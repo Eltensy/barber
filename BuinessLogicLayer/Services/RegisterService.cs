@@ -23,11 +23,10 @@ namespace BuinessLogicLayer.Services
         {
             int result = -1;
 
-            var existingClient = _clientService.GetClientByEmail(clientDto.Email);
+            var existingClient = await _clientService.GetClientByEmail(clientDto.Email);
 
             if (existingClient == null)
             {
-                //byte[] bytes = Encoding.ASCII.GetBytes(clientDto.Password);
                 byte[] bytes = Encoding.UTF8.GetBytes(clientDto.Password);
 
 
