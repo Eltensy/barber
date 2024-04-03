@@ -5,7 +5,6 @@ using System.Diagnostics;
 
 namespace BarberLayered.Controllers
 {
-    //[ServiceFilter(typeof(LogActionFilter))]
     [ServiceFilter(typeof(LogActionFilter))]
     public class HomeController : Controller
     {
