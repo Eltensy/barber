@@ -1,4 +1,5 @@
-﻿using BuinessLogicLayer.DTOs;
+﻿using BarberLayered.Models;
+using BuinessLogicLayer.DTOs;
 using BuinessLogicLayer.Services;
 using DataAccessLayer.Data;
 using DataAccessLayer.Interfaces;
@@ -43,15 +44,14 @@ namespace BarberLayered.Controllers
                 case 0:
                     return RedirectToAction("Login");
                 case 1:
-                    return RedirectToAction("User");
+                    return RedirectToAction("Index", "BarberShop");
                 case 2:
-                    return RedirectToAction("Home");
+                    return RedirectToAction("Index", "Barbers");
                 default:
                     return View();
 
             }
         }
-
 
 
         // GET: /Account/Register
@@ -86,8 +86,6 @@ namespace BarberLayered.Controllers
             {
                 throw new Exception();
             }
-
-            //return RedirectToAction("Login");
         }
 
         // POST: /Account/Logout
