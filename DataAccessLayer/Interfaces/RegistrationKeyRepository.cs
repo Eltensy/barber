@@ -8,7 +8,7 @@ namespace DataAccessLayer.Interfaces
     {
         private readonly DataContext _context;
 
-        public RegistrationKeyRepository(DataContext context) 
+        public RegistrationKeyRepository(DataContext context)
         {
             this._context = context;
         }
@@ -32,7 +32,7 @@ namespace DataAccessLayer.Interfaces
         public async Task DeleteRegistrationKey(int registrationKeyId)
         {
             RegistrationKey? registrationKey = await _context.RegistrationKeys.FindAsync(registrationKeyId);
-            if(null != registrationKey) _context.RegistrationKeys.Remove(registrationKey);
+            if (null != registrationKey) _context.RegistrationKeys.Remove(registrationKey);
             await Save();
         }
 

@@ -3,7 +3,7 @@
     public enum Enum_DayOfWeek
     {
         Monday = 1,
-        Tuesday, 
+        Tuesday,
         Wednesday,
         Thursday,
         Friday,
@@ -17,6 +17,6 @@
         public int fk_BarberId { get; set; }
         public Enum_DayOfWeek DayOfWeek { get; set; }
         public TimeOnly StartTime { get; set; }
-        public TimeOnly EndTime { get; set;}
+        public TimeOnly EndTime { get; set; }
     }
 }

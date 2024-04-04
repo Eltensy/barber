@@ -22,7 +22,7 @@ namespace BuinessLogicLayer.Services
         {
             Service? service = await _serviceRepository.GetServiceByID(serviceId);
             ServiceDto? serviceDto = null;
-            if(service != null) 
+            if (service != null)
             {
                 serviceDto = new ServiceDto()
                 {

@@ -8,7 +8,7 @@ namespace DataAccessLayer.Interfaces
     {
         private readonly DataContext _context;
 
-        public ReviewRepository(DataContext context) 
+        public ReviewRepository(DataContext context)
         {
             this._context = context;
         }
@@ -44,7 +44,7 @@ namespace DataAccessLayer.Interfaces
 
         public async Task Save()
         {
-           await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
     }
 }

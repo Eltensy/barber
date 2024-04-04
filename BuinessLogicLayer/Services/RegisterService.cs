@@ -30,7 +30,7 @@ namespace BuinessLogicLayer.Services
                     Email = clientDto.Email,
                     PasswordHash = hashedPassword
                 };
-                
+
                 await _clientService.InsertClient(newClient);
 
                 result = 0;

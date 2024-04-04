@@ -22,7 +22,7 @@ namespace BuinessLogicLayer.Services
         {
             Schedule? schedule = await _scheduleRepository.GetScheduleByID(scheduleId);
             ScheduleDto? scheduleDto = null;
-            if (schedule != null) 
+            if (schedule != null)
             {
                 scheduleDto = new ScheduleDto()
                 {
@@ -40,14 +40,14 @@ namespace BuinessLogicLayer.Services
         {
             var schedules = await _scheduleRepository.GetSchedules();
             var schedulesDtos = from schedule in schedules
-                                    select new ScheduleDto()
-                                    {
-                                        Id = schedule.Id,
-                                        fk_BarberId = schedule.fk_BarberId,
-                                        DayOfWeek = (DTOs.Enum_DayOfWeek)schedule.DayOfWeek,
-                                        StartTime = schedule.StartTime,
-                                        EndTime = schedule.EndTime
-                                    };
+                                select new ScheduleDto()
+                                {
+                                    Id = schedule.Id,
+                                    fk_BarberId = schedule.fk_BarberId,
+                                    DayOfWeek = (DTOs.Enum_DayOfWeek)schedule.DayOfWeek,
+                                    StartTime = schedule.StartTime,
+                                    EndTime = schedule.EndTime
+                                };
             return schedulesDtos.ToList();
         }
 

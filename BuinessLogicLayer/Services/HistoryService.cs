@@ -16,15 +16,15 @@ namespace BuinessLogicLayer.Services
         {
             var histories = await _historyRepository.GetHistorys();
             var historiesDtos = from history in histories
-                             select new HistoryDto()
-                             {
-                                 Id = history.Id,
-                                 ClientPhone = history.ClientPhone,
-                                 BarberPhone = history.BarberPhone,
-                                 Service = history.Service,
-                                 Date = history.Date,
-                                 Time = history.Time
-                             };
+                                select new HistoryDto()
+                                {
+                                    Id = history.Id,
+                                    ClientPhone = history.ClientPhone,
+                                    BarberPhone = history.BarberPhone,
+                                    Service = history.Service,
+                                    Date = history.Date,
+                                    Time = history.Time
+                                };
 
             return historiesDtos.ToList();
         }

@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using BarberLayered.Models;
+﻿using BarberLayered.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BarberLayered.Controllers
 {

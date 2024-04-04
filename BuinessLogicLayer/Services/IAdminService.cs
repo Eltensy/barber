@@ -9,5 +9,6 @@ namespace BuinessLogicLayer.Services
         Task InsertAdmin(AdminDto adminDto);
         Task DeleteAdmin(int adminId);
         Task UpdateAdmin(AdminDto adminDto);
+        Task<AdminDto?> GetAdminByEmail(string email);
     }
 }

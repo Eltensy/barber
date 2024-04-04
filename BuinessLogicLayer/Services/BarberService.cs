@@ -15,7 +15,7 @@ namespace BuinessLogicLayer.Services
 
         public async Task DeleteBarber(int barberId)
         {
-           await _barberRepository.DeleteBarber(barberId);
+            await _barberRepository.DeleteBarber(barberId);
         }
 
         public async Task<BarberDto?> GetBarberById(int barberId)
@@ -87,7 +87,8 @@ namespace BuinessLogicLayer.Services
         {
             Barber? barber = await _barberRepository.GetBarberByEmail(email);
             BarberDto? barberDto = null;
-            if(barber != null) {
+            if (barber != null)
+            {
                 barberDto = new BarberDto()
                 {
                     Id = barber.Id,
@@ -101,7 +102,7 @@ namespace BuinessLogicLayer.Services
                     PortfolioUri = barber.PortfolioUri
                 };
             }
-            
+
             return barberDto;
         }
     }

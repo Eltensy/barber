@@ -22,7 +22,7 @@ namespace BuinessLogicLayer.Services
             var registrationKey = await _registrationKeyRepository.GetRegistrationKeyByID(registrationKeyId);
 
             RegistrationKeyDto? registrationKeyDto = null;
-            if(null != registrationKey)
+            if (null != registrationKey)
             {
                 registrationKeyDto = new RegistrationKeyDto()
                 {
@@ -39,11 +39,11 @@ namespace BuinessLogicLayer.Services
             var registrationKeys = await _registrationKeyRepository.GetRegistrationKeys();
             var registrationKeyDtos = from registrationKey in registrationKeys
                                       select new RegistrationKeyDto()
-                              {
-                                  Id = registrationKey.Id,
-                                  Key = registrationKey.Key,
-                                  Timestamp = registrationKey.Timestamp,
-                              };
+                                      {
+                                          Id = registrationKey.Id,
+                                          Key = registrationKey.Key,
+                                          Timestamp = registrationKey.Timestamp,
+                                      };
             return registrationKeyDtos.ToList();
         }
 

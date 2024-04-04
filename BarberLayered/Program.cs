@@ -1,8 +1,8 @@
-using Microsoft.EntityFrameworkCore;
 using BarberLayered.Filters;
-using Serilog;
 using BuinessLogicLayer.Services;
 using DataAccessLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 IConfigurationRoot configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
@@ -25,11 +25,13 @@ builder.Services.AddScoped<LogActionFilter>();
 // Repositories
 builder.Services.AddScoped<IBarberRepository, BarberRepository>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 
 
 // Services
 builder.Services.AddScoped<IBarberService, BarberService>();
 builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IRegisterService, RegisterService>();
 
