@@ -1,5 +1,6 @@
 ﻿using BarberLayered.Models;
 using Microsoft.AspNetCore.Mvc;
+using BuinessLogicLayer.Services;
 
 namespace BarberLayered.Controllers
 {
