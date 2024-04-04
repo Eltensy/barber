@@ -42,6 +42,12 @@ namespace DataAccessLayer.Interfaces
             await Save();
         }
 
+        public async Task<Admin?> GetAdminByEmail(string email)
+        {
+            Admin? admin = await _context.Admins.SingleOrDefaultAsync(x => x.Email.Equals(email));
+            return admin;
+        }
+
         public async Task Save()
         {
             await _context.SaveChangesAsync();

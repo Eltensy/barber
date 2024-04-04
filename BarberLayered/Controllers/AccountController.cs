@@ -35,18 +35,19 @@ namespace BarberLayered.Controllers
 
             switch (result)
             {
-                case 0:
+                case -1: // Not found
                     return RedirectToAction("Login");
-                case 1:
+                case 1: // Client
                     return RedirectToAction("Index", "BarberShop");
-                case 2:
+                case 2: // Barber
                     return RedirectToAction("Index", "Barbers");
+                case 3: // Admin
+                    return RedirectToAction("Index", "BarberService");
                 default:
                     return View();
 
             }
         }
-
 
         // GET: /Account/Register
         public IActionResult Register()
@@ -62,6 +63,7 @@ namespace BarberLayered.Controllers
             {
                 throw new Exception();
             }
+
             var newClient = new ClientDto()
             {
                 Name = firstName,
@@ -71,22 +73,19 @@ namespace BarberLayered.Controllers
                 PasswordHash = password 
             };
             int result = await _registerService.Register(newClient);
-            
-            if (result == 0) // Client with such email already exists
-            {
-                return RedirectToAction("Login");
-            }
-            else
+            if (result == -1) // Client with such email already exists
             {
                 throw new Exception();
             }
+
+            return RedirectToAction("Index", "BarberShop");
         }
 
         // POST: /Account/Logout
         [HttpPost]
         public IActionResult Logout()
         {
-
+            // User session close logic
             return RedirectToAction("Index", "BarberShop");
         }
     }

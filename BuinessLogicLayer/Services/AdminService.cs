@@ -6,17 +6,18 @@ namespace BuinessLogicLayer.Services
 {
     public class AdminService : IAdminService
     {
-        private readonly AdminRepository _adminRepository;
+        private readonly IAdminRepository _adminRepository;
 
-        public AdminService(AdminRepository adminRepository)
+        public AdminService(IAdminRepository adminRepository)
         {
             _adminRepository = adminRepository;
         }
+        
         public async Task DeleteAdmin(int adminId)
         {
             await _adminRepository.DeleteAdmin(adminId);
         }
-
+        
         public async Task<AdminDto?> GetAdminById(int adminId)
         {
             var admin = await _adminRepository.GetAdminByID(adminId);
@@ -80,6 +81,26 @@ namespace BuinessLogicLayer.Services
             };
 
             await _adminRepository.UpdateAdmin(admin);
+        }
+
+        public async Task<AdminDto?> GetAdminByEmail(string email)
+        {
+            Admin? admin = await _adminRepository.GetAdminByEmail(email);
+            AdminDto? adminDto = null;
+            if (admin != null)
+            {
+                adminDto = new AdminDto()
+                {
+                    Id = admin.Id,
+                    Name = admin.Name,
+                    Surname = admin.Surname,
+                    Email = admin.Email,
+                    Phone = admin.Phone,
+                    PasswordHash = admin.PasswordHash,
+                };
+            }
+
+            return adminDto;
         }
     }
 }
