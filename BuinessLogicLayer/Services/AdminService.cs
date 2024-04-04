@@ -12,12 +12,12 @@ namespace BuinessLogicLayer.Services
         {
             _adminRepository = adminRepository;
         }
-
+        
         public async Task DeleteAdmin(int adminId)
         {
             await _adminRepository.DeleteAdmin(adminId);
         }
-
+        
         public async Task<AdminDto?> GetAdminById(int adminId)
         {
             var admin = await _adminRepository.GetAdminByID(adminId);

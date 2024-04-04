@@ -12,7 +12,7 @@ namespace BuinessLogicLayer.Services
             _barberService = barberService;
             _adminService = adminService;
         }
-
+        
         public async Task<int> Login(string email, string password)
         {
             int result = -1;
