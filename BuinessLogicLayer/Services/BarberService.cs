@@ -32,7 +32,10 @@ namespace BuinessLogicLayer.Services
                     Surname = barber.Surname,
                     Phone = barber.Phone,
                     Email = barber.Email,
-                    PasswordHash = barber.PasswordHash
+                    PasswordHash = barber.PasswordHash,
+                    PhotoUri = barber.PhotoUri,
+                    Description = barber.Description,
+                    PortfolioUri = barber.PortfolioUri
                 };
             }
             return barberDto;

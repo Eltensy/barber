@@ -7,7 +7,7 @@ namespace BarberLayered.Controllers
     public class BarberServiceController : Controller
     {
         private List<BarberLayered.Models.Service> _services;
-        private readonly BarberLayered.Models.Barber _barber;
+        private BarberLayered.Models.Barber? _barber;
         private readonly IServiceService _serviceService;
         private readonly IBarberService _barberService;
 
@@ -19,7 +19,7 @@ namespace BarberLayered.Controllers
             _barber = null;
         }
 
-        public IActionResult Index(int id)
+        public async Task<IActionResult> Index(int id)
         {
             //var barber = new BarberLayered.Models.Barber
             //{
@@ -73,7 +73,7 @@ namespace BarberLayered.Controllers
                         Description = service.Description,
                         Duration = service.Duration,
                         Price = service.Price,
-                    })
+                    });
                 }
             }
 
