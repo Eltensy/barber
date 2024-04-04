@@ -1,12 +1,12 @@
 ﻿using BarberLayered.Models;
-using DataAccessLayer.Interfaces;
+using BuinessLogicLayer.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BarberLayered.Controllers
 {
     public class BarbersController : Controller
     {
-        private readonly List<Barber> _barbers;
+        private List<Barber> _barbers;
         private readonly IBarberService _barberService;
 
         public BarbersController(IBarberService barberService)
@@ -20,7 +20,7 @@ namespace BarberLayered.Controllers
             _barberService = barberService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var barbers = await _barberService.GetBarbers();
             if (!barbers.Any()) // No barbers in DB
@@ -32,7 +32,7 @@ namespace BarberLayered.Controllers
                 _barbers = new List<Barber>();
                 foreach (var barber in barbers)
                 {
-                    _barbers.Add(new Barber() 
+                    _barbers.Add(new Barber()
                     {
                         Id = barber.Id,
                         Name = barber.Name,
@@ -43,7 +43,7 @@ namespace BarberLayered.Controllers
                         Phone = barber.Phone,
                         PhotoUri = barber.PhotoUri,
                         PortfolioUri = barber.PortfolioUri,
-                    })
+                    });
                 }
             }
             

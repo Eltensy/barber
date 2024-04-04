@@ -21,19 +21,6 @@ namespace BarberLayered.Controllers
 
         public async Task<IActionResult> Index(int id)
         {
-            //var barber = new BarberLayered.Models.Barber
-            //{
-            //    Id = id,
-            //    Name = "John",
-            //    Surname = "Doe",
-            //    Phone = "1234567890",
-            //    Email = "john@example.com",
-            //    PasswordHash = "password",
-            //    PhotoUri = "https://media.istockphoto.com/id/506514230/photo/beard-grooming.jpg?s=612x612&w=0&k=20&c=QDwo1L8-f3gu7mcHf00Az84fVU8oNpQLgvUw6eGPEkc=",
-            //    Description = "Experienced barber with 10+ years of experience. Specializes in classic and modern hairstyles. Always committed to providing the best service and ensuring customer satisfaction.",
-            //    PortfolioUri = "portfolio/john"
-            //};
-
             var barber = await _barberService.GetBarberById(id);
             if (barber == null) 
             {
