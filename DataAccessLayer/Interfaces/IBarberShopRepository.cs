@@ -1,0 +1,14 @@
+﻿using DataAccessLayer.Entities;
+
+namespace DataAccessLayer.Interfaces
+{
+    public interface IBarberShopRepository
+    {
+        Task<IEnumerable<BarberShop>> GetBarberShops();
+        Task<BarberShop?> GetBarberShopByID(int barbershopId);
+        Task InsertBarberShop(BarberShop barbershop);
+        Task DeleteBarberShop(int barbershopId);
+        Task UpdateBarberShop(BarberShop barbershop);
+        Task Save();
+    }
+}
