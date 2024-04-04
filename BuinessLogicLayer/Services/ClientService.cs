@@ -12,6 +12,7 @@ namespace BuinessLogicLayer.Services
         {
             _clientRepository = clientRepository;
         }
+
         public async Task<List<ClientDto>> GetClients()
         {
             var clients = await _clientRepository.GetClients();
@@ -28,6 +29,7 @@ namespace BuinessLogicLayer.Services
 
             return clientsDtos.ToList();
         }
+        
         public async Task<ClientDto?> GetClientById(int clientId)
         {
             var client = await _clientRepository.GetClientByID(clientId);
@@ -47,6 +49,7 @@ namespace BuinessLogicLayer.Services
             }
             return clientDto;
         }
+        
         public async Task InsertClient(ClientDto clientDto)
         {
             Client client = new Client()
@@ -60,10 +63,12 @@ namespace BuinessLogicLayer.Services
             };
             await _clientRepository.InsertClient(client);
         }
+        
         public async Task DeleteClient(int clientId)
         {
             await _clientRepository.DeleteClient(clientId);
         }
+        
         public async Task UpdateClient(ClientDto clientDto)
         {
             Client client = new Client()
@@ -78,6 +83,7 @@ namespace BuinessLogicLayer.Services
 
             await _clientRepository.UpdateClient(client);
         }
+        
         public async Task<ClientDto?> GetClientByEmail(string email)
         {
             Client? client = await _clientRepository.GetClientByEmail(email);

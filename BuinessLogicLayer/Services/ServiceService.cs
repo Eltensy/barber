@@ -53,6 +53,23 @@ namespace BuinessLogicLayer.Services
             return servicesDtos.ToList();
         }
 
+        public async Task<List<ServiceDto>> GetServicesByBarberId(int fkBarberId)
+        {
+            var services = await _serviceRepository.GetServicesByBarberId(fkBarberId);
+
+            var servicesDtos = from service in services
+                               select new ServiceDto()
+                               {
+                                   Id = service.Id,
+                                   fk_BarberId = service.fk_BarberId,
+                                   Title = service.Title,
+                                   Description = service.Description,
+                                   Duration = service.Duration,
+                                   Price = service.Price
+                               };
+            return servicesDtos.ToList();
+        }
+
         public async Task InsertService(ServiceDto serviceDto)
         {
             Service service = new Service()

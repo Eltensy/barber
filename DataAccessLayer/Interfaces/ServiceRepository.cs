@@ -23,6 +23,11 @@ namespace DataAccessLayer.Interfaces
             return await _context.Services.FindAsync(serviceId);
         }
 
+        public async Task<IEnumerable<Service>> GetServicesByBarberId(int fkBarberId)
+        {
+            return await _context.Services.Where(x => x.fk_BarberId == fkBarberId).ToListAsync();
+        }
+
         public async Task InsertService(Service service)
         {
             await _context.Services.AddAsync(service);
