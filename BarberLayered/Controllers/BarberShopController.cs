@@ -7,11 +7,12 @@ namespace BarberLayered.Controllers
     public class BarberShopController : Controller
     {
         private readonly IBarberShopService _barberShopService;
-        private readonly BarberShop _barberShop;
+        private BarberShop? _barberShop;
 
         public BarberShopController(IBarberShopService barberShopService)
         {
             _barberShopService = barberShopService;
+            _barberShop = null;
         }
 
         //private readonly BarberShop _barberShop = new BarberShop
@@ -23,9 +24,9 @@ namespace BarberLayered.Controllers
         //    Description = "Наш барбершоп - це сучасний заклад, де кожен клієнт отримує персоналізований сервіс від професійних барберів. Ми знаходимося в центрі міста і пропонуємо широкий спектр послуг, від стрижок і гоління до догляду за бородою та вусами. Наш колектив складається з досвідчених майстрів, які завжди готові задовольнити ваші потреби в стилі та догляді."
         //};
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var barberShop = _barberShopService.GetBarberShopFirst();
+            var barberShop = await _barberShopService.GetBarberShopFirst();
             if (barberShop == null)
             {
                 throw new Exception("No BarberShop info in DB");
@@ -41,7 +42,7 @@ namespace BarberLayered.Controllers
                     Phone = barberShop.Phone,
                     PhoneSecond = barberShop.PhoneSecond,
                     PhotoUri = barberShop.PhotoUri,
-                }
+                };
             }
 
             return View(_barberShop);
