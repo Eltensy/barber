@@ -12,6 +12,7 @@ namespace BuinessLogicLayer.Services
         {
             _barbershopRepository = barbershopRepository;
         }
+        
         public async Task DeleteBarberShop(int barbershopId)
         {
             await _barbershopRepository.DeleteBarberShop(barbershopId);
@@ -38,6 +39,34 @@ namespace BuinessLogicLayer.Services
                     SocialUriThird = barbershop.SocialUriThird,
                 };
             }
+            return barbershopDto;
+        }
+
+        public async Task<BarberShopDto?> GetBarberShopFirst()
+        {
+            BarberShopDto? barbershopDto = null;
+            var barbershop = await _barbershopRepository.GetBarberShopFirst();
+            if (barbershop == null)
+            {
+                throw new Exception("No info about BarberShop in DB");
+            }
+            else
+            {
+                barbershopDto = new BarberShopDto()
+                {
+                    Id = barbershop.Id,
+                    Name = barbershop.Name,
+                    Address = barbershop.Address,
+                    Phone = barbershop.Phone,
+                    PhoneSecond = barbershop.PhoneSecond,
+                    Description = barbershop.Description,
+                    PhotoUri = barbershop.PhotoUri,
+                    SocialUri = barbershop.SocialUri,
+                    SocialUriSecond = barbershop.SocialUriSecond,
+                    SocialUriThird = barbershop.SocialUriThird,
+                };
+            }
+
             return barbershopDto;
         }
 
