@@ -1,12 +1,3 @@
-using DataAccessLayer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using BCrypt;
-
 namespace BuinessLogicLayer.Services
 {
     public class LoginService : ILoginService
@@ -28,7 +19,7 @@ namespace BuinessLogicLayer.Services
             var client = await _clientService.GetClientByEmail(email);
             if (client != null)
             {
-                storedPassword = client.Password;
+                storedPassword = client.PasswordHash;
                 if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPassword))
                 {
                     result = 1;
@@ -39,7 +30,7 @@ namespace BuinessLogicLayer.Services
                 var barber = await _barberService.GetBarberByEmail(email);
                 if (barber != null)
                 {
-                    storedPassword = barber.Password;
+                    storedPassword = barber.PasswordHash;
                     if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPassword))
                     {
                         result = 2;

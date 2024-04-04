@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataAccessLayer.Entities
+﻿namespace DataAccessLayer.Entities
 {
-
     public enum Enum_DayOfWeek
     {
-        Monday,
+        Monday = 1,
         Tuesday, 
         Wednesday,
         Thursday,
@@ -17,8 +10,6 @@ namespace DataAccessLayer.Entities
         Saturday,
         Sunday
     }
-
-
 
     public class Schedule
     {

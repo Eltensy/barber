@@ -1,13 +1,8 @@
 ﻿using DataAccessLayer.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
-    public interface IScheduleRepository : IDisposable
+    public interface IScheduleRepository
     {
         Task<IEnumerable<Schedule>> GetSchedules();
         Task<Schedule?> GetScheduleByID(int scheduleId);

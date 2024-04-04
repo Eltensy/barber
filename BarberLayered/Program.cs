@@ -1,11 +1,6 @@
-using DataAccessLayer.Data;
-using DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using BarberLayered.Filters;
 using Serilog;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using BuinessLogicLayer.Services;
 using DataAccessLayer.Interfaces;
 
@@ -23,17 +18,23 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Log Filter
 builder.Services.AddControllers(config => config.Filters.Add<LogActionFilter>());
 builder.Services.AddScoped<LogActionFilter>();
 
+// Repositories
 builder.Services.AddScoped<IBarberRepository, BarberRepository>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
+
+// Services
 builder.Services.AddScoped<IBarberService, BarberService>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IRegisterService, RegisterService>();
 
+
+// DbContext
 builder.Services.AddDbContext<DataAccessLayer.Data.DataContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("BarberBook_Connection"), x => x.MigrationsAssembly("BarberLayered"));
@@ -60,7 +61,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=BarberShop}/{action=Index}/{id?}");
-//name: "default",
-//pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

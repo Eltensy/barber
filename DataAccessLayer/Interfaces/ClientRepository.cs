@@ -1,20 +1,12 @@
 ﻿using DataAccessLayer.Data;
 using DataAccessLayer.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Interfaces
 {
-    public class ClientRepository : IClientRepository, IDisposable
+    public class ClientRepository : IClientRepository
     {
         private readonly DataContext _context;
-
-        private bool _disposed = false;
 
         public ClientRepository(DataContext context) 
         {
@@ -59,24 +51,6 @@ namespace DataAccessLayer.Interfaces
         public async Task Save()
         {
             await _context.SaveChangesAsync();
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this._disposed)
-            {
-                if (disposing)
-                {
-                    _context.Dispose();
-                }
-            }
-            this._disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

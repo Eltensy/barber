@@ -1,13 +1,5 @@
 using BuinessLogicLayer.DTOs;
-using DataAccessLayer.Entities;
-using DataAccessLayer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using BCrypt;
+
 
 namespace BuinessLogicLayer.Services
 {
@@ -28,7 +20,7 @@ namespace BuinessLogicLayer.Services
 
             if (existingClient == null)
             {
-                hashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(clientDto.Password);
+                hashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(clientDto.PasswordHash);
 
                 ClientDto newClient = new ClientDto()
                 {
@@ -36,7 +28,7 @@ namespace BuinessLogicLayer.Services
                     Surname = clientDto.Surname,
                     Phone = clientDto.Phone,
                     Email = clientDto.Email,
-                    Password = hashedPassword
+                    PasswordHash = hashedPassword
                 };
                 
                 await _clientService.InsertClient(newClient);

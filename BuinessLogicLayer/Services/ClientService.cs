@@ -1,11 +1,6 @@
 ﻿using BuinessLogicLayer.DTOs;
 using DataAccessLayer.Entities;
 using DataAccessLayer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuinessLogicLayer.Services
 {
@@ -28,7 +23,7 @@ namespace BuinessLogicLayer.Services
                                  Surname = client.Surname,
                                  Phone = client.Phone,
                                  Email = client.Email,
-                                 Password = client.Password
+                                 PasswordHash = client.PasswordHash
                              };
  
             return clientsDtos.ToList();
@@ -47,7 +42,7 @@ namespace BuinessLogicLayer.Services
                     Surname = client.Surname,
                     Phone = client.Phone,
                     Email = client.Email,
-                    Password = client.Password
+                    PasswordHash = client.PasswordHash
                 };
             }
             return clientDto;
@@ -61,7 +56,7 @@ namespace BuinessLogicLayer.Services
                 Surname = clientDto.Surname,
                 Phone = clientDto.Phone,
                 Email = clientDto.Email,
-                Password = clientDto.Password
+                PasswordHash = clientDto.PasswordHash
             };
             await _clientRepository.InsertClient(client);
         }
@@ -78,7 +73,7 @@ namespace BuinessLogicLayer.Services
                 Surname = clientDto.Surname,
                 Phone = clientDto.Phone,
                 Email = clientDto.Email,
-                Password = clientDto.Password
+                PasswordHash = clientDto.PasswordHash
             };
 
             await _clientRepository.UpdateClient(client);
@@ -96,7 +91,7 @@ namespace BuinessLogicLayer.Services
                     Surname = client.Surname,
                     Phone = client.Phone,
                     Email = client.Email,
-                    Password = client.Password
+                    PasswordHash = client.PasswordHash
                 };
             }
             return clientDto;

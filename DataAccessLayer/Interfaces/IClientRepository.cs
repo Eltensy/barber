@@ -1,13 +1,8 @@
 ﻿using DataAccessLayer.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
-    public interface IClientRepository : IDisposable
+    public interface IClientRepository
     {
         Task<IEnumerable<Client>> GetClients();
         Task<Client?> GetClientByID(int clientId);

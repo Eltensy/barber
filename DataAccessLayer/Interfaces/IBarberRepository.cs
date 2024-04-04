@@ -1,13 +1,8 @@
 ﻿using DataAccessLayer.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
-    public interface IBarberRepository : IDisposable
+    public interface IBarberRepository
     {
         Task<IEnumerable<Barber>> GetBarbers();
         Task<Barber?> GetBarberByID(int barberId);
