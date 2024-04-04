@@ -23,17 +23,33 @@ builder.Services.AddControllers(config => config.Filters.Add<LogActionFilter>())
 builder.Services.AddScoped<LogActionFilter>();
 
 // Repositories
-builder.Services.AddScoped<IBarberRepository, BarberRepository>();
-builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
+builder.Services.AddScoped<IBarberRepository, BarberRepository>();
+builder.Services.AddScoped<IBarberShopRepository, BarberShopRepository>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IGuestRepository, GuestRepository>();
+builder.Services.AddScoped<IHistoryRepository, HistoryRepository>();
+builder.Services.AddScoped<IRegistrationKeyRepository, RegistrationKeyRepository>();
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
+builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+builder.Services.AddScoped<IVisitRepository, VisitRepository>();
 
 
 // Services
-builder.Services.AddScoped<IBarberService, BarberService>();
-builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IBarberService, BarberService>();
+builder.Services.AddScoped<IBarberShopService, BarberShopService>();
+builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IGuestService, GuestService>();
+builder.Services.AddScoped<IHistoryService, HistoryService>();
 builder.Services.AddScoped<IRegisterService, RegisterService>();
+builder.Services.AddScoped<IRegistrationKeyService, RegistrationKeyService>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
+builder.Services.AddScoped<IScheduleService, ScheduleService>();
+builder.Services.AddScoped<IServiceService, ServiceService>();
+builder.Services.AddScoped<IVisitService, VisitService>();
 
 
 // DbContext
