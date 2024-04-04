@@ -23,6 +23,11 @@ namespace DataAccessLayer.Interfaces
             return await _context.BarberShops.FindAsync(barbershopId);
         }
 
+        public async Task<BarberShop?> GetBarberShopFirst()
+        {
+            return await _context.BarberShops.FirstOrDefaultAsync();
+        }
+
         public async Task InsertBarberShop(BarberShop barbershop)
         {
             await _context.BarberShops.AddAsync(barbershop);

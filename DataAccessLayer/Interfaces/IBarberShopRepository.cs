@@ -6,6 +6,7 @@ namespace DataAccessLayer.Interfaces
     {
         Task<IEnumerable<BarberShop>> GetBarberShops();
         Task<BarberShop?> GetBarberShopByID(int barbershopId);
+        Task<BarberShop?> GetBarberShopFirst();
         Task InsertBarberShop(BarberShop barbershop);
         Task DeleteBarberShop(int barbershopId);
         Task UpdateBarberShop(BarberShop barbershop);
