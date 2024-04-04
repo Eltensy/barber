@@ -8,7 +8,7 @@ namespace DataAccessLayer.Interfaces
     {
         private readonly DataContext _context;
 
-        public ServiceRepository(DataContext context) 
+        public ServiceRepository(DataContext context)
         {
             this._context = context;
         }
@@ -32,7 +32,7 @@ namespace DataAccessLayer.Interfaces
         public async Task DeleteService(int serviceId)
         {
             Service? service = await _context.Services.FindAsync(serviceId);
-            if(null != service) _context.Services.Remove(service);
+            if (null != service) _context.Services.Remove(service);
             await Save();
         }
 

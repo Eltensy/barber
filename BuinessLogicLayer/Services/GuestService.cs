@@ -6,9 +6,9 @@ namespace BuinessLogicLayer.Services
 {
     public class GuestService : IGuestService
     {
-        private readonly GuestRepository _guestRepository;
+        private readonly IGuestRepository _guestRepository;
 
-        public GuestService(GuestRepository guestRepository)
+        public GuestService(IGuestRepository guestRepository)
         {
             _guestRepository = guestRepository;
         }

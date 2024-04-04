@@ -8,7 +8,7 @@ namespace DataAccessLayer.Interfaces
     {
         private readonly DataContext _context;
 
-        public AdminRepository(DataContext context) 
+        public AdminRepository(DataContext context)
         {
             this._context = context;
         }
@@ -32,7 +32,7 @@ namespace DataAccessLayer.Interfaces
         public async Task DeleteAdmin(int adminId)
         {
             Admin? admin = await _context.Admins.FindAsync(adminId);
-            if(null != admin) _context.Admins.Remove(admin);
+            if (null != admin) _context.Admins.Remove(admin);
             await Save();
         }
 
@@ -40,6 +40,12 @@ namespace DataAccessLayer.Interfaces
         {
             _context.Entry(admin).State = EntityState.Modified;
             await Save();
+        }
+
+        public async Task<Admin?> GetAdminByEmail(string email)
+        {
+            Admin? admin = await _context.Admins.SingleOrDefaultAsync(x => x.Email.Equals(email));
+            return admin;
         }
 
         public async Task Save()

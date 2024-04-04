@@ -22,7 +22,7 @@ namespace BuinessLogicLayer.Services
         {
             Review? review = await _reviewRepository.GetReviewByID(reviewId);
             ReviewDto? reviewDto = null;
-            if(review != null) 
+            if (review != null)
             {
                 reviewDto = new ReviewDto()
                 {
@@ -55,7 +55,7 @@ namespace BuinessLogicLayer.Services
 
         public async Task InsertReview(ReviewDto reviewDto)
         {
-            Review review =  new Review()
+            Review review = new Review()
             {
                 Id = reviewDto.Id,
                 fk_ClientId = reviewDto.fk_ClientId,

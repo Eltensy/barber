@@ -18,7 +18,7 @@ namespace BuinessLogicLayer.Services
             var visits = await _visitRepository.GetVisits();
             var visitsDtos = from visit in visits
                              select new VisitDto()
-                             { 
+                             {
                                  Id = visit.Id,
                                  fk_CLientId = visit.fk_CLientId,
                                  fk_GuestId = visit.fk_GuestId,
@@ -35,7 +35,7 @@ namespace BuinessLogicLayer.Services
         {
             Visit? visit = await _visitRepository.GetVisitByID(visitId);
             VisitDto? visitDto = null;
-            if(visit != null) 
+            if (visit != null)
             {
                 visitDto = new VisitDto()
                 {

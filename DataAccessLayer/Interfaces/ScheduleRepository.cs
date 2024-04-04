@@ -8,7 +8,7 @@ namespace DataAccessLayer.Interfaces
     {
         private readonly DataContext _context;
 
-        public ScheduleRepository(DataContext context) 
+        public ScheduleRepository(DataContext context)
         {
             this._context = context;
         }
@@ -32,7 +32,7 @@ namespace DataAccessLayer.Interfaces
         public async Task DeleteSchedule(int scheduleId)
         {
             Schedule? schedule = await _context.Schedules.FindAsync(scheduleId);
-            if(null != schedule) _context.Schedules.Remove(schedule);
+            if (null != schedule) _context.Schedules.Remove(schedule);
             await Save();
         }
 

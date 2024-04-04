@@ -22,7 +22,7 @@ namespace BuinessLogicLayer.Services
             var barbershop = await _barbershopRepository.GetBarberShopByID(barbershopId);
 
             BarberShopDto? barbershopDto = null;
-            if(null !=  barbershop)
+            if (null != barbershop)
             {
                 barbershopDto = new BarberShopDto()
                 {
@@ -45,19 +45,19 @@ namespace BuinessLogicLayer.Services
         {
             var barbershops = await _barbershopRepository.GetBarberShops();
             var barbershopsDtos = from barbershop in barbershops
-                              select new BarberShopDto()
-                              {
-                                  Id = barbershop.Id,
-                                  Name = barbershop.Name,
-                                  Address = barbershop.Address,
-                                  Phone = barbershop.Phone,
-                                  PhoneSecond = barbershop.PhoneSecond,
-                                  Description = barbershop.Description,
-                                  PhotoUri = barbershop.PhotoUri,
-                                  SocialUri = barbershop.SocialUri,
-                                  SocialUriSecond = barbershop.SocialUriSecond,
-                                  SocialUriThird = barbershop.SocialUriThird,
-                              };
+                                  select new BarberShopDto()
+                                  {
+                                      Id = barbershop.Id,
+                                      Name = barbershop.Name,
+                                      Address = barbershop.Address,
+                                      Phone = barbershop.Phone,
+                                      PhoneSecond = barbershop.PhoneSecond,
+                                      Description = barbershop.Description,
+                                      PhotoUri = barbershop.PhotoUri,
+                                      SocialUri = barbershop.SocialUri,
+                                      SocialUriSecond = barbershop.SocialUriSecond,
+                                      SocialUriThird = barbershop.SocialUriThird,
+                                  };
             return barbershopsDtos.ToList();
         }
 

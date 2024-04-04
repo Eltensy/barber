@@ -9,6 +9,7 @@ namespace DataAccessLayer.Interfaces
         Task InsertAdmin(Admin admin);
         Task DeleteAdmin(int adminId);
         Task UpdateAdmin(Admin admin);
+        Task<Admin?> GetAdminByEmail(string email);
         Task Save();
     }
 }

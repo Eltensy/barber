@@ -8,7 +8,7 @@ namespace DataAccessLayer.Interfaces
     {
         private readonly DataContext _context;
 
-        public GuestRepository(DataContext context) 
+        public GuestRepository(DataContext context)
         {
             this._context = context;
         }
@@ -32,7 +32,7 @@ namespace DataAccessLayer.Interfaces
         public async Task DeleteGuest(int guestId)
         {
             Guest? guest = await _context.Guests.FindAsync(guestId);
-            if(null != guest) _context.Guests.Remove(guest);
+            if (null != guest) _context.Guests.Remove(guest);
             await Save();
         }
 

@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Logging;
-using Serilog;
 
 namespace BarberLayered.Filters
 {

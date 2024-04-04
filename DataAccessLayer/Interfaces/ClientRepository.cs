@@ -8,7 +8,7 @@ namespace DataAccessLayer.Interfaces
     {
         private readonly DataContext _context;
 
-        public ClientRepository(DataContext context) 
+        public ClientRepository(DataContext context)
         {
             this._context = context;
         }
@@ -32,14 +32,14 @@ namespace DataAccessLayer.Interfaces
         public async Task DeleteClient(int clientId)
         {
             Client? client = await _context.Clients.FindAsync(clientId);
-            if(null != client) _context.Clients.Remove(client);
+            if (null != client) _context.Clients.Remove(client);
             await Save();
         }
 
         public async Task UpdateClient(Client client)
         {
             _context.Entry(client).State = EntityState.Modified;
-           await Save();
+            await Save();
         }
 
         public async Task<Client?> GetClientByEmail(string email)

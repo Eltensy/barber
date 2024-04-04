@@ -8,7 +8,7 @@ namespace DataAccessLayer.Interfaces
     {
         private readonly DataContext _context;
 
-        public HistoryRepository(DataContext context) 
+        public HistoryRepository(DataContext context)
         {
             this._context = context;
         }
@@ -32,7 +32,7 @@ namespace DataAccessLayer.Interfaces
         public async Task DeleteHistory(int historyId)
         {
             History? history = await _context.History.FindAsync(historyId);
-            if(null != history) _context.History.Remove(history);
+            if (null != history) _context.History.Remove(history);
             await Save();
         }
 
