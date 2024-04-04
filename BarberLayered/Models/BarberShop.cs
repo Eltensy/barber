@@ -3,10 +3,11 @@
     public class BarberShop
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-
-        public string Description { get; set; }
+        public required string Name { get; set; }
+        public required string Phone { get; set; }
+        public string? PhoneSecond { get; set; }
+        public required string Address { get; set; }
+        public string? Description { get; set; }
+        public string? PhotoUri { get; set; }
     }
 }

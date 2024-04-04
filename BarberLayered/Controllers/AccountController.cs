@@ -1,12 +1,6 @@
-﻿using BarberLayered.Models;
-using BuinessLogicLayer.DTOs;
+﻿using BuinessLogicLayer.DTOs;
 using BuinessLogicLayer.Services;
-using DataAccessLayer.Data;
-using DataAccessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography;
-using System.Text;
-using System.Xml.Linq;
 
 namespace BarberLayered.Controllers
 {
@@ -73,8 +67,8 @@ namespace BarberLayered.Controllers
                 Name = firstName,
                 Surname = lastName,
                 Phone = phone,
-                Email = email, 
-                Password = password 
+                Email = email,
+                PasswordHash = password 
             };
             int result = await _registerService.Register(newClient);
             

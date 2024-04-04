@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataAccessLayer.Entities
+﻿namespace DataAccessLayer.Entities
 {
     public class Admin
     {
@@ -13,6 +7,6 @@ namespace DataAccessLayer.Entities
         public required string Surname { get; set; }
         public required string Phone { get; set; }
         public required string Email { get; set; }
-        public required string Password { get; set; }
+        public required string PasswordHash { get; set; }
     }
 }

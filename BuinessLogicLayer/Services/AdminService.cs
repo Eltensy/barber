@@ -1,11 +1,6 @@
 ﻿using BuinessLogicLayer.DTOs;
 using DataAccessLayer.Entities;
 using DataAccessLayer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuinessLogicLayer.Services
 {
@@ -36,7 +31,7 @@ namespace BuinessLogicLayer.Services
                     Surname = admin.Surname,
                     Phone = admin.Phone,
                     Email = admin.Email,
-                    Password = admin.Password
+                    PasswordHash = admin.PasswordHash
                 };
             }
             return adminDto;
@@ -53,7 +48,7 @@ namespace BuinessLogicLayer.Services
                                   Surname = admin.Surname,
                                   Phone = admin.Phone,
                                   Email = admin.Email,
-                                  Password = admin.Password
+                                  PasswordHash = admin.PasswordHash
                               };
             return adminsDtos.ToList();
         }
@@ -67,7 +62,7 @@ namespace BuinessLogicLayer.Services
                 Surname = adminDto.Surname,
                 Phone = adminDto.Phone,
                 Email = adminDto.Email,
-                Password = adminDto.Password
+                PasswordHash = adminDto.PasswordHash
             };
             await _adminRepository.InsertAdmin(admin);
         }
@@ -81,7 +76,7 @@ namespace BuinessLogicLayer.Services
                 Surname = adminDto.Surname,
                 Phone = adminDto.Phone,
                 Email = adminDto.Email,
-                Password = adminDto.Password
+                PasswordHash = adminDto.PasswordHash
             };
 
             await _adminRepository.UpdateAdmin(admin);

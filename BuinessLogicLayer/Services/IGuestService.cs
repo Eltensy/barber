@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BuinessLogicLayer.DTOs;
-using DataAccessLayer.Entities;
+﻿using BuinessLogicLayer.DTOs;
 
 namespace BuinessLogicLayer.Services
 {

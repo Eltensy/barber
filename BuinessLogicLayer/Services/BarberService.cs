@@ -1,11 +1,6 @@
 ﻿using BuinessLogicLayer.DTOs;
 using DataAccessLayer.Entities;
 using DataAccessLayer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuinessLogicLayer.Services
 {
@@ -37,7 +32,7 @@ namespace BuinessLogicLayer.Services
                     Surname = barber.Surname,
                     Phone = barber.Phone,
                     Email = barber.Email,
-                    Password = barber.Password
+                    PasswordHash = barber.PasswordHash
                 };
             }
             return barberDto;
@@ -54,7 +49,7 @@ namespace BuinessLogicLayer.Services
                                   Surname = barber.Surname,
                                   Phone = barber.Phone,
                                   Email = barber.Email,
-                                  Password = barber.Password
+                                  PasswordHash = barber.PasswordHash
                               };
             return barbersDtos.ToList();
         }
@@ -68,7 +63,7 @@ namespace BuinessLogicLayer.Services
                 Surname = barberDto.Surname,
                 Phone = barberDto.Phone,
                 Email = barberDto.Email,
-                Password = barberDto.Password
+                PasswordHash = barberDto.PasswordHash
             };
             await _barberRepository.InsertBarber(barber);
         }
@@ -82,7 +77,7 @@ namespace BuinessLogicLayer.Services
                 Surname = barberDto.Surname,
                 Phone = barberDto.Phone,
                 Email = barberDto.Email,
-                Password = barberDto.Password
+                PasswordHash = barberDto.PasswordHash
             };
 
             await _barberRepository.UpdateBarber(barber);
@@ -100,7 +95,7 @@ namespace BuinessLogicLayer.Services
                     Surname = barber.Surname,
                     Email = barber.Email,
                     Phone = barber.Phone,
-                    Password = barber.Password,
+                    PasswordHash = barber.PasswordHash,
                     PhotoUri = barber.PhotoUri,
                     Description = barber.Description,
                     PortfolioUri = barber.PortfolioUri
