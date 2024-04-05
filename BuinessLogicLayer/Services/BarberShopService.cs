@@ -46,7 +46,7 @@ namespace BuinessLogicLayer.Services
         {
             BarberShopDto? barbershopDto = null;
             var barbershop = await _barbershopRepository.GetBarberShopFirst();
-            if (barbershop == null)
+            if (barbershop == null) // No info about BarberShop in DB
             {
                 throw new Exception("No info about BarberShop in DB");
             }
