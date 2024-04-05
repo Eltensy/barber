@@ -1,5 +1,6 @@
 ﻿using BuinessLogicLayer.Services;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 
 namespace BarberLayered.Controllers
@@ -24,7 +25,7 @@ namespace BarberLayered.Controllers
             var barber = await _barberService.GetBarberById(id);
             if (barber == null) 
             {
-                throw new Exception();
+                Log.Error("No Barber with id={Id} information in DataBase", id);
             }
             else
             {
@@ -45,7 +46,7 @@ namespace BarberLayered.Controllers
             var services = await _serviceService.GetServicesByBarberId(id);
             if (!services.Any()) // No services for this barber
             {
-                throw new Exception();
+                Log.Error("No Services for Barber with id={Id} was found in DataBase", id);
             }
             else
             {
@@ -64,10 +65,6 @@ namespace BarberLayered.Controllers
                 }
             }
 
-            // Фільтруємо послуги за id барбера
-            //var barberServices = _services.FindAll(service => service.fk_BarberId == id);
-
-            // Передаємо список послуг у в`ю
             ViewBag.Barber = _barber;
             ViewBag.Services = _services;
 
