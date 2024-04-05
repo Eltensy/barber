@@ -1,44 +1,71 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BuinessLogicLayer.Services;
+using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace BarberLayered.Controllers
 {
     public class BarberInformationController : Controller
     {
-        private readonly List<BarberLayered.Models.Review> _reviews;
+        private readonly IBarberService _barberService;
+        private readonly IReviewService _reviewService;
+        private List<BarberLayered.Models.Review> _reviews;
+        private Models.Barber? _barber;
 
-        public BarberInformationController()
+        public BarberInformationController(IBarberService barberService, IReviewService reviewService)
         {
-
-            _reviews = new List<BarberLayered.Models.Review>
-            {
-                new BarberLayered.Models.Review { Id = 1, fk_ClientId = 1, fk_BarberId = 1, Text = "Great service, highly recommend!", Rating = 4.5f, Date = new DateTime(2024, 3, 20) },
-                new BarberLayered.Models.Review { Id = 2, fk_ClientId = 2, fk_BarberId = 1, Text = "Very talented barber, always satisfied with the haircut.", Rating = 5.0f, Date = new DateTime(2024, 3, 18) },
-                new BarberLayered.Models.Review { Id = 3, fk_ClientId = 3, fk_BarberId = 1, Text = "Professional and friendly, will definitely come back.", Rating = 4.7f, Date = new DateTime(2024, 3, 15) }
-            };
+            _barberService = barberService;
+            _reviewService = reviewService;
+            _barber = null;
+            _reviews = new List<Models.Review>();
         }
 
-        public IActionResult Index(int id)
+        public async Task<IActionResult> Index(int id)
         {
-
-            var barber = new BarberLayered.Models.Barber
+            var barber = await _barberService.GetBarberById(id);
+            if (barber == null)
             {
-                Id = id,
-                Name = "John",
-                Surname = "Doe",
-                Phone = "1234567890",
-                Email = "john@example.com",
-                PasswordHash = "password",
-                PhotoUri = "https://media.istockphoto.com/id/506514230/photo/beard-grooming.jpg?s=612x612&w=0&k=20&c=QDwo1L8-f3gu7mcHf00Az84fVU8oNpQLgvUw6eGPEkc=",
-                Description = "Experienced barber with 10+ years of experience. Specializes in classic and modern hairstyles. Always committed to providing the best service and ensuring customer satisfaction.",
-                PortfolioUri = "portfolio/john"
-            };
+                Log.Error("No info about Barber with id={Id} was found in the DataBase", id);
+            }
+            else
+            {
+                _barber = new Models.Barber()
+                {
+                    Id = barber.Id,
+                    Name = barber.Name,
+                    Surname = barber.Surname,
+                    Phone = barber.Phone,
+                    Email = barber.Email,
+                    PasswordHash = barber.PasswordHash,
+                    PhotoUri = barber.PhotoUri,
+                    Description = barber.Description,
+                    PortfolioUri = barber.PortfolioUri,
+                };
+            }
+            
+            var reviews = await _reviewService.GetReviewsByBarberId(id);
+            if (!reviews.Any()) // No reviews logic for the view
+            {
+                Log.Information("No reviews for the Barber with id={Id} was found in the DataBase", id);
+            }
+            else
+            {
+                foreach (var review in reviews)
+                {
+                    _reviews.Add(new Models.Review()
+                    {
+                        Id = review.Id,
+                        fk_BarberId = review.fk_BarberId,
+                        fk_ClientId = review.fk_ClientId,
+                        Text = review.Text,
+                        Rating = review.Rating,
+                        Date = review.Date,
+                    });
+                }
+            }
+            
 
-            // Фільтруємо відгуки за id барбера
-            var barberReviews = _reviews.FindAll(review => review.fk_BarberId == id);
-
-            // Передаємо дані барбера та список відгуків у в`ю
-            ViewBag.Barber = barber;
-            ViewBag.Reviews = barberReviews;
+            ViewBag.Barber = _barber;
+            ViewBag.Reviews = _reviews;
 
             return View();
         }
