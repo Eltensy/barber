@@ -47,7 +47,7 @@ namespace BarberLayered.Controllers
                 case 2: // Barber
                     return RedirectToAction("Index", "Barbers");
                 case 3: // Admin
-                    return RedirectToAction("Index", "BarberService");
+                    return RedirectToAction("Index", "Barbers");
                 default:
                     return View(loginModel);
 
@@ -70,15 +70,6 @@ namespace BarberLayered.Controllers
                 return View(registerViewModel);
             }
 
-            //var newClient = new ClientDto()
-            //{
-            //    Name = firstName,
-            //    Surname = lastName,
-            //    Phone = phone,
-            //    Email = email,
-            //    PasswordHash = password
-            //};
-
             int result = -1;
 
             var registrationKey = await _registrationKeyService.GetRegistrationKeyById(2);
@@ -88,24 +79,6 @@ namespace BarberLayered.Controllers
                 case UserType.Barber:
                     if (registerViewModel.RegistrationKey.ToString().Equals(registrationKey.Key.ToString()))
                     {
-                        //if (registerViewModel is RegisterViewModelWithKey)
-                        //{
-                        //    var barberDto = new BarberDto()
-                        //    {
-                        //        Name = registerViewModel.FirstName,
-                        //        Surname = registerViewModel.LastName,
-                        //        Phone = registerViewModel.Phone,
-                        //        Email = registerViewModel.Email,
-                        //        PasswordHash = registerViewModel.Password,
-                        //        Key = ((RegisterViewModelWithKey)registerViewModel).RegistrationKey
-                        //    };
-                        //    result = await _registerService.BarberRegister(barberDto);
-                        //}
-                        //else
-                        //{
-                        //    throw new ArgumentException("Registration Key is required for Barber registration.");
-                        //}
-
                         var barberDto = new BarberDto()
                         {
                             Name = registerViewModel.FirstName,
@@ -113,7 +86,6 @@ namespace BarberLayered.Controllers
                             Phone = registerViewModel.Phone,
                             Email = registerViewModel.Email,
                             PasswordHash = registerViewModel.Password,
-                            //Key = ((RegisterViewModelWithKey)registerViewModel).RegistrationKey
                         };
                         result = await _registerService.BarberRegister(barberDto);
                         if(result == 0)
@@ -123,7 +95,22 @@ namespace BarberLayered.Controllers
                     }
                     break;
                 case UserType.Admin:
-                    // result = await _registerService.AdminRegister((adminDto);
+                    if (registerViewModel.RegistrationKey.ToString().Equals(registrationKey.Key.ToString()))
+                    {
+                        var adminDto = new AdminDto()
+                        {
+                            Name = registerViewModel.FirstName,
+                            Surname = registerViewModel.LastName,
+                            Phone = registerViewModel.Phone,
+                            Email = registerViewModel.Email,
+                            PasswordHash = registerViewModel.Password,
+                        };
+                        result = await _registerService.AdminRegister(adminDto);
+                        if (result == 0)
+                        {
+                            return RedirectToAction("Index", "BarberService");
+                        }
+                    }
                     break;
                 default:
                     var newClient = new ClientDto()
