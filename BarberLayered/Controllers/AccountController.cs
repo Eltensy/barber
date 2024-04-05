@@ -1,4 +1,5 @@
-﻿using BuinessLogicLayer.DTOs;
+﻿using BarberLayered.Models;
+using BuinessLogicLayer.DTOs;
 using BuinessLogicLayer.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +9,13 @@ namespace BarberLayered.Controllers
     {
         private readonly ILoginService _loginService;
         private readonly IRegisterService _registerService;
+        private readonly IRegistrationKeyService _registrationKeyService;
 
-        public AccountController(ILoginService loginService, IRegisterService registerService)
+        public AccountController(ILoginService loginService, IRegisterService registerService, IRegistrationKeyService registrationKeyService)
         {
             _loginService = loginService;
             _registerService = registerService;
+            _registrationKeyService = registrationKeyService;
         }
 
         // GET: /Account/Index
@@ -29,14 +32,16 @@ namespace BarberLayered.Controllers
 
         // POST: /Account/Login
         [HttpPost]
-        public async Task<IActionResult> Login(string email, string password)
+        public async Task<IActionResult> Login(LoginViewModel loginModel)
         {
-            int result = await _loginService.Login(email, password);
+            int result = await _loginService.Login(loginModel.Email, loginModel.Password);
+            
 
             switch (result)
             {
                 case -1: // Not found
-                    return RedirectToAction("Login");
+                    TempData["ErrorMessage"] = "Invalid email or password.";
+                    return View(loginModel);
                 case 1: // Client
                     return RedirectToAction("Index", "BarberShop");
                 case 2: // Barber
@@ -44,7 +49,7 @@ namespace BarberLayered.Controllers
                 case 3: // Admin
                     return RedirectToAction("Index", "BarberService");
                 default:
-                    return View();
+                    return View(loginModel);
 
             }
         }
@@ -57,22 +62,86 @@ namespace BarberLayered.Controllers
 
         // POST: /Account/Register
         [HttpPost]
-        public async Task<IActionResult> Register(string firstName, string lastName, string phone, string email, string password, string confirmPassword)
+        public async Task<IActionResult> Register(RegisterViewModelWithKey registerViewModel)
         {
-            if (!password.Equals(confirmPassword))
+            if (!registerViewModel.Password.Equals(registerViewModel.ConfirmPassword))
             {
-                throw new Exception();
+                TempData["ErrorMessage"] = "The password and confirmation password do not match.";
+                return View(registerViewModel);
             }
 
-            var newClient = new ClientDto()
+            //var newClient = new ClientDto()
+            //{
+            //    Name = firstName,
+            //    Surname = lastName,
+            //    Phone = phone,
+            //    Email = email,
+            //    PasswordHash = password
+            //};
+
+            int result = -1;
+
+            var registrationKey = await _registrationKeyService.GetRegistrationKeyById(2);
+
+            switch (registerViewModel.UserType)
             {
-                Name = firstName,
-                Surname = lastName,
-                Phone = phone,
-                Email = email,
-                PasswordHash = password
-            };
-            int result = await _registerService.Register(newClient);
+                case UserType.Barber:
+                    if (registerViewModel.RegistrationKey.ToString().Equals(registrationKey.Key.ToString()))
+                    {
+                        //if (registerViewModel is RegisterViewModelWithKey)
+                        //{
+                        //    var barberDto = new BarberDto()
+                        //    {
+                        //        Name = registerViewModel.FirstName,
+                        //        Surname = registerViewModel.LastName,
+                        //        Phone = registerViewModel.Phone,
+                        //        Email = registerViewModel.Email,
+                        //        PasswordHash = registerViewModel.Password,
+                        //        Key = ((RegisterViewModelWithKey)registerViewModel).RegistrationKey
+                        //    };
+                        //    result = await _registerService.BarberRegister(barberDto);
+                        //}
+                        //else
+                        //{
+                        //    throw new ArgumentException("Registration Key is required for Barber registration.");
+                        //}
+
+                        var barberDto = new BarberDto()
+                        {
+                            Name = registerViewModel.FirstName,
+                            Surname = registerViewModel.LastName,
+                            Phone = registerViewModel.Phone,
+                            Email = registerViewModel.Email,
+                            PasswordHash = registerViewModel.Password,
+                            //Key = ((RegisterViewModelWithKey)registerViewModel).RegistrationKey
+                        };
+                        result = await _registerService.BarberRegister(barberDto);
+                        if(result == 0)
+                        {
+                            return RedirectToAction("Index", "Barbers");
+                        }
+                    }
+                    break;
+                case UserType.Admin:
+                    // result = await _registerService.AdminRegister((adminDto);
+                    break;
+                default:
+                    var newClient = new ClientDto()
+                    {
+                        Name = registerViewModel.FirstName,
+                        Surname = registerViewModel.LastName,
+                        Phone = registerViewModel.Phone,
+                        Email = registerViewModel.Email,
+                        PasswordHash = registerViewModel.Password
+                    };
+                    result = await _registerService.Register(newClient);
+                    if(result == 0) 
+                    {
+                        return RedirectToAction("Index", "BarberShop");
+                    }
+                    break;
+            }
+
             if (result == -1) // Client with such email already exists
             {
                 throw new Exception();
