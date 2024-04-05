@@ -7,11 +7,14 @@ namespace BuinessLogicLayer.Services
     {
         private readonly IClientService _clientService;
         private readonly IBarberService _barberService;
+        private readonly IAdminService _adminService;
 
-        public RegisterService(IClientService clientService, IBarberService barberService)
+        public RegisterService(IClientService clientService, IBarberService barberService, IAdminService adminService)
         {
             _clientService = clientService;
             _barberService = barberService;
+            _adminService = adminService;
+                    
         }
         public async Task<int> Register(ClientDto clientDto)
         {
@@ -67,5 +70,34 @@ namespace BuinessLogicLayer.Services
 
             return result;
         }
+
+        public async Task<int> AdminRegister(AdminDto adminDto)
+        {
+            int result = -1;
+            string hashedPassword;
+
+            var existingAdmin = await _adminService.GetAdminByEmail(adminDto.Email);
+
+            if (existingAdmin == null)
+            {
+                hashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(adminDto.PasswordHash);
+
+                AdminDto newAdmin = new AdminDto()
+                {
+                    Name = adminDto.Name,
+                    Surname = adminDto.Surname,
+                    Phone = adminDto.Phone,
+                    Email = adminDto.Email,
+                    PasswordHash = hashedPassword
+                };
+
+                await _adminService.InsertAdmin(newAdmin);
+
+                result = 0;
+            }
+
+            return result;
+        }
+
     }
 }

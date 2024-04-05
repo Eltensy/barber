@@ -13,6 +13,8 @@ Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(configuration)
     .CreateLogger();
 
+Log.Information("Server started, logger is working");
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -60,6 +62,7 @@ builder.Services.AddDbContext<DataAccessLayer.Data.DataContext>(options =>
 
 
 var app = builder.Build();
+Log.Information("Application built, service started");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
