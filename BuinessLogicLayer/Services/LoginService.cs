@@ -13,9 +13,9 @@ namespace BuinessLogicLayer.Services
             _adminService = adminService;
         }
         
-        public async Task<int> Login(string email, string password)
+        public async Task<(int, int)> Login(string email, string password)
         {
-            int result = -1;
+            var result = (-1, -1);
             string storedPassword;
 
             var client = await _clientService.GetClientByEmail(email);
@@ -24,11 +24,11 @@ namespace BuinessLogicLayer.Services
                 storedPassword = client.PasswordHash;
                 if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPassword))
                 {
-                    result = 1;
+                    result = (1, client.Id);
                 }
             }
 
-            if (-1 == result)
+            if (-1 == result.Item1)
             {
                 var barber = await _barberService.GetBarberByEmail(email);
                 if (barber != null)
@@ -36,12 +36,12 @@ namespace BuinessLogicLayer.Services
                     storedPassword = barber.PasswordHash;
                     if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPassword))
                     {
-                        result = 2;
+                        result = (2, barber.Id);
                     }
                 }
             }
 
-            if (-1 == result)
+            if (-1 == result.Item1)
             {
                 var admin = await _adminService.GetAdminByEmail(email);
                 if (admin != null)
@@ -49,7 +49,7 @@ namespace BuinessLogicLayer.Services
                     storedPassword = admin.PasswordHash;
                     if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPassword))
                     {
-                        result = 3;
+                        result = (1, admin.Id);
                     }
                 }
             }

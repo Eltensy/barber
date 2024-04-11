@@ -8,11 +8,14 @@ namespace BarberLayered.Controllers
     {
         private readonly ILoginService _loginService;
         private readonly IRegisterService _registerService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AccountController(ILoginService loginService, IRegisterService registerService)
+        public AccountController(ILoginService loginService, IRegisterService registerService,
+            IHttpContextAccessor httpContextAccessor)
         {
             _loginService = loginService;
             _registerService = registerService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         // GET: /Account/Index
@@ -31,17 +34,24 @@ namespace BarberLayered.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string email, string password)
         {
-            int result = await _loginService.Login(email, password);
+            var result = await _loginService.Login(email, password);
+            var session = _httpContextAccessor.HttpContext.Session;
 
-            switch (result)
+            switch (result.Item1)
             {
                 case -1: // Not found
                     return RedirectToAction("Login");
                 case 1: // Client
+                    session.SetString("UserType", "Client");
+                    session.SetInt32("UserId", result.Item2);
                     return RedirectToAction("Index", "BarberShop");
                 case 2: // Barber
+                    session.SetString("UserType", "Barber");
+                    session.SetInt32("UserId", result.Item2);
                     return RedirectToAction("Index", "Barbers");
                 case 3: // Admin
+                    session.SetString("UserType", "Admin");
+                    session.SetInt32("UserId", result.Item2);
                     return RedirectToAction("Index", "BarberService");
                 default:
                     return View();
