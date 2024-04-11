@@ -139,21 +139,34 @@
 <body>
 
     <header>
-        <a href="/BarberShop/Index">BarberBook</a>
-
-        @if (currentPath != null && !currentPath.StartsWithSegments("/Barbers"))
+        @if (currentPath == "/BarberHome/Index"|| currentPath =="/BarberInformation/MyReviews")
         {
-            <a href="/Barbers/Index" style="margin: auto;">Наші барбери</a>
+            <a href="/BarberShop/Index">BarberBook</a>
+            <a href="#" style="margin: auto;">Усі записи</a>
+            <a href="/BarberInformation/MyReviews" style="margin: auto;">Мої відгуки</a>
+            /*@if (User.Identity.IsAuthenticated)
+            {*/
+            <a href="/BarberShop/Index">Вийти</a>
+         /*  }*/
         }
-
-        <div class="dropdown">
-            <a href="#" style="margin: auto;">Увійти</a>
-            <div class="dropdown-content">
-                <a href="/Account/Login">Увійти</a>
-                <a href="/Account/Register">Зареєструватись</a>
+        else
+        {
+            <a href="/BarberShop/Index">BarberBook</a>
+            @if (currentPath != null && !currentPath.StartsWithSegments("/Barbers"))
+            {
+                <a href="/Barbers/Index" style="margin: auto;">Наші барбери</a>
+            }
+            <div class="dropdown">
+                <a href="#" style="margin: auto;">Увійти</a>
+                <div class="dropdown-content">
+                    <a href="/Account/Login">Увійти</a>
+                    <a href="/Account/Register">Зареєструватись</a>
+                </div>
             </div>
-        </div>
+        }
     </header>
+
+
 
     <main role="main" class="pb-3">
         @RenderBody()

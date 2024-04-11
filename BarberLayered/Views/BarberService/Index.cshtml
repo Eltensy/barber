@@ -81,18 +81,17 @@
         <img src="@barber.PhotoUri" alt="@barber.Name" class="barber-photo">
         <div class="barber-info">
             <h2>@barber.Name @barber.Surname</h2>
-            <h2>@barber.Description</h2>
         </div>
 
-        <h1>Services</h1>
+        <h1>Послуги</h1>
 
         <table>
             <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Duration (m)</th>
-                <th>Price (₴)</th>
-                <th>Action</th>
+                <th>Назва</th>
+                <th>Опис</th>
+                <th>Тривалість(хв)</th>
+                <th>Вартість(₴)</th>
+                <th>Дія</th>
             </tr>
             @foreach (var service in services)
             {

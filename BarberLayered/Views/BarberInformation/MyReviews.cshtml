@@ -1,0 +1,62 @@
+@model List<BarberLayered.Models.Review>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мої відгуки</title>
+    <style>
+        .reviews {
+            margin-top: 100px;
+        }
+
+        .review-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-text {
+            margin: 0;
+            font-size: 17.5px;
+            line-height: 1.4;
+        }
+
+        .review-details {
+            font-style: italic;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .review-rating {
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+<h1>Мої відгуки</h1>
+
+@if (Model.Count > 0)
+{
+<div class="reviews">
+    @foreach (var review in Model)
+    {
+    <div class="review-item">
+        <p class="review-text">@review.Text</p>
+        <p class="review-details">Залишено: Клієнт @review.fk_ClientId | Дата: @review.Date.ToShortDateString()</p>
+        <p class="review-rating">Оцінка: @review.Rating/5</p>
+    </div>
+    }
+</div>
+}
+else
+{
+<p>Немає відгуків для відображення</p>
+}
+</body>
+</html>

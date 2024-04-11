@@ -104,19 +104,19 @@
 
             <div class="contacts">
                 <div class="barber-details">
-                    <p><a href="tel:@barber.Phone">Phone: @barber.Phone</a></p>
-                    <p><a href="mailto:@barber.Email">Email: @barber.Email</a></p>
+                    <p><a href="tel:@barber.Phone">Телефон: @barber.Phone</a></p>
+                    <p><a href="mailto:@barber.Email">Електронна адреса: @barber.Email</a></p>
                 </div>
             </div>
         </div>
-        <h3 class="reviews">Reviews:</h3>
+        <h3 class="reviews">Відгуки:</h3>
         <div class="reviews">
             @foreach (var review in reviews)
             {
                 <div class="review-item">
                     <p class="review-text">@review.Text</p>
-                    <p class="review-details">By: Client @review.fk_ClientId | Date: @review.Date.ToShortDateString()</p>
-                    <p class="review-rating">Rating: @review.Rating/5</p>
+                    <p class="review-details">Залишено: Клієнт @review.fk_ClientId | Дата: @review.Date.ToShortDateString()</p>
+                    <p class="review-rating">Оцінка: @review.Rating/5</p>
                 </div>
             }
         </div>

@@ -1,47 +1,22 @@
 ﻿using BarberLayered.Models;
-using BuinessLogicLayer.Services;
 using Microsoft.AspNetCore.Mvc;
-using Serilog;
 
 namespace BarberLayered.Controllers
 {
     public class BarbersController : Controller
     {
-        private List<Barber> _barbers;
-        private readonly IBarberService _barberService;
-
-        public BarbersController(IBarberService barberService)
+        private readonly List<Barber> _barbers;
+        public BarbersController()
         {
-            _barberService = barberService;
+            _barbers = new List<Barber>
+            {
+                new Barber { Id = 1, Name = "Олег", Surname = "Леськів", Phone = "0504567890", Email = "olegles@example.com", PasswordHash = "password", PhotoUri = "https://media.istockphoto.com/id/506514230/photo/beard-grooming.jpg?s=612x612&w=0&k=20&c=QDwo1L8-f3gu7mcHf00Az84fVU8oNpQLgvUw6eGPEkc=", Description = "Досвідчений барбер з 10-річним стажем роботи.", PortfolioUri = "portfolio/john" },
+                new Barber { Id = 2, Name = "Роман", Surname = "Мигота", Phone = "0987654321", Email = "romanmygota@example.com", PasswordHash = "password", PhotoUri = "https://media.istockphoto.com/id/506514230/photo/beard-grooming.jpg?s=612x612&w=0&k=20&c=QDwo1L8-f3gu7mcHf00Az84fVU8oNpQLgvUw6eGPEkc=", Description = "Креативний барбер, працює з класичними стрижками.", PortfolioUri = "portfolio/jane" },
+            };
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var barbers = await _barberService.GetBarbers();
-            if (!barbers.Any()) // No barbers in DB
-            {
-                Log.Error("No Barbers in DataBase");
-            }
-            else
-            {
-                _barbers = new List<Barber>();
-                foreach (var barber in barbers)
-                {
-                    _barbers.Add(new Barber()
-                    {
-                        Id = barber.Id,
-                        Name = barber.Name,
-                        Surname = barber.Surname,
-                        Description = barber.Description,
-                        Email = barber.Email,
-                        PasswordHash = barber.PasswordHash,
-                        Phone = barber.Phone,
-                        PhotoUri = barber.PhotoUri,
-                        PortfolioUri = barber.PortfolioUri,
-                    });
-                }
-            }
-            
             return View(_barbers);
         }
     }
