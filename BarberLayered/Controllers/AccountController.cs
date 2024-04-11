@@ -35,7 +35,6 @@ namespace BarberLayered.Controllers
         public async Task<IActionResult> Login(LoginViewModel loginModel)
         {
             int result = await _loginService.Login(loginModel.Email, loginModel.Password);
-
             switch (result)
             {
                 case -1: // Not found
@@ -44,9 +43,9 @@ namespace BarberLayered.Controllers
                 case 1: // Client
                     return RedirectToAction("Index", "BarberShop");
                 case 2: // Barber
-                    return RedirectToAction("Index", "Barbers");
+                    return RedirectToAction("Index", "BarberHome");
                 case 3: // Admin
-                    return RedirectToAction("Index", "BarberService");
+                    return RedirectToAction("Index", "AdminHome");
                 default:
                     return View(loginModel);
             }

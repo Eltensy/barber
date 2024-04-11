@@ -59,6 +59,7 @@
                     background-color: #f5a742;
                 }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
 
@@ -72,6 +73,17 @@
         <p>@Model.Description</p>
         <a href="/Barbers/Index">Записатись</a>
     </div>
+
+    <script>
+        var errorMessage = '@TempData["ErrorMessage"]';
+        if (errorMessage !== 'null' && errorMessage !== '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: errorMessage
+            });
+        }
+    </script>
 
 </body>
 </html>

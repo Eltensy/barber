@@ -107,7 +107,7 @@
 <body>
 
     <div class="container">
-        <h2 style="text-align: center;">Login</h2>
+        <h2 style="text-align: center;">Вхід</h2>
         <form asp-controller="Account" asp-action="Login" method="post">
             <div class="form-group">
 @*                 <label for="userType">User Type:</label>
@@ -120,11 +120,11 @@
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="Email" placeholder="Enter your email" required>
+                <input type="email" class="form-control" id="email" name="Email" placeholder="Введіть свій email" required>
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="Password" placeholder="Enter your password" required>
+                <label for="password">Пароль:</label>
+                <input type="password" class="form-control" id="password" name="Password" placeholder="Введіть свій пароль" required>
             </div>
             @if (!ViewData.ModelState.IsValid)
             {
@@ -135,11 +135,11 @@
 
 
             <div class="button-container">
-                <button type="submit">Login</button>
+                <button type="submit">Увійти</button>
             </div>
         </form>
         <div class="login-text">
-            Don't have an account yet? <a href="/Account/Register">Register</a>
+            Ще не маєте облікового запису? <a href="/Account/Register">Зареєструватись</a>
         </div>
     </div>
 

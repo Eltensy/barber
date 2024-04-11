@@ -74,6 +74,7 @@
                 background-color: #684116;
             }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
 
@@ -83,15 +84,15 @@
             <h2>@barber.Name @barber.Surname</h2>
         </div>
 
-        <h1>Services</h1>
+        <h1>Послуги</h1>
 
         <table>
             <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Duration (m)</th>
-                <th>Price (₴)</th>
-                <th>Action</th>
+                <th>Назва</th>
+                <th>Опис</th>
+                <th>Тривалість (m)</th>
+                <th>Ціна (₴)</th>
+                <th></th>
             </tr>
             @foreach (var service in services)
             {
@@ -106,6 +107,17 @@
             }
         </table>
     </div>
+
+    <script>
+        var errorMessage = '@TempData["ErrorMessage"]';
+        if (errorMessage !== 'null' && errorMessage !== '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: errorMessage
+            });
+        }
+    </script>
 
 </body>
 </html>
