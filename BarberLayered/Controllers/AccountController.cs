@@ -1,6 +1,8 @@
-﻿using BuinessLogicLayer.DTOs;
+﻿using BarberLayered.Models;
+using BuinessLogicLayer.DTOs;
 using BuinessLogicLayer.Services;
 using Microsoft.AspNetCore.Mvc;
+using static BarberLayered.Models.RegisterViewModel;
 
 namespace BarberLayered.Controllers
 {
@@ -29,14 +31,16 @@ namespace BarberLayered.Controllers
 
         // POST: /Account/Login
         [HttpPost]
-        public async Task<IActionResult> Login(string email, string password)
+
+        public async Task<IActionResult> Login(LoginViewModel loginModel)
         {
-            int result = await _loginService.Login(email, password);
+            int result = await _loginService.Login(loginModel.Email, loginModel.Password);
 
             switch (result)
             {
                 case -1: // Not found
-                    return RedirectToAction("Login");
+                    TempData["ErrorMessage"] = "Invalid email or password.";
+                    return View(loginModel);
                 case 1: // Client
                     return RedirectToAction("Index", "BarberShop");
                 case 2: // Barber
@@ -44,10 +48,25 @@ namespace BarberLayered.Controllers
                 case 3: // Admin
                     return RedirectToAction("Index", "BarberService");
                 default:
-                    return View();
-
+                    return View(loginModel);
             }
         }
+
+        //// GET: /Account/Login
+        //public IActionResult Login()
+        //{
+        //    // Перевіряємо, чи є TempData["ErrorMessage"] та передаємо його до ViewData
+        //    var errorMessage = TempData["ErrorMessage"] as string;
+        //    if (!string.IsNullOrEmpty(errorMessage))
+        //    {
+        //        // Передаємо errorMessage до представлення
+        //        ViewData["ErrorMessage"] = errorMessage;
+        //        // Опційно видаляємо запис TempData
+        //        TempData.Remove("ErrorMessage");
+        //    }
+        //    return View();
+        //}
+
 
         // GET: /Account/Register
         public IActionResult Register()
@@ -55,28 +74,62 @@ namespace BarberLayered.Controllers
             return View();
         }
 
-        // POST: /Account/Register
+
+        //POST: /Account/Register
         [HttpPost]
-        public async Task<IActionResult> Register(string firstName, string lastName, string phone, string email, string password, string confirmPassword)
+        public async Task<IActionResult> Register(RegisterViewModelWithKey registerViewModel)
         {
-            if (!password.Equals(confirmPassword))
+            if (!registerViewModel.Password.Equals(registerViewModel.ConfirmPassword))
             {
-                throw new Exception();
+                TempData["ErrorMessage"] = "The password and confirmation password do not match.";
+                return View(registerViewModel);
             }
 
-            var newClient = new ClientDto()
+            int result;
+            switch (registerViewModel.UserType)
             {
-                Name = firstName,
-                Surname = lastName,
-                Phone = phone,
-                Email = email,
-                PasswordHash = password
-            };
-            int result = await _registerService.Register(newClient);
-            if (result == -1) // Client with such email already exists
-            {
-                throw new Exception();
+                case UserType.Barber:
+                    //if (registerViewModel is RegisterViewModelWithKey)
+                    //{
+                    //    var barberDto = new BarberDto()
+                    //    {
+                    //        Name = registerViewModel.FirstName,
+                    //        Surname = registerViewModel.LastName,
+                    //        Phone = registerViewModel.Phone,
+                    //        Email = registerViewModel.Email,
+                    //        PasswordHash = registerViewModel.Password,
+                    //        Key = ((RegisterViewModelWithKey)registerViewModel).RegistrationKey
+                    //    };
+                    //    result = await _registerService.BarberRegister(barberDto);
+                    //}
+                    //else
+                    //{
+                    //    throw new ArgumentException("Registration Key is required for Barber registration.");
+                    //}
+                    break;
+                case UserType.Admin:
+                    // result = await _registerService.AdminRegister((adminDto);
+                    break;
+                default:
+                    var newClient = new ClientDto()
+                    {
+                        Name = registerViewModel.FirstName,
+                        Surname = registerViewModel.LastName,
+                        Phone = registerViewModel.Phone,
+                        Email = registerViewModel.Email,
+                        PasswordHash = registerViewModel.Password
+                    };
+                    result = await _registerService.Register(newClient);
+
+                    break;
             }
+
+            //if (result == -1) // Client with such email already exists
+            //{
+            //    TempData["ErrorMessage"] = "A user with this email already exists.";
+            //    return View(registerViewModel);
+            //}
+
 
             return RedirectToAction("Index", "BarberShop");
         }
