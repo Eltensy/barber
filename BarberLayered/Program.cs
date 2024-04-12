@@ -2,6 +2,7 @@ using BarberLayered.Filters;
 using BuinessLogicLayer.Services;
 using DataAccessLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Serilog;
 
 IConfigurationRoot configuration = new ConfigurationBuilder()
@@ -61,6 +62,18 @@ builder.Services.AddDbContext<DataAccessLayer.Data.DataContext>(options =>
 });
 
 
+// Session
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 var app = builder.Build();
 Log.Information("Application built, service started");
 
@@ -76,6 +89,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 

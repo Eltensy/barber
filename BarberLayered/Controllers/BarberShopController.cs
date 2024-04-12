@@ -9,15 +9,19 @@ namespace BarberLayered.Controllers
     {
         private readonly IBarberShopService _barberShopService;
         private BarberShop? _barberShop;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public BarberShopController(IBarberShopService barberShopService)
+        public BarberShopController(IBarberShopService barberShopService,
+            IHttpContextAccessor httpContextAccessor)
         {
             _barberShopService = barberShopService;
+            _httpContextAccessor = httpContextAccessor;
             _barberShop = null;
         }
 
         public async Task<IActionResult> Index()
         {
+            var session = _httpContextAccessor.HttpContext.Session;
             var barberShop = await _barberShopService.GetBarberShopFirst();
             if (barberShop == null)
             {
@@ -34,6 +38,8 @@ namespace BarberLayered.Controllers
                     Phone = barberShop.Phone,
                     PhoneSecond = barberShop.PhoneSecond,
                     PhotoUri = barberShop.PhotoUri,
+                    UserType = session.GetString("UserType"),
+                    userId = session.GetInt32("UserId")
                 };
             }
 
