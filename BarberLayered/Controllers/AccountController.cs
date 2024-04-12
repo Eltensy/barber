@@ -49,10 +49,12 @@ namespace BarberLayered.Controllers
                     return RedirectToAction("Index", "BarberShop");
                 case 2: // Barber
                     Log.Information("Successful logged in as barber with email: {Email}, password: {Password}", loginModel.Email, loginModel.Password);
-                    return RedirectToAction("Index", "Barbers");
+                    //return RedirectToAction("Index", "Barbers");
+                    return RedirectToAction("Index", "BarberHome");
                 case 3: // Admin
                     Log.Information("Successful logged in as admin with email: {Email}, password: {Password}", loginModel.Email, loginModel.Password);
-                    return RedirectToAction("Index", "Barbers");
+                    //return RedirectToAction("Index", "Barbers");
+                    return RedirectToAction("Index", "AdminHome");
                 default:
                     return View(loginModel);
 
