@@ -1,4 +1,4 @@
-﻿using BarberLayered.Models;
+using BarberLayered.Models;
 using BuinessLogicLayer.DTOs;
 using BuinessLogicLayer.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -11,12 +11,15 @@ namespace BarberLayered.Controllers
         private readonly ILoginService _loginService;
         private readonly IRegisterService _registerService;
         private readonly IRegistrationKeyService _registrationKeyService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AccountController(ILoginService loginService, IRegisterService registerService, IRegistrationKeyService registrationKeyService)
+        public AccountController(ILoginService loginService, IRegisterService registerService,
+            IRegistrationKeyService registrationKeyService, IHttpContextAccessor httpContextAccessor)
         {
             _loginService = loginService;
             _registerService = registerService;
             _registrationKeyService = registrationKeyService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         // GET: /Account/Index
@@ -36,21 +39,28 @@ namespace BarberLayered.Controllers
         public async Task<IActionResult> Login(LoginViewModel loginModel)
         {
             Log.Information("Login attempt with email: {Email}, password: {Password}", loginModel.Email, loginModel.Password);
-            int result = await _loginService.Login(loginModel.Email, loginModel.Password);
+            var session = _httpContextAccessor.HttpContext.Session;
+            var result = await _loginService.Login(loginModel.Email, loginModel.Password);
             
 
-            switch (result)
+            switch (result.Item1)
             {
                 case -1: // Not found
                     TempData["ErrorMessage"] = "Invalid email or password.";
                     return View(loginModel);
                 case 1: // Client
+                    session.SetString("UserType", "Client");
+                    session.SetInt32("UserId", result.Item2);
                     Log.Information("Successful logged in as client with email: {Email}, password: {Password}", loginModel.Email, loginModel.Password);
                     return RedirectToAction("Index", "BarberShop");
                 case 2: // Barber
+                    session.SetString("UserType", "Barber");
+                    session.SetInt32("UserId", result.Item2);
                     Log.Information("Successful logged in as barber with email: {Email}, password: {Password}", loginModel.Email, loginModel.Password);
                     return RedirectToAction("Index", "Barbers");
                 case 3: // Admin
+                    session.SetString("UserType", "Admin");
+                    session.SetInt32("UserId", result.Item2);
                     Log.Information("Successful logged in as admin with email: {Email}, password: {Password}", loginModel.Email, loginModel.Password);
                     return RedirectToAction("Index", "Barbers");
                 default:
