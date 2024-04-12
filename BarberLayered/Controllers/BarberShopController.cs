@@ -1,7 +1,7 @@
 ﻿using BarberLayered.Models;
 using Microsoft.AspNetCore.Mvc;
-using BuinessLogicLayer.Services;
 using Serilog;
+using BusinessLogicLayer.Services.Interfaces;
 
 namespace BarberLayered.Controllers
 {

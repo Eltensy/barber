@@ -1,6 +1,8 @@
 using BarberLayered.Filters;
-using BuinessLogicLayer.Services;
-using DataAccessLayer.Interfaces;
+using BusinessLogicLayer.Services.Implementations;
+using BusinessLogicLayer.Services.Interfaces;
+using DataAccessLayer.Repositories.Implementations;
+using DataAccessLayer.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 

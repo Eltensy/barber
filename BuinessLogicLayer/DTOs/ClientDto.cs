@@ -1,4 +1,4 @@
-﻿namespace BuinessLogicLayer.DTOs
+﻿namespace BusinessLogicLayer.DTOs
 {
     public class ClientDto
     {

@@ -1,4 +1,4 @@
-﻿using BuinessLogicLayer.Services;
+﻿using BusinessLogicLayer.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 

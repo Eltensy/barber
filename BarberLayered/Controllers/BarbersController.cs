@@ -1,5 +1,5 @@
 ﻿using BarberLayered.Models;
-using BuinessLogicLayer.Services;
+using BusinessLogicLayer.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
@@ -13,6 +13,7 @@ namespace BarberLayered.Controllers
         public BarbersController(IBarberService barberService)
         {
             _barberService = barberService;
+            _barbers = new List<Barber>();
         }
 
         public async Task<IActionResult> Index()
