@@ -53,6 +53,22 @@ namespace BuinessLogicLayer.Services
             return reviewsDtos.ToList();
         }
 
+        public async Task<List<ReviewDto>> GetReviewsByBarberId(int fkBarberId)
+        {
+            var reviews = await _reviewRepository.GetReviewsByBarberId(fkBarberId);
+            var reviewsDtos = from review in reviews
+                              select new ReviewDto()
+                              {
+                                  Id = review.Id,
+                                  fk_ClientId = review.fk_ClientId,
+                                  fk_BarberId = review.fk_BarberId,
+                                  Text = review.Text,
+                                  Rating = review.Rating,
+                                  Date = review.Date
+                              };
+            return reviewsDtos.ToList();
+        }
+
         public async Task InsertReview(ReviewDto reviewDto)
         {
             Review review = new Review()

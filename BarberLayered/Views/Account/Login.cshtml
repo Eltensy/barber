@@ -1,10 +1,14 @@
-﻿@{
+﻿@model BarberLayered.Models.LoginViewModel
+
+@{
     Layout = null;
 }
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
         body {
@@ -39,11 +43,14 @@
 
         input[type="text"],
         input[type="password"],
-        input[type="email"] {
+        input[type="email"],
+        select {
             width: 90%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
         }
 
         button[type="submit"] {
@@ -84,7 +91,18 @@
                 .login-text a:hover {
                     color: #f5a742;
                 }
+
+        select {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
 
@@ -92,13 +110,30 @@
         <h2 style="text-align: center;">Login</h2>
         <form asp-controller="Account" asp-action="Login" method="post">
             <div class="form-group">
+                @*                 <label for="userType">User Type:</label>
+                <select class="form-control" id="userType" name="UserType" required>
+                <option value="">-- Select User Type --</option>
+                <option value="Client">Client</option>
+                <option value="Barber">Barber</option>
+                <option value="Admin">Admin</option>
+                </select> *@
+            </div>
+            <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                <input type="email" class="form-control" id="email" name="Email" placeholder="Enter your email" required>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                <input type="password" class="form-control" id="password" name="Password" placeholder="Enter your password" required>
             </div>
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="form-group">
+                    <p class="text-danger">@Html.ValidationSummary()</p>
+                </div>
+            }
+
+
             <div class="button-container">
                 <button type="submit">Login</button>
             </div>
@@ -133,7 +168,17 @@
                     this.setCustomValidity('');
                 }
             });
+
+            var errorMessage = '@TempData["ErrorMessage"]';
+            if (errorMessage !== 'null' && errorMessage !== '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: errorMessage
+                });
+            }
         });
     </script>
+
 </body>
 </html>

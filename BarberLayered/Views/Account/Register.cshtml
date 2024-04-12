@@ -1,4 +1,6 @@
-﻿@{
+﻿@model BarberLayered.Models.RegisterViewModelWithKey
+
+@{
     Layout = null;
 }
 
@@ -39,15 +41,18 @@
 
         input[type="text"],
         input[type="password"],
-        input[type="email"] {
-            width: 90%;
-            padding: 10px;
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 7px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
         }
 
         button[type="submit"] {
-            width: 50%;
+            width: 100%;
             padding: 10px 20px;
             background-color: #905B22;
             color: #fff;
@@ -59,13 +64,7 @@
         }
 
         .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #f5a742;
+            margin-top: 20px;
         }
 
         .login-text {
@@ -84,7 +83,12 @@
                 .login-text a:hover {
                     color: #f5a742;
                 }
+
+        .form-control-large {
+            font-size: 16px;
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
 
@@ -92,28 +96,40 @@
         <h2 style="text-align: center;">Register</h2>
         <form asp-controller="Account" asp-action="Register" method="post">
             <div class="form-group">
+                <label for="userType">User Type:</label>
+                <select class="form-control form-control-large" id="userType" name="UserType" required>
+                    <option value="Client">Client</option>
+                    <option value="Barber">Barber</option>
+                    <option value="Admin">Administrator</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="firstName">First Name:</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                <input type="text" class="form-control" id="firstName" name="FirstName" placeholder="Enter your first name" required>
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name:</label>
-                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                <input type="text" class="form-control" id="lastName" name="LastName" placeholder="Enter your last name" required>
             </div>
             <div class="form-group">
                 <label for="phone">Phone:</label>
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="+38(__)_______" required>
+                <input type="text" class="form-control" id="phone" name="Phone" placeholder="+38(__)_______" required>
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="user@gmail.com" required>
+                <input type="email" class="form-control" id="email" name="Email" placeholder="user@gmail.com" required>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                <input type="password" class="form-control" id="password" name="Password" placeholder="Enter your password" required>
             </div>
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password:</label>
-                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                <input type="password" class="form-control" id="confirmPassword" name="ConfirmPassword" placeholder="Confirm your password" required>
+            </div>
+            <div id="registrationKeyField" class="form-group" style="display:none;">
+                <label for="registrationKey">Registration Key:</label>
+                <input type="text" class="form-control" id="registrationKey" name="RegistrationKey" placeholder="Enter registration key" required>
             </div>
             <div class="button-container">
                 <button type="submit">Register</button>
@@ -167,6 +183,27 @@
                     this.setCustomValidity('');
                 }
             });
+
+            var userTypeSelect = document.getElementById('userType');
+            var registrationKeyField = document.getElementById('registrationKeyField');
+            userTypeSelect.addEventListener('change', function () {
+                if (this.value === 'Barber' || this.value === 'Admin') {
+                    registrationKeyField.style.display = 'block';
+                    document.getElementById('registrationKey').setAttribute('required', 'required');
+                } else {
+                    registrationKeyField.style.display = 'none';
+                    document.getElementById('registrationKey').removeAttribute('required');
+                }
+            });
+
+            var errorMessage = '@TempData["ErrorMessage"]';
+            if (errorMessage !== 'null' && errorMessage !== '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: errorMessage
+                });
+            }
         });
     </script>
 

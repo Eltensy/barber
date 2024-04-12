@@ -14,6 +14,8 @@ Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(configuration)
     .CreateLogger();
 
+Log.Information("Server started, logger is working");
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -73,6 +75,7 @@ builder.Services.AddSession(options =>
 builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
+Log.Information("Application built, service started");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

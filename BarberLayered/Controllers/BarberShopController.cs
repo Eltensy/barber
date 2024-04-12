@@ -1,13 +1,14 @@
 ﻿using BarberLayered.Models;
 using Microsoft.AspNetCore.Mvc;
 using BuinessLogicLayer.Services;
+using Serilog;
 
 namespace BarberLayered.Controllers
 {
     public class BarberShopController : Controller
     {
         private readonly IBarberShopService _barberShopService;
-        private BarberShop _barberShop;
+        private BarberShop? _barberShop;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public BarberShopController(IBarberShopService barberShopService,
@@ -15,6 +16,7 @@ namespace BarberLayered.Controllers
         {
             _barberShopService = barberShopService;
             _httpContextAccessor = httpContextAccessor;
+            _barberShop = null;
         }
 
         public async Task<IActionResult> Index()
@@ -23,7 +25,7 @@ namespace BarberLayered.Controllers
             var barberShop = await _barberShopService.GetBarberShopFirst();
             if (barberShop == null)
             {
-                throw new Exception("No BarberShop info in DB");
+                Log.Error("No info about BarberShop in DataBase");
             }
             else
             {

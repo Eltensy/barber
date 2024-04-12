@@ -1,7 +1,8 @@
-﻿using BarberLayered.Models;
+using BarberLayered.Models;
 using BuinessLogicLayer.Services;
 using DataAccessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace BarberLayered.Controllers
 {
@@ -20,7 +21,7 @@ namespace BarberLayered.Controllers
             var barbers = await _barberService.GetBarbers();
             if (!barbers.Any()) // No barbers in DB
             {
-                throw new Exception();
+                Log.Error("No Barbers in DataBase");
             }
             else
             {
