@@ -20,7 +20,7 @@ namespace BuinessLogicLayer.Services
                              select new VisitDto()
                              {
                                  Id = visit.Id,
-                                 fk_CLientId = visit.fk_CLientId,
+                                 fk_ClientId = visit.fk_ClientId,
                                  fk_GuestId = visit.fk_GuestId,
                                  fk_BarberId = visit.fk_BarberId,
                                  fk_ServiceId = visit.fk_ServiceId,
@@ -40,7 +40,7 @@ namespace BuinessLogicLayer.Services
                 visitDto = new VisitDto()
                 {
                     Id = visit.Id,
-                    fk_CLientId = visit.fk_CLientId,
+                    fk_ClientId = visit.fk_ClientId,
                     fk_GuestId = visit.fk_GuestId,
                     fk_BarberId = visit.fk_BarberId,
                     fk_ServiceId = visit.fk_ServiceId,
@@ -56,7 +56,7 @@ namespace BuinessLogicLayer.Services
             Visit visit = new Visit()
             {
                 Id = visitDto.Id,
-                fk_CLientId = visitDto.fk_CLientId,
+                fk_ClientId = visitDto.fk_ClientId,
                 fk_GuestId = visitDto.fk_GuestId,
                 fk_BarberId = visitDto.fk_BarberId,
                 fk_ServiceId = visitDto.fk_ServiceId,
@@ -77,7 +77,7 @@ namespace BuinessLogicLayer.Services
             Visit visit = new Visit()
             {
                 Id = visitDto.Id,
-                fk_CLientId = visitDto.fk_CLientId,
+                fk_ClientId = visitDto.fk_ClientId,
                 fk_GuestId = visitDto.fk_GuestId,
                 fk_BarberId = visitDto.fk_BarberId,
                 fk_ServiceId = visitDto.fk_ServiceId,
