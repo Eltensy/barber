@@ -101,11 +101,11 @@ namespace BarberLayered.Migrations
                 "(9, 2, 2, '10:00:00', '18:00:00'),\r\n" +
                 "(10, 2, 3, '10:00:00', '19:00:00'),\r\n" +
                 "(11, 2, 4, '10:00:00', '19:00:00'),\r\n" +
-                "(12, 2, 5, '12:00:00', '18:00:00'),\r\n",
+                "(12, 2, 5, '12:00:00', '18:00:00')\r\n",
                 true);
             // Visits
             migrationBuilder.Sql(
-                "insert into \"Visits\"(\"Id\", \"fk_CLientId\", \"fk_GuestId\", \"fk_BarberId\", \"fk_ServiceId\", \"Date\", \"Time\")\r\n" +
+                "insert into \"Visits\"(\"Id\", \"fk_ClientId\", \"fk_GuestId\", \"fk_BarberId\", \"fk_ServiceId\", \"Date\", \"Time\")\r\n" +
                 "values (1, 1, null, 1, 1, CURRENT_DATE, '11:30:00'),\r\n" +
                 "(2, 1, null, 1, 2, CURRENT_DATE + interval \'1 day\', '13:45:00'),\r\n" +
                 "(3, 1, null, 2, 1, CURRENT_DATE, '10:00:00'),\r\n" +
