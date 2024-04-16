@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberLayered", "BarberLayered.csproj", "{D10D3564-4D3C-4015-BEE4-76655F4702CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberLayered", "BarberLayered.csproj", "{D10D3564-4D3C-4015-BEE4-76655F4702CD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuinessLogicLayer", "..\BuinessLogicLayer\BuinessLogicLayer.csproj", "{E6D0FBA1-EC86-4AA4-BF80-99E29D047E6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicLayer", "..\BuinessLogicLayer\BusinessLogicLayer.csproj", "{E6D0FBA1-EC86-4AA4-BF80-99E29D047E6B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "..\DataAccessLayer\DataAccessLayer.csproj", "{B5FC17DD-D296-4AAA-A25C-ACD1135B8FE3}"
 EndProject
