@@ -2,8 +2,11 @@
 {
     public class AppointmentViewModel
     {
-        public int ServiceId { get; set; }
-        public List<DateTime>? BookedDates { get; set; }
-        public List<DateTime>? AvailableDates { get; set; }
+        public string Name { get; set; }
+        public string Phone { get; set; }
+        public int SelectedBarberId { get; set; }
+        public int SelectedServiceId { get; set; }
+        public string SelectedDay { get; set; }
+        public string SelectedTime { get; set; }
     }
 }
