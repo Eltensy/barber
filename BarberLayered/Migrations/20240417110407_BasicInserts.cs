@@ -40,9 +40,9 @@ namespace BarberLayered.Migrations
                 true);
             // RegistrationKeys
             migrationBuilder.Sql(
-                "insert into \"RegistrationKeys\"(\"Key\", \"Timestamp\")\r\n" +
-                "values('qwerty123', CURRENT_TIMESTAMP), " +
-                "('qwerty123', CURRENT_TIMESTAMP)",
+                "insert into \"RegistrationKeys\"(\"Id\", \"Key\", \"Timestamp\")\r\n" +
+                "values(1, 'qwerty123', CURRENT_TIMESTAMP), " +
+                "(2, 'qwerty123', CURRENT_TIMESTAMP)",
                 true);
             // Clients
             migrationBuilder.Sql(

@@ -77,7 +77,7 @@ namespace BarberLayered.Controllers
 
             int result = -1;
 
-            var registrationKey = await _registrationKeyService.GetRegistrationKeyById(2);
+            var registrationKey = await _registrationKeyService.GetRegistrationKeyById(1);
 
             switch (registerViewModel.UserType)
             {
