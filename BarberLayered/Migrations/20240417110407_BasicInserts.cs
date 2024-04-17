@@ -5,16 +5,11 @@
 namespace BarberLayered.Migrations
 {
     /// <inheritdoc />
-    public partial class initial_v2 : Migration
+    public partial class BasicInserts : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "fk_CLientId",
-                table: "Visits",
-                newName: "fk_ClientId");
-
             // Clear previous data
             migrationBuilder.Sql("DELETE FROM \"Visits\"", true);
             migrationBuilder.Sql("DELETE FROM \"Reviews\"", true);
@@ -34,21 +29,21 @@ namespace BarberLayered.Migrations
             migrationBuilder.Sql(
                 "insert into \"BarberShops\"" +
                 "(\"Name\", \"Address\", \"Phone\", \"Description\")\r\n" +
-                "values(\r\n  'Родинний барбершоп', '123 Paper St', " +
+                "values('Родинний барбершоп', '123 Paper St', " +
                 "'+38(099)3456789', \r\n  " +
                 "'Наш барбершоп - це сучасний заклад, де кожен клієнт " +
                 "отримує персоналізований сервіс від професійних барберів. " +
                 "Ми знаходимося в центрі міста і пропонуємо широкий спектр послуг, " +
                 "від стрижок і гоління до догляду за бородою та вусами. " +
                 "Наш колектив складається з досвідчених майстрів, " +
-                "які завжди готові задовольнити ваші потреби в стилі та догляді.'\r\n)"
-                , true);
+                "які завжди готові задовольнити ваші потреби в стилі та догляді.')",
+                true);
             // RegistrationKeys
             migrationBuilder.Sql(
                 "insert into \"RegistrationKeys\"(\"Key\", \"Timestamp\")\r\n" +
                 "values('qwerty123', CURRENT_TIMESTAMP), " +
-                "('qwerty123', CURRENT_TIMESTAMP)"
-                , true);
+                "('qwerty123', CURRENT_TIMESTAMP)",
+                true);
             // Clients
             migrationBuilder.Sql(
                 "insert into \"Clients\"(\"Id\", \"Name\", \"Surname\", \"Phone\", \"Email\", \"PasswordHash\")\r\n" +
@@ -113,7 +108,7 @@ namespace BarberLayered.Migrations
                 "(5, 2, null, 1, 1, CURRENT_DATE, '13:00:00'),\r\n" +
                 "(6, 2, null, 1, 2, CURRENT_DATE + interval '1 day', '15:15:00'),\r\n" +
                 "(7, 2, null, 1, 3, CURRENT_DATE + interval '2 days', '11:00:00'),\r\n" +
-                "(8, 2 null, 2, 1, CURRENT_DATE, '12:45:00'),\r\n" +
+                "(8, 2, null, 2, 1, CURRENT_DATE, '12:45:00'),\r\n" +
                 "(9, 1, null, 2, 2, CURRENT_DATE, '16:30:00')",
                 true);
         }
@@ -135,10 +130,6 @@ namespace BarberLayered.Migrations
             migrationBuilder.Sql("DELETE FROM \"Clients\"", true);
             migrationBuilder.Sql("DELETE FROM \"Guests\"", true);
 
-            migrationBuilder.RenameColumn(
-                name: "fk_ClientId",
-                table: "Visits",
-                newName: "fk_CLientId");
         }
     }
 }

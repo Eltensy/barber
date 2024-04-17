@@ -1,33 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BarberLayered.Models;
+using BusinessLogicLayer.Services.Interfaces;
+using BusinessLogicLayer.Services.Implementations;
 
 namespace BarberLayered.Controllers
 {
     public class AdminHomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IAdminService _adminService;
+        private readonly IBarberShopService _barberShopService;
+        private Admin? _admin;
+        private BarberShop? _barberShop;
+
+        public AdminHomeController(IAdminService adminService, IBarberShopService barberShopService)
         {
-            var barberShop = new BarberShop()
-            {
-                Id = 1,
-                Name = "Example Barber Shop",
-                Address = "123 Example St",
-                Phone = "+1234567890",
-                Description = "Our barber shop is a modern establishment where each client receives personalized service from professional barbers. Located in the city center, we offer a wide range of services, from haircuts and shaves to beard and mustache care. Our team consists of experienced masters who are always ready to meet your needs in style and grooming."
-            };
+            _adminService = adminService;
+            _barberShopService = barberShopService;
+            _admin = null;
+            _barberShop = null;
+        }
+        public async Task<IActionResult> Index(int adminId)
+        {
+            var barberShop = await _barberShopService.GetBarberShopFirst();
+            
+            if(barberShop != null)
+                _barberShop = new BarberShop(barberShop);
 
-            var admin = new Admin()
-            {
-                Id = 1,
-                Name = "John",
-                Surname = "Doe",
-                Phone = "+1234567890",
-                Email = "john@example.com"
-            };
+            var admin = await _adminService.GetAdminById(adminId);
+            if (admin != null)
+                _admin = new Admin(admin);
 
-            ViewBag.Admin = admin;
 
-            return View(barberShop);
+            ViewBag.Admin = _admin;
+
+            return View(_barberShop);
         }
 
     }

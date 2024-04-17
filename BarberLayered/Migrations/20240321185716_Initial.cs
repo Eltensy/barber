@@ -21,7 +21,7 @@ namespace BarberLayered.Migrations
                     Surname = table.Column<string>(type: "text", nullable: false),
                     Phone = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
-                    Password = table.Column<string>(type: "text", nullable: false)
+                    PasswordHash = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,7 +38,7 @@ namespace BarberLayered.Migrations
                     Surname = table.Column<string>(type: "text", nullable: false),
                     Phone = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
-                    Password = table.Column<string>(type: "text", nullable: false),
+                    PasswordHash = table.Column<string>(type: "text", nullable: false),
                     PhotoUri = table.Column<string>(type: "text", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
                     PortfolioUri = table.Column<string>(type: "text", nullable: true)
@@ -58,7 +58,7 @@ namespace BarberLayered.Migrations
                     Surname = table.Column<string>(type: "text", nullable: false),
                     Phone = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
-                    Password = table.Column<string>(type: "text", nullable: false)
+                    PasswordHash = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -153,7 +153,7 @@ namespace BarberLayered.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    fk_CLientId = table.Column<int>(type: "integer", nullable: true),
+                    fk_ClientId = table.Column<int>(type: "integer", nullable: true),
                     fk_GuestId = table.Column<int>(type: "integer", nullable: true),
                     fk_BarberId = table.Column<int>(type: "integer", nullable: false),
                     fk_ServiceId = table.Column<int>(type: "integer", nullable: false),

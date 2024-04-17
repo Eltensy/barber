@@ -1,4 +1,5 @@
-﻿using BusinessLogicLayer.Services.Interfaces;
+﻿using BarberLayered.Models;
+using BusinessLogicLayer.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
@@ -28,18 +29,7 @@ namespace BarberLayered.Controllers
             }
             else
             {
-                _barber = new Models.Barber()
-                {
-                    Id = barber.Id,
-                    Name = barber.Name,
-                    Surname = barber.Surname,
-                    Phone = barber.Phone,
-                    Email = barber.Email,
-                    PasswordHash = barber.PasswordHash,
-                    PhotoUri = barber.PhotoUri,
-                    Description = barber.Description,
-                    PortfolioUri = barber.PortfolioUri,
-                };
+                _barber = new Barber(barber);
             }
             
             var reviews = await _reviewService.GetReviewsByBarberId(id);
@@ -51,18 +41,9 @@ namespace BarberLayered.Controllers
             {
                 foreach (var review in reviews)
                 {
-                    _reviews.Add(new Models.Review()
-                    {
-                        Id = review.Id,
-                        fk_BarberId = review.fk_BarberId,
-                        fk_ClientId = review.fk_ClientId,
-                        Text = review.Text,
-                        Rating = review.Rating,
-                        Date = review.Date,
-                    });
+                    _reviews.Add(new Review(review));
                 }
             }
-            
 
             ViewBag.Barber = _barber;
             ViewBag.Reviews = _reviews;

@@ -21,7 +21,25 @@ namespace BusinessLogicLayer.Services.Implementations
                              select new VisitDto()
                              {
                                  Id = visit.Id,
-                                 fk_CLientId = visit.fk_CLientId,
+                                 fk_ClientId = visit.fk_ClientId,
+                                 fk_GuestId = visit.fk_GuestId,
+                                 fk_BarberId = visit.fk_BarberId,
+                                 fk_ServiceId = visit.fk_ServiceId,
+                                 Date = visit.Date,
+                                 Time = visit.Time
+                             };
+
+            return visitsDtos.ToList();
+        }
+
+        public async Task<IEnumerable<VisitDto>> GetVisitsByBarberId(int fk_BarberId)
+        {
+            var visits = await _visitRepository.GetVisitsByBarberId(fk_BarberId);
+            var visitsDtos = from visit in visits
+                             select new VisitDto()
+                             {
+                                 Id = visit.Id,
+                                 fk_ClientId = visit.fk_ClientId,
                                  fk_GuestId = visit.fk_GuestId,
                                  fk_BarberId = visit.fk_BarberId,
                                  fk_ServiceId = visit.fk_ServiceId,
@@ -41,7 +59,7 @@ namespace BusinessLogicLayer.Services.Implementations
                 visitDto = new VisitDto()
                 {
                     Id = visit.Id,
-                    fk_CLientId = visit.fk_CLientId,
+                    fk_ClientId = visit.fk_ClientId,
                     fk_GuestId = visit.fk_GuestId,
                     fk_BarberId = visit.fk_BarberId,
                     fk_ServiceId = visit.fk_ServiceId,
@@ -57,7 +75,7 @@ namespace BusinessLogicLayer.Services.Implementations
             Visit visit = new Visit()
             {
                 Id = visitDto.Id,
-                fk_CLientId = visitDto.fk_CLientId,
+                fk_ClientId = visitDto.fk_ClientId,
                 fk_GuestId = visitDto.fk_GuestId,
                 fk_BarberId = visitDto.fk_BarberId,
                 fk_ServiceId = visitDto.fk_ServiceId,
@@ -78,7 +96,7 @@ namespace BusinessLogicLayer.Services.Implementations
             Visit visit = new Visit()
             {
                 Id = visitDto.Id,
-                fk_CLientId = visitDto.fk_CLientId,
+                fk_ClientId = visitDto.fk_ClientId,
                 fk_GuestId = visitDto.fk_GuestId,
                 fk_BarberId = visitDto.fk_BarberId,
                 fk_ServiceId = visitDto.fk_ServiceId,

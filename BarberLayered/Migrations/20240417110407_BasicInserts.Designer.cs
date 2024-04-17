@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BarberLayered.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240416210810_initial_v2")]
-    partial class initial_v2
+    [Migration("20240417110407_BasicInserts")]
+    partial class BasicInserts
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

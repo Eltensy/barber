@@ -47,9 +47,9 @@ namespace BarberLayered.Controllers
                 case 1: // Client
                     return RedirectToAction("Index", "BarberShop");
                 case 2: // Barber
-                    return RedirectToAction("Index", "BarberHome");
+                    return RedirectToAction("Index", "BarberHome", new { barberId = 2 });
                 case 3: // Admin
-                    return RedirectToAction("Index", "AdminHome");
+                    return RedirectToAction("Index", "AdminHome", new { adminId = 1});
                 default:
                     return View(loginModel);
 

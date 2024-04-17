@@ -28,18 +28,7 @@ namespace BarberLayered.Controllers
                 _barbers = new List<Barber>();
                 foreach (var barber in barbers)
                 {
-                    _barbers.Add(new Barber()
-                    {
-                        Id = barber.Id,
-                        Name = barber.Name,
-                        Surname = barber.Surname,
-                        Description = barber.Description,
-                        Email = barber.Email,
-                        PasswordHash = barber.PasswordHash,
-                        Phone = barber.Phone,
-                        PhotoUri = barber.PhotoUri,
-                        PortfolioUri = barber.PortfolioUri,
-                    });
+                    _barbers.Add(new Barber(barber));
                 }
             }
             

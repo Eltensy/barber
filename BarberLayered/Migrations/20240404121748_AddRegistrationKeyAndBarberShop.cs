@@ -11,21 +11,6 @@ namespace BarberLayered.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "Password",
-                table: "Clients",
-                newName: "PasswordHash");
-
-            migrationBuilder.RenameColumn(
-                name: "Password",
-                table: "Barbers",
-                newName: "PasswordHash");
-
-            migrationBuilder.RenameColumn(
-                name: "Password",
-                table: "Admins",
-                newName: "PasswordHash");
-
             migrationBuilder.CreateTable(
                 name: "BarberShops",
                 columns: table => new
@@ -70,21 +55,6 @@ namespace BarberLayered.Migrations
 
             migrationBuilder.DropTable(
                 name: "RegistrationKeys");
-
-            migrationBuilder.RenameColumn(
-                name: "PasswordHash",
-                table: "Clients",
-                newName: "Password");
-
-            migrationBuilder.RenameColumn(
-                name: "PasswordHash",
-                table: "Barbers",
-                newName: "Password");
-
-            migrationBuilder.RenameColumn(
-                name: "PasswordHash",
-                table: "Admins",
-                newName: "Password");
         }
     }
 }

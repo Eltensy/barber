@@ -42,6 +42,7 @@ builder.Services.AddScoped<IVisitRepository, VisitRepository>();
 
 // Services
 builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IBarberHomeService, BarberHomeService>();
 builder.Services.AddScoped<IBarberService, BarberService>();
 builder.Services.AddScoped<IBarberShopService, BarberShopService>();
 builder.Services.AddScoped<IClientService, ClientService>();

@@ -1,4 +1,8 @@
-﻿@model BarberLayered.Models.Barber
+﻿@* @model BarberLayered.Models.Barber *@
+@{
+    var barber = ViewBag.Barber as BarberLayered.Models.Barber;
+    var visits = ViewBag.Visits as List<BarberLayered.Models.Visit>;
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -112,32 +116,47 @@
 
     <div class="container">
         <div class="content">
-            <h1>Вітаємо, @Model.Name!</h1>
-            <p>Номер телефону: @Model.Phone</p>
-            <p>Елекронна адреса: @Model.Email</p>
-            <p> @Model.Description</p>
+            <h1>Вітаємо, @barber.Name!</h1>
+            <p>Номер телефону: @barber.Phone</p>
+            <p>Елекронна адреса: @barber.Email</p>
+            <p> @barber.Description</p>
 
             <div class="schedule">
                 <h2>Сьогоднішні записи :</h2>
                 <table>
                     <tr>
                         <th>Дата</th>
-                        <th>Час</th>
+                        <th>Час початку</th>
+                        <th>Час кінця</th>
                         <th>Клієнт</th>
                         <th>Послуга</th>
                     </tr>
-                    <tr>
+                    @* <tr>
                         <td>2024-04-12</td>
                         <td>&nbsp;13:00:00</td>
                         <td>Клієнт7</td>
                         <td>Стрижка</td>
-                    </tr>
+                    </tr> *@
+
+                    @foreach(var @visit in @visits)
+                    {
+                        <tr>
+                            <td>@visit.Date</td>
+                            <td>&nbsp;@visit.StartTime</td>
+                            <td>&nbsp;@visit.EndTime</td>
+                            @* <td>@visit.fk_ClientId</td> *@
+                            <td>@visit.VisitorFullName</td>
+                            @* <td>@visit.fk_ServiceId</td> *@
+                            <td>@visit.ServiceTitle</td>
+                        </tr>
+                    }
                 </table>
             </div>
         </div>
 
         <div class="photo">
-            <img src="@Model.PhotoUri" alt="@Model.Name" class="barber-photo">
+            @* <img src="@Model.PhotoUri" alt="@Model.Name" class="barber-photo"> *@
+            <img src="@barber.PhotoUri" alt="@barber.Name" class="barber-photo">
             <div class="edit-profile">
                 <a href="#">Редагувати профіль</a>
             </div>

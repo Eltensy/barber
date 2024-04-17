@@ -25,16 +25,7 @@ namespace BarberLayered.Controllers
             }
             else
             {
-                _barberShop = new BarberShop()
-                {
-                    Id = barberShop.Id,
-                    Name = barberShop.Name,
-                    Address = barberShop.Address,
-                    Description = barberShop.Description,
-                    Phone = barberShop.Phone,
-                    PhoneSecond = barberShop.PhoneSecond,
-                    PhotoUri = barberShop.PhotoUri,
-                };
+                _barberShop = new BarberShop(barberShop);
             }
 
             return View(_barberShop);

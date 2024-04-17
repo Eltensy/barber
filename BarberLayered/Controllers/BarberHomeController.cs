@@ -1,26 +1,56 @@
 ﻿using BarberLayered.Models;
+using BusinessLogicLayer.DTOs;
+using BusinessLogicLayer.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace BarberLayered.Controllers
 {
     public class BarberHomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IBarberService _barberService;
+        private readonly IBarberHomeService _barberHomeService;
+        private Models.Barber? _barber;
+        private readonly List<Models.Visit> _visits;
+
+        public BarberHomeController(IBarberService barberService, IBarberHomeService barberHomeService)
         {
-            var barber = new Barber
+            _barberService = barberService;
+            _barberHomeService = barberHomeService;
+            _barber = null;
+            _visits = new List<Visit>();
+        }
 
+        public async Task<IActionResult> Index(int barberId)
+        {
+
+            var barber = await _barberService.GetBarberById(barberId);
+            if( barber == null )
             {
-                Name = "Олег",
-                Surname = "Леськів",
-                Phone = "0504567890",
-                Email = "olegles@example.com",
-                PasswordHash = "password",
-                PhotoUri = "https://media.istockphoto.com/id/506514230/photo/beard-grooming.jpg?s=612x612&w=0&k=20&c=QDwo1L8-f3gu7mcHf00Az84fVU8oNpQLgvUw6eGPEkc=",
-                Description = "Досвідчений барбер з 10-річним стажем роботи. Спеціалізується в класичних та сучасних стрижках. Завжди готовий надати найкращий сервіс.",
-                PortfolioUri = "portfolio/john"
-            };
+                Log.Error("No Barber with id={Id} information in DataBase", barberId);
+            }
+            else
+            {
+                _barber = new Barber(barber);
+            }
 
-            return View(barber);
+            var visits = await _barberHomeService.GetVisitsByBarberId(barberId);
+            if (!visits.Any())
+            {
+                Log.Error("No visits for barber id={Id} in DataBase", barberId);
+            }
+            else
+            {
+                foreach (var visit in visits)
+                {
+                    _visits.Add(new Visit(visit));
+                }
+            }
+            
+            ViewBag.Barber = _barber;
+            ViewBag.Visits = _visits;
+
+            return View();
         }
     }
 }

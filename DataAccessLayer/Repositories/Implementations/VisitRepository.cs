@@ -19,6 +19,11 @@ namespace DataAccessLayer.Repositories.Implementations
             return await _context.Visits.ToListAsync();
         }
 
+        public async Task<IEnumerable<Visit>> GetVisitsByBarberId(int fk_BarberId)
+        {
+            return await _context.Visits.Where(x => x.fk_BarberId == fk_BarberId).ToListAsync();
+        }
+
         public async Task<Visit?> GetVisitByID(int visitId)
         {
             return await _context.Visits.FindAsync(visitId);

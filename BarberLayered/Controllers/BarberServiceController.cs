@@ -30,18 +30,7 @@ namespace BarberLayered.Controllers
             }
             else
             {
-                _barber = new Models.Barber()
-                {
-                    Id = barber.Id,
-                    Name = barber.Name,
-                    Surname = barber.Surname,
-                    Phone = barber.Phone,
-                    Email = barber.Email,
-                    PasswordHash = barber.PasswordHash,
-                    PhotoUri = barber.PhotoUri,
-                    Description = barber.Description,
-                    PortfolioUri = barber.PortfolioUri,
-                };
+                _barber = new Barber(barber);
             }
             
             var services = await _serviceService.GetServicesByBarberId(id);
@@ -54,15 +43,8 @@ namespace BarberLayered.Controllers
                 _services = new List<Models.Service>();
                 foreach (var service in services)
                 {
-                    _services.Add(new Models.Service()
-                    {
-                        Id = service.Id,
-                        fk_BarberId = service.Id,
-                        Title = service.Title,
-                        Description = service.Description,
-                        Duration = service.Duration,
-                        Price = service.Price,
-                    });
+                    _services.Add(new Models.Service(service));
+
                 }
             }
 
@@ -81,18 +63,7 @@ namespace BarberLayered.Controllers
             }
             else
             {
-                _barber = new Models.Barber()
-                {
-                    Id = barber.Id,
-                    Name = barber.Name,
-                    Surname = barber.Surname,
-                    Phone = barber.Phone,
-                    Email = barber.Email,
-                    PasswordHash = barber.PasswordHash,
-                    PhotoUri = barber.PhotoUri,
-                    Description = barber.Description,
-                    PortfolioUri = barber.PortfolioUri,
-                };
+                _barber = new Barber(barber);
             }
             var services = await _serviceService.GetServicesByBarberId(id);
             if (!services.Any()) // No services for this barber
@@ -104,15 +75,8 @@ namespace BarberLayered.Controllers
                 _services = new List<Models.Service>();
                 foreach (var service in services)
                 {
-                    _services.Add(new Models.Service()
-                    {
-                        Id = service.Id,
-                        fk_BarberId = service.Id,
-                        Title = service.Title,
-                        Description = service.Description,
-                        Duration = service.Duration,
-                        Price = service.Price,
-                    });
+                    _services.Add(new Models.Service(service));
+                    
                 }
             }
 
@@ -136,15 +100,7 @@ namespace BarberLayered.Controllers
                 _services = new List<Models.Service>();
                 foreach (var service in services)
                 {
-                    _services.Add(new Models.Service()
-                    {
-                        Id = service.Id,
-                        fk_BarberId = service.Id,
-                        Title = service.Title,
-                        Description = service.Description,
-                        Duration = service.Duration,
-                        Price = service.Price,
-                    });
+                    _services.Add(new Models.Service(service));
                 }
             }
             var barberServices = _services;

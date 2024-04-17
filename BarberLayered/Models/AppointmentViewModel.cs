@@ -8,5 +8,6 @@
         public int SelectedServiceId { get; set; }
         public string SelectedDay { get; set; }
         public string SelectedTime { get; set; }
+
     }
 }
