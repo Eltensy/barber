@@ -4,9 +4,9 @@ namespace BarberLayered.Models
 {
     public enum UserType
     {
-        Client,
+        Admin = 1,
         Barber,
-        Admin
+        Client
     }
 
     public class RegisterViewModel
@@ -43,6 +43,5 @@ namespace BarberLayered.Models
         [Required(ErrorMessage = "User type is required")]
         [Display(Name = "User Type")]
         public UserType UserType { get; set; }
-
     }
 }

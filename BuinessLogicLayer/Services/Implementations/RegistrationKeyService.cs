@@ -18,6 +18,23 @@ namespace BusinessLogicLayer.Services.Implementations
             await _registrationKeyRepository.DeleteRegistrationKey(registrationKeyId);
         }
 
+        public async Task<RegistrationKeyDto?> GetRegistrationKeyFirst()
+        {
+            var registrationKey = await _registrationKeyRepository.GetRegistrationKeyFirst();
+
+            RegistrationKeyDto? registrationKeyDto = null;
+            if (null != registrationKey)
+            {
+                registrationKeyDto = new RegistrationKeyDto()
+                {
+                    Id = registrationKey.Id,
+                    Key = registrationKey.Key,
+                    Timestamp = registrationKey.Timestamp,
+                };
+            }
+            return registrationKeyDto;
+        }
+
         public async Task<RegistrationKeyDto?> GetRegistrationKeyById(int registrationKeyId)
         {
             var registrationKey = await _registrationKeyRepository.GetRegistrationKeyByID(registrationKeyId);
