@@ -5,11 +5,11 @@ namespace BarberLayered.Models
     public class Client
     {
         public int Id { get; set; }
-        public required string Name { get; set; }
-        public required string Surname { get; set; }
-        public required string Phone { get; set; }
-        public required string Email { get; set; }
-        public required string PasswordHash { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string PasswordHash { get; set; }
 
         public Client(ClientDto clientDto)
         {
@@ -19,6 +19,16 @@ namespace BarberLayered.Models
             Phone = clientDto.Phone;
             Email = clientDto.Email;
             PasswordHash = clientDto.PasswordHash;
+        }
+
+        public Client(UserExtDto userExtDto)
+        {
+            Id = userExtDto.Id;
+            Name = userExtDto.Name;
+            Surname = userExtDto.Surname;
+            Phone = userExtDto.Phone;
+            Email = userExtDto.Email;
+            PasswordHash = userExtDto.PasswordHash;
         }
     }
 }

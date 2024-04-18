@@ -1,5 +1,4 @@
 ﻿using BusinessLogicLayer.DTOs;
-using DataAccessLayer.Entities;
 
 namespace BarberLayered.Models
 {
@@ -15,6 +14,7 @@ namespace BarberLayered.Models
         public string? Description { get; set; }
         public string? PortfolioUri { get; set; } // Also this
 
+        public Barber() { }
         public Barber(BarberDto barberDto)
         {
             Id = barberDto.Id;
@@ -26,6 +26,19 @@ namespace BarberLayered.Models
             PhotoUri = barberDto.PhotoUri;
             Description = barberDto.Description;
             PortfolioUri = barberDto.PortfolioUri;
+        }
+
+        public Barber(UserExtDto userExtDto)
+        {
+            Id = userExtDto.Id;
+            Name = userExtDto.Name;
+            Surname = userExtDto.Surname;
+            Phone = userExtDto.Phone;
+            Email = userExtDto.Email;
+            PasswordHash = userExtDto.PasswordHash;
+            PhotoUri = userExtDto.PhotoUri;
+            Description = userExtDto.Description;
+            PortfolioUri = userExtDto.PortfolioUri;
         }
     }
 }
