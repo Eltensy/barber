@@ -1,3 +1,4 @@
+using BusinessLogicLayer.DTOs;
 using BusinessLogicLayer.Services.Interfaces;
 using Serilog;
 
@@ -16,9 +17,9 @@ namespace BusinessLogicLayer.Services.Implementations
             _adminService = adminService;
         }
 
-        public async Task<int> Login(string email, string password)
+        public async Task<UserExtDto?> Login(string email, string password)
         {
-            int result = -1;
+            UserExtDto? userExtDto = null;
             string storedPassword;
 
             var client = await _clientService.GetClientByEmail(email);
@@ -28,11 +29,11 @@ namespace BusinessLogicLayer.Services.Implementations
                 if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPassword))
                 {
                     Log.Information("Successfully logged in as client with Id: {Id}", client.Id);
-                    result = 1;
+                    userExtDto = new UserExtDto(client);
                 }
             }
 
-            if (-1 == result)
+            else
             {
                 var barber = await _barberService.GetBarberByEmail(email);
                 if (barber != null)
@@ -41,26 +42,25 @@ namespace BusinessLogicLayer.Services.Implementations
                     if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPassword))
                     {
                         Log.Information("Successfully logged in as barber with Id: {Id}", barber.Id);
-                        result = 2;
+                        userExtDto = new UserExtDto(barber);
                     }
                 }
-            }
-
-            if (-1 == result)
-            {
-                var admin = await _adminService.GetAdminByEmail(email);
-                if (admin != null)
+                else
                 {
-                    storedPassword = admin.PasswordHash;
-                    if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPassword))
+                    var admin = await _adminService.GetAdminByEmail(email);
+                    if (admin != null)
                     {
-                        Log.Information("Successfully logged in as admin with Id: {Id}", admin.Id);
-                        result = 3;
+                        storedPassword = admin.PasswordHash;
+                        if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPassword))
+                        {
+                            Log.Information("Successfully logged in as admin with Id: {Id}", admin.Id);
+                            userExtDto = new UserExtDto(admin);
+                        }
                     }
                 }
             }
 
-            return result;
+            return userExtDto;
         }
     }
 }

@@ -4,9 +4,9 @@ namespace BarberLayered.Models
 {
     public enum UserType
     {
-        Client,
-        Barber,
-        Admin
+        Admin = 1,
+        Barber = 2,
+        Client = 3
     }
 
     public class RegisterViewModel
