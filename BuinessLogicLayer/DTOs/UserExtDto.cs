@@ -1,11 +1,14 @@
-﻿namespace BusinessLogicLayer.DTOs
+﻿using System.Security.Policy;
+
+namespace BusinessLogicLayer.DTOs
 {
     public enum _UserType
     {
         Admin = 1,
-        Barber = 2,
-        Client = 3,
+        Barber,
+        Client,
     }
+
     public class UserExtDto
     {
         public int Id { get; set; }
@@ -18,9 +21,9 @@
         public string? Description { get; set; }
         public string? PortfolioUri { get; set; }
         public _UserType UserType { get; set; }
-        public bool IsRegistrationKeyValid { get; set; }
+        public string ErrorMsg {  get; set; }
 
-        public UserExtDto() { }
+        public UserExtDto() { ErrorMsg = ""; }
         public UserExtDto(AdminDto adminDto)
         {
             Id = adminDto.Id;
@@ -30,6 +33,7 @@
             Email = adminDto.Email;
             PasswordHash = adminDto.PasswordHash;
             UserType = _UserType.Admin;
+            ErrorMsg = "";
         }
         public UserExtDto(BarberDto barberDto)
         {
@@ -43,6 +47,7 @@
             Description = barberDto.Description;
             PortfolioUri = barberDto.PortfolioUri;
             UserType = _UserType.Barber;
+            ErrorMsg = "";
         }
         public UserExtDto(ClientDto clientDto) 
         {
@@ -53,6 +58,7 @@
             Email = clientDto.Email;
             PasswordHash = clientDto.PasswordHash;
             UserType = _UserType.Client;
+            ErrorMsg = "";
         }
     }
 }

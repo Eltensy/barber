@@ -1,6 +1,7 @@
 using BusinessLogicLayer.DTOs;
 using BusinessLogicLayer.Services.Interfaces;
 using Serilog;
+using System.Net;
 
 
 namespace BusinessLogicLayer.Services.Implementations
@@ -20,99 +21,93 @@ namespace BusinessLogicLayer.Services.Implementations
             _registrationKeyService = registrationKeyService;
         }
 
-        public async Task<UserExtDto?> Register(RegistrationDto registrationDto)
+        public async Task<UserExtDto> Register(RegistrationDto registrationDto)
         {
-            UserExtDto? userExtDto = null;
-            string hashedPassword;
-            var registrationKey = await _registrationKeyService.GetRegistrationKeyById(1);
-            if(registrationDto.RegistrationKey == null)
+            Log.Information("Register attempt with email: {Email}", registrationDto.Email);
+            UserExtDto userExtDto = new UserExtDto();
+            string hashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(registrationDto.Password);
+
+            if (registrationDto.UserType == _UserType.Client)
             {
                 var existingClient = await _clientService.GetClientByEmail(registrationDto.Email);
-
-                if (existingClient == null)
+                if (existingClient != null)
                 {
-                    hashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(registrationDto.Password);
-
-                    ClientDto newClient = new ClientDto()
-                    {
-                        Name = registrationDto.Name,
-                        Surname = registrationDto.Surname,
-                        Phone = registrationDto.Phone,
-                        Email = registrationDto.Email,
-                        PasswordHash = hashedPassword
-                    };
-
-                    await _clientService.InsertClient(newClient);
-
-                    userExtDto = new UserExtDto(newClient);
-                    userExtDto.IsRegistrationKeyValid = true;
-
-                    Log.Information("Successfully registered as client with Email: {Email}", newClient.Email);
-                }
-            }
-            else
-            {
-                if (!registrationDto.RegistrationKey.ToString().Equals(registrationKey.Key.ToString()))
-                {
-                    userExtDto = new UserExtDto
-                    { IsRegistrationKeyValid = false };
+                    userExtDto.ErrorMsg = "Client already exists!";
                 }
                 else
                 {
-                    switch (registrationDto.UserType)
-                    {
-                        case _UserType.Admin:
-                            var existingAdmin = await _adminService.GetAdminByEmail(registrationDto.Email);
-
-                            if (existingAdmin == null)
-                            {
-                                hashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(registrationDto.Password);
-
-                                AdminDto newAdmin = new AdminDto()
-                                {
-                                    Name = registrationDto.Name,
-                                    Surname = registrationDto.Surname,
-                                    Phone = registrationDto.Phone,
-                                    Email = registrationDto.Email,
-                                    PasswordHash = hashedPassword
-                                };
-
-                                await _adminService.InsertAdmin(newAdmin);
-
-                                userExtDto = new UserExtDto(newAdmin);
-                                userExtDto.IsRegistrationKeyValid = true;
-
-                                Log.Information("Successfully registered as admin with Email: {Email}", newAdmin.Email);
-                            }
-                            break;
-                        case _UserType.Barber:
-                            var existingBarber = await _barberService.GetBarberByEmail(registrationDto.Email);
-
-                            if (existingBarber == null)
-                            {
-                                hashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(registrationDto.Password);
-
-                                BarberDto newBarber = new BarberDto()
-                                {
-                                    Name = registrationDto.Name,
-                                    Surname = registrationDto.Surname,
-                                    Phone = registrationDto.Phone,
-                                    Email = registrationDto.Email,
-                                    PasswordHash = hashedPassword
-                                };
-
-                                await _barberService.InsertBarber(newBarber);
-
-                                userExtDto = new UserExtDto(newBarber);
-                                userExtDto.IsRegistrationKeyValid = true;
-
-                                Log.Information("Successfully registered as barber with Email: {Email}", newBarber.Email);
-                            }
-                            break;
-                    }
+                    ClientDto newClient = new ClientDto(registrationDto, hashedPassword);
+                    await _clientService.InsertClient(newClient);
+                    userExtDto = new UserExtDto(newClient);
+                    Log.Information("Successfully registered as client with" +
+                        "Email: {Email}", newClient.Email);
                 }
+
+                goto finish;
             }
 
+            var regKeyDto = await _registrationKeyService.GetRegistrationKeyFirst();
+            if (regKeyDto == null)
+            {
+                userExtDto.ErrorMsg = "No awailable registration keys!";
+                Log.Warning("No registration keys in the DataBase!");
+                goto finish;
+            }
+
+            if (registrationDto.UserType == _UserType.Barber)
+            {
+                if (!regKeyDto.Key.Equals(
+                    registrationDto.RegistrationKey.ToString()))
+                {
+                    userExtDto.ErrorMsg = "Invalid registration key!";
+                    goto finish;
+                }
+
+                var existingBarber = await _barberService.GetBarberByEmail(registrationDto.Email);
+                if (existingBarber != null)
+                {
+                    userExtDto.ErrorMsg = "Barber already exists!";
+                }
+                else
+                {
+                    BarberDto newBarber = new BarberDto(registrationDto, hashedPassword);
+                    await _barberService.InsertBarber(newBarber);
+                    userExtDto = new UserExtDto(newBarber);
+                    Log.Information("Successfully registered as barber with" +
+                        "Email: {Email}", newBarber.Email);
+                }
+
+                goto finish;
+            }
+
+            if (registrationDto.UserType == _UserType.Admin)
+            {
+                if (!regKeyDto.Key.Equals(
+                    registrationDto.RegistrationKey.ToString()))
+                {
+                    userExtDto.ErrorMsg = "Invalid registration key!";
+                    goto finish;
+                }
+
+                var existingAdmin = await _adminService.GetAdminByEmail(registrationDto.Email);
+                if (existingAdmin != null)
+                {
+                    userExtDto.ErrorMsg = "Admin already exists!";
+                }
+                else
+                {
+                    AdminDto newAdmin = new AdminDto(registrationDto, hashedPassword);
+                    await _adminService.InsertAdmin(newAdmin);
+                    userExtDto = new UserExtDto(newAdmin);
+                    Log.Information("Successfully registered as admin with" +
+                        "Email: {Email}", newAdmin.Email);
+                }
+
+                goto finish;
+            }
+
+
+            finish:
             return userExtDto;
         }
     }

@@ -17,49 +17,67 @@ namespace BusinessLogicLayer.Services.Implementations
             _adminService = adminService;
         }
 
-        public async Task<UserExtDto?> Login(string email, string password)
+        public async Task<UserExtDto> Login(string email, string password)
         {
-            UserExtDto? userExtDto = null;
-            string storedPassword;
+            Log.Information("Login attempt with email: {Email}", email);
+
+            UserExtDto userExtDto = new UserExtDto();
+            string storedPasswordHash;
 
             var client = await _clientService.GetClientByEmail(email);
             if (client != null)
             {
-                storedPassword = client.PasswordHash;
-                if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPassword))
+                storedPasswordHash = client.PasswordHash;
+                if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPasswordHash))
                 {
                     Log.Information("Successfully logged in as client with Id: {Id}", client.Id);
                     userExtDto = new UserExtDto(client);
                 }
+                else
+                {
+                    userExtDto.ErrorMsg = "Wrong password";
+                }
+
+                goto finish;
             }
 
-            else
+            var barber = await _barberService.GetBarberByEmail(email);
+            if (barber != null)
             {
-                var barber = await _barberService.GetBarberByEmail(email);
-                if (barber != null)
+                storedPasswordHash = barber.PasswordHash;
+                if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPasswordHash))
                 {
-                    storedPassword = barber.PasswordHash;
-                    if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPassword))
-                    {
-                        Log.Information("Successfully logged in as barber with Id: {Id}", barber.Id);
-                        userExtDto = new UserExtDto(barber);
-                    }
+                    Log.Information("Successfully logged in as barber with Id: {Id}", barber.Id);
+                    userExtDto = new UserExtDto(barber);
                 }
                 else
                 {
-                    var admin = await _adminService.GetAdminByEmail(email);
-                    if (admin != null)
-                    {
-                        storedPassword = admin.PasswordHash;
-                        if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPassword))
-                        {
-                            Log.Information("Successfully logged in as admin with Id: {Id}", admin.Id);
-                            userExtDto = new UserExtDto(admin);
-                        }
-                    }
+                    userExtDto.ErrorMsg = "Wrong password";
                 }
+
+                goto finish;
             }
 
+            var admin = await _adminService.GetAdminByEmail(email);
+            if (admin != null)
+            {
+                storedPasswordHash = admin.PasswordHash;
+                if (BCrypt.Net.BCrypt.EnhancedVerify(password, storedPasswordHash))
+                {
+                    Log.Information("Successfully logged in as admin with Id: {Id}", admin.Id);
+                    userExtDto = new UserExtDto(admin);
+                }
+                else
+                {
+                    userExtDto.ErrorMsg = "Wrong password";
+                }
+
+                goto finish;
+            }
+
+            userExtDto.ErrorMsg = $"No user with email {email} was found";
+
+            finish:
             return userExtDto;
         }
     }
