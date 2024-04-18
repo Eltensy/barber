@@ -24,6 +24,11 @@ namespace DataAccessLayer.Repositories.Implementations
             return await _context.RegistrationKeys.FindAsync(registrationKeyId);
         }
 
+        public async Task<RegistrationKey?> GetRegistrationKeyFirst()
+        {
+            return await _context.RegistrationKeys.FirstAsync();
+        }
+
         public async Task InsertRegistrationKey(RegistrationKey registrationKey)
         {
             await _context.RegistrationKeys.AddAsync(registrationKey);

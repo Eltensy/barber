@@ -6,6 +6,7 @@ namespace DataAccessLayer.Repositories.Interfaces
     {
         Task<IEnumerable<RegistrationKey>> GetRegistrationKeys();
         Task<RegistrationKey?> GetRegistrationKeyByID(int registrationKeyId);
+        Task<RegistrationKey?> GetRegistrationKeyFirst();
         Task InsertRegistrationKey(RegistrationKey registrationKey);
         Task DeleteRegistrationKey(int registrationKeyId);
         Task UpdateRegistrationKey(RegistrationKey registrationKey);

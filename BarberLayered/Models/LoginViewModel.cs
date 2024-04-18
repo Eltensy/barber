@@ -17,9 +17,5 @@ namespace BarberLayered.Models
 
         [Display(Name = "Remember me")]
         public bool RememberMe { get; set; }
-
-        //[Required(ErrorMessage = "User type is required")]
-        //[Display(Name = "User Type")]
-        ////public UserType UserType { get; set; }
     }
 }

@@ -6,6 +6,7 @@ namespace BusinessLogicLayer.Services.Interfaces
     {
         Task<List<RegistrationKeyDto>> GetRegistrationKeys();
         Task<RegistrationKeyDto?> GetRegistrationKeyById(int registrationKeyId);
+        Task<RegistrationKeyDto?> GetRegistrationKeyFirst();
         Task InsertRegistrationKey(RegistrationKeyDto registrationKeyDto);
         Task DeleteRegistrationKey(int registrationKeyId);
         Task UpdateRegistrationKey(RegistrationKeyDto registrationKeyDto);
