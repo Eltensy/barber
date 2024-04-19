@@ -1,4 +1,4 @@
-html {
+/*html {
   font-size: 14px;
 }
 
@@ -19,4 +19,23 @@ html {
 
 body {
   margin-bottom: 60px;
+}*/
+
+
+.back-button {
+    position: fixed;
+    top: 60px;
+    left: 35px;
+    padding: 4px 22px 7px 16px; 
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    color: #555;
+    font-size: 38.5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
+
+    .back-button:hover {
+        background-color: #ddd;
+    }

@@ -1,6 +1,10 @@
 ﻿@model List<BarberLayered.Models.Barber>
 
 @{
+    Layout = null;
+}
+
+@{
     var barber = ViewBag.Barber as BarberLayered.Models.Barber;
     var reviews = ViewBag.Reviews as List<BarberLayered.Models.Review>;
 }
@@ -12,6 +16,7 @@
 </head>
 <body>
 
+    @Html.Partial("~/Views/ClientHome/ClientPartial.cshtml", Model)
     @Html.Partial("~/Views/BarberInformation/BarberInformationPartial.cshtml", Model)
 
 </body>

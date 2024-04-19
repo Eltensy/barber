@@ -39,7 +39,28 @@ namespace BarberLayered.Controllers
             ViewBag.Barber = _barber;
             ViewBag.Visits = _visits;
 
-            return View();
+            return View(_barber);
         }
+
+        public IActionResult EditProfile(Barber barber)
+        {
+            _barber = barber;
+
+            return View(_barber);
+        }
+
+        //[HttpPost]
+        //public IActionResult EditProfile(Barber barber)
+        //{
+        //    _barber.Name = barber.Name;
+        //    _barber.Surname = barber.Surname;
+        //    _barber.Phone = barber.Phone;
+        //    _barber.Email = barber.Email;
+        //    _barber.Description = barber.Description;
+        //    _barber.PhotoUri = barber.PhotoUri;
+        //    _barber.PortfolioUri = barber.PortfolioUri;
+
+        //    return Redirect("/BarberHome/Index");
+        //}
     }
 }
