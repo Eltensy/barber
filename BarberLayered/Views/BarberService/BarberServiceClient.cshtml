@@ -1,4 +1,8 @@
-﻿@model List<BarberLayered.Models.Barber>
+﻿@model List<BarberLayered.Models.Service>
+
+@{
+    Layout = null;
+}
 
 @{
     var barber = ViewBag.Barber as BarberLayered.Models.Barber;
@@ -12,7 +16,8 @@
 </head>
 <body>
 
-    @Html.Partial("~/Views/BarberInformation/BarberInformationPartial.cshtml", Model)
+    @Html.Partial("~/Views/ClientHome/ClientPartial.cshtml", Model)
+    @Html.Partial("~/Views/BarberService/BarberServicePartial.cshtml", Model)
 
 </body>
 </html>

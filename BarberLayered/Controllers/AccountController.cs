@@ -48,7 +48,8 @@ namespace BarberLayered.Controllers
                     return RedirectToAction("Index", "BarberHome",
                         new Barber(result));
                 case _UserType.Client:
-                    return RedirectToAction("Index", "BarberShop");
+                    return RedirectToAction("Index", "ClientHome", 
+                        new Client(result));
                 default:
                     return View(loginModel);
             }
@@ -98,11 +99,48 @@ namespace BarberLayered.Controllers
                     return RedirectToAction("Index", "BarberHome",
                         new Barber(result));
                 case _UserType.Client:
-                    return RedirectToAction("Index", "BarberShop");
+                    return RedirectToAction("Index", "ClientHome",
+                        new Client(result));
                 default:
                     return RedirectToAction("Index", "BarberShop");
             }
         }
+
+        // GET: /Account/ChangePassword
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+
+        // POST: /Account/ChangePassword
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                // Get the ID of the current user changing the password
+
+                // Call the password change service
+
+                // Success message for password change
+                TempData["SuccessMessage"] = "Password has been changed successfully.";
+
+            }
+            catch (Exception ex)
+            {
+                // Handling errors during password change
+                TempData["ErrorMessage"] = "An error occurred while changing the password: " + ex.Message;
+            }
+
+            return View(model);
+        }
+
 
         // POST: /Account/Logout
         [HttpPost]
