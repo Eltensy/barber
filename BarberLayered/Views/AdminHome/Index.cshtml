@@ -1,4 +1,4 @@
-﻿﻿@{
+﻿@{
     Layout = null;
 }
 
@@ -50,7 +50,7 @@
             width: 50%;
             padding: 20px 65px;
             box-sizing: border-box;
-            height: calc(100vh - 60px);
+            min-height: calc(100vh - 60px);
             transition: margin-left 0.3s;
         }
 
@@ -118,7 +118,7 @@
             left: 10px;
             background-color: #905B22;
             color: #fff;
-            padding: 10px;
+            padding: 6px 11px 7px 10px;
             border: none;
             border-radius: 50%;
             font-size: 20px;
@@ -198,7 +198,7 @@
             .sidebar li:nth-child(5) a::before {
                 content: "";
                 position: absolute;
-                top: 0;
+                top: -10px;
                 left: 15px;
                 width: calc(100% - 30px);
                 border-top: 2px solid #ccc;
@@ -219,11 +219,11 @@
             <input type="file" id="fileInput" style="display: none;">
         </div>
         <div class="right-section" id="right-section">
-            <h1>@Model.Name</h1>
-            <p>Адреса: @Model.Address</p>
-            <p>Телефон: @Model.Phone</p>
-            <p>@Model.Description</p>
-            <a href="#" class="button">Редагувати</a>
+            <h1 id="name">@Model.Name</h1>
+            <p>Адреса: <span id="address" contenteditable="false">@Model.Address</span></p>
+            <p>Телефон: <span id="phone" contenteditable="false">@Model.Phone</span></p>
+            <p id="description" contenteditable="false">@Model.Description</p>
+            <a href="#" class="button" onclick="toggleEditMode()">Редагувати</a>
             <a href="#" class="button" style="margin-top: 50px;">Зберегти зміни</a>
         </div>
     </div>
@@ -234,7 +234,7 @@
             <li><a href="#" onclick="changeTab(event)">Усі барбери</a></li>
             <li><a href="#" onclick="changeTab(event)">Користувачі</a></li>
             <li><a href="#" onclick="changeTab(event)">Додати барбера</a></li>
-            <li><a href="#" onclick="changeTab(event)">Акаунт</a></li>
+            <li><a href="/AdminHome/AdminAccount" onclick="changeTab(event)">Акаунт</a></li>
         </ul>
     </div>
 
@@ -264,6 +264,22 @@
                 tab.classList.remove('active');
             });
             event.target.classList.add('active');
+        }
+
+        function toggleEditMode() {
+            var elementsToEdit = document.querySelectorAll('[contenteditable]');
+
+            elementsToEdit.forEach(function (element) {
+                if (!element.classList.contains("editing")) {
+                    element.classList.add("editing");
+                    element.contentEditable = "true";
+                    element.style.backgroundColor = "#f3f3f3";
+                } else {
+                    element.classList.remove("editing");
+                    element.contentEditable = "false";
+                    element.style.backgroundColor = "";
+                }
+            });
         }
 
         var errorMessage = '@TempData["ErrorMessage"]';
