@@ -11,6 +11,7 @@ namespace BarberLayered.Models
         public string Email { get; set; }
         public string PasswordHash { get; set; }
 
+        public Client() { }
         public Client(ClientDto clientDto)
         {
             Id = clientDto.Id;
