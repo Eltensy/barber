@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace BarberLayered.Migrations
+namespace DataAccessLayer.Migrations
 {
     /// <inheritdoc />
     public partial class AddRegistrationKeyAndBarberShop : Migration

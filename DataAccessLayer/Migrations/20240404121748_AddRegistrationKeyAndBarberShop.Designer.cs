@@ -3,17 +3,20 @@ using System;
 using DataAccessLayer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace BarberLayered.Migrations
+namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240404121748_AddRegistrationKeyAndBarberShop")]
+    partial class AddRegistrationKeyAndBarberShop
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -347,7 +350,7 @@ namespace BarberLayered.Migrations
                     b.Property<int>("fk_BarberId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("fk_ClientId")
+                    b.Property<int?>("fk_CLientId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("fk_GuestId")

@@ -5,6 +5,8 @@ using DataAccessLayer.Repositories.Implementations;
 using DataAccessLayer.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using DataAccessLayer.Data;
+using Microsoft.AspNetCore.Identity;
 
 IConfigurationRoot configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
@@ -60,8 +62,10 @@ builder.Services.AddScoped<IVisitService, VisitService>();
 // DbContext
 builder.Services.AddDbContext<DataAccessLayer.Data.DataContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("BarberBook_Connection"), x => x.MigrationsAssembly("BarberLayered"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("BarberBook_Connection"), x => x.MigrationsAssembly("DataAccessLayer"));
 });
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<DataContext>();
 
 
 var app = builder.Build();

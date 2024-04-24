@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace BarberLayered.Migrations
+namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240321185716_Initial")]
-    partial class Initial
+    [Migration("20240417110407_BasicInserts")]
+    partial class BasicInserts
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,7 +41,7 @@ namespace BarberLayered.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -77,7 +77,7 @@ namespace BarberLayered.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -100,6 +100,49 @@ namespace BarberLayered.Migrations
                     b.ToTable("Barbers");
                 });
 
+            modelBuilder.Entity("DataAccessLayer.Entities.BarberShop", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneSecond")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhotoUri")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SocialUri")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SocialUriSecond")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SocialUriThird")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BarberShops");
+                });
+
             modelBuilder.Entity("DataAccessLayer.Entities.Client", b =>
                 {
                     b.Property<int>("Id")
@@ -116,7 +159,7 @@ namespace BarberLayered.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -186,6 +229,26 @@ namespace BarberLayered.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("History");
+                });
+
+            modelBuilder.Entity("DataAccessLayer.Entities.RegistrationKey", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RegistrationKeys");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Entities.Review", b =>
@@ -287,7 +350,7 @@ namespace BarberLayered.Migrations
                     b.Property<int>("fk_BarberId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("fk_CLientId")
+                    b.Property<int?>("fk_ClientId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("fk_GuestId")
