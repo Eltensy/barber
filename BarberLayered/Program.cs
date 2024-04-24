@@ -90,4 +90,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=BarberShop}/{action=Index}/{id?}");
 
+app.MapRazorPages();
 app.Run();
