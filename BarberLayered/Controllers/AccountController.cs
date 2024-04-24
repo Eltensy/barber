@@ -10,7 +10,9 @@ namespace BarberLayered.Controllers
         private readonly ILoginService _loginService;
         private readonly IRegisterService _registerService;
 
-        public AccountController(ILoginService loginService, IRegisterService registerService)
+        public AccountController(
+            ILoginService loginService,
+            IRegisterService registerService)
         {
             _loginService = loginService;
             _registerService = registerService;
