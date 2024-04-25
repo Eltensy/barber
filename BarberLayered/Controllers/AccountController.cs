@@ -1,6 +1,7 @@
 ﻿using BarberLayered.Models;
 using BusinessLogicLayer.DTOs;
 using BusinessLogicLayer.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BarberLayered.Controllers
@@ -108,6 +109,7 @@ namespace BarberLayered.Controllers
 
         // POST: /Account/Logout
         [HttpPost]
+        [Authorize]
         public IActionResult Logout()
         {
             // User session close logic
