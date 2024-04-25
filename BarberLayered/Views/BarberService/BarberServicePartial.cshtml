@@ -1,4 +1,8 @@
 ﻿@{
+    Layout = null;
+}
+
+@{
     var barber = ViewBag.Barber as BarberLayered.Models.Barber;
     var services = ViewBag.Services as List<BarberLayered.Models.Service>;
 }
@@ -109,8 +113,8 @@
                         }
                     </td>
                     <td>@service.Price</td>
-
-                    @* <td><a href="@Url.Action("Index", "ServiceAppointment", new { barberId = barber.Id, serviceId = service.Id })" class="service-button">Записатись</a></td> *@
+                    @* <td><a href="#" class="service-button">Записатись</a></td> *@
+                    @* <td><a href="@Url.Action(ViewData["Path"].ToString(), "ServiceAppointment", new { barberId = barber.Id, serviceId = service.Id })" class="service-button">Записатись</a></td> *@
                     <td><a href="#" class="service-button">Записатись</a></td>
                 </tr>
             }

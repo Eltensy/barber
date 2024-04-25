@@ -33,5 +33,11 @@ namespace BarberLayered.Controllers
             return View(_barberShop);
         }
 
+        public async Task<IActionResult> AdminAccount(Admin admin)
+        {
+            _admin = admin;
+
+            return View(_admin);
+        }
     }
 }

@@ -5,6 +5,7 @@ using BusinessLogicLayer.Services.Identity;
 using DataAccessLayer.Repositories.Implementations;
 using DataAccessLayer.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Serilog;
 using DataAccessLayer.Data;
 using Microsoft.AspNetCore.Identity;
@@ -59,6 +60,7 @@ builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IVisitService, VisitService>();
+builder.Services.AddScoped<IChangePasswordService, ChangePasswordService>();
 
 
 // DbContext
@@ -70,6 +72,16 @@ builder.Services.AddDbContext<DataAccessLayer.Data.DataContext>(options =>
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false).AddRoles<IdentityRole>().AddEntityFrameworkStores<DataContext>();
 
 builder.Services.AddTransient<IEmailSenderService, EmailSenderService>();
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
 Log.Information("Application built, service started");
@@ -88,6 +100,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
