@@ -25,6 +25,7 @@ namespace DataAccessLayer.Data
         }
 
         public DbSet<BarberShop> BarberShops { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Barber> Barbers { get; set; }
         public DbSet<Client> Clients { get; set; }

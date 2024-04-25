@@ -1,6 +1,8 @@
 ﻿using BarberLayered.Models;
 using BusinessLogicLayer.DTOs;
 using BusinessLogicLayer.Services.Interfaces;
+using BusinessLogicLayer.Services.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BarberLayered.Controllers
@@ -9,13 +11,16 @@ namespace BarberLayered.Controllers
     {
         private readonly ILoginService _loginService;
         private readonly IRegisterService _registerService;
+        private readonly IEmailSenderService _emailSender;
 
         public AccountController(
             ILoginService loginService,
-            IRegisterService registerService)
+            IRegisterService registerService,
+            IEmailSenderService emailSender)
         {
             _loginService = loginService;
             _registerService = registerService;
+            _emailSender = emailSender;
         }
 
         // GET: /Account/Index
@@ -50,6 +55,7 @@ namespace BarberLayered.Controllers
                     return RedirectToAction("Index", "BarberHome",
                         new Barber(result));
                 case _UserType.Client:
+                    // await _emailSender.SendEmailAsync("ste2806murosl@gmail.com", "Chernyi Hui", "Rostyk LOH; Hi-Hi");
                     return RedirectToAction("Index", "BarberShop");
                 default:
                     return View(loginModel);
@@ -108,6 +114,7 @@ namespace BarberLayered.Controllers
 
         // POST: /Account/Logout
         [HttpPost]
+        [Authorize]
         public IActionResult Logout()
         {
             // User session close logic
