@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
+using BarberLayered.Models;
 using BusinessLogicLayer.Services.Identity;
 using DataAccessLayer.Entities;
 using Microsoft.AspNetCore.Authentication;
@@ -18,6 +19,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
@@ -99,6 +101,9 @@ namespace BarberLayered.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Display(Name = "UserType")]
+            public UserType UserType { get; set; }
         }
 
 
@@ -142,7 +147,25 @@ namespace BarberLayered.Areas.Identity.Pages.Account
                     }
                     else
                     {
+                        string userRole = "";
+
+                        switch (Input.UserType)
+                        {
+                            case UserType.Admin:
+                                userRole = "Admin";
+                                break;
+                            case UserType.Barber:
+                                userRole = "Barber";
+                                break;
+                            case UserType.Client:
+                                userRole = "Client";
+                                break;
+                            default:
+                                break;
+                        }
                         await _signInManager.SignInAsync(user, isPersistent: false);
+                        await _userManager.AddToRoleAsync(user, userRole);
+
                         return LocalRedirect(returnUrl);
                     }
                 }
