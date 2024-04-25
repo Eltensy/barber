@@ -1,10 +1,12 @@
 ﻿using DataAccessLayer.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace DataAccessLayer.Data
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<IdentityUser>
     {
         public DataContext() { }
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
@@ -18,11 +20,12 @@ namespace DataAccessLayer.Data
                    .AddJsonFile("appsettings.json")
                    .Build();
                 var connectionString = configuration.GetConnectionString("BarberBook_Connection");
-                optionsBuilder.UseNpgsql(connectionString, x => x.MigrationsAssembly("BarberLayered"));
+                optionsBuilder.UseNpgsql(connectionString, x => x.MigrationsAssembly("DataAccessLayer"));
             }
         }
 
         public DbSet<BarberShop> BarberShops { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Barber> Barbers { get; set; }
         public DbSet<Client> Clients { get; set; }
