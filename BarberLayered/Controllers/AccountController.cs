@@ -6,6 +6,7 @@ using Serilog;
 
 namespace BarberLayered.Controllers
 {
+
     public class AccountController : Controller
     {
         private readonly ILoginService _loginService;

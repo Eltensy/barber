@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\BarberLayered"
   ],
+  "SelectedNode": "\\BarberLayered\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }
