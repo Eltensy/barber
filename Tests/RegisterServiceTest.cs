@@ -1,87 +1,108 @@
-﻿using Xunit;
-using Moq;
-using System.Threading.Tasks;
+﻿using BarberLayered.Models;
 using BusinessLogicLayer.DTOs;
-using BusinessLogicLayer.Services.Interfaces;
 using BusinessLogicLayer.Services.Implementations;
+using BusinessLogicLayer.Services.Interfaces;
+using Moq;
+using Serilog;
+using System.Net;
+using Xunit;
 
-namespace BusinessLogicLayer.Tests.Services
+namespace BusinessLogicLayer.Tests
 {
     public class RegisterServiceTests
     {
-        [Fact]
-        public async Task Register_NewClient_Success()
-        {
-            // Arrange
-            var clientServiceMock = new Mock<IClientService>();
-            clientServiceMock.Setup(m => m.GetClientByEmail(It.IsAny<string>())).ReturnsAsync((ClientDto)null);
-
-            var registerService = new RegisterService(clientServiceMock.Object, null, null);
-
-            var clientDto = new ClientDto
-            {
-                Name = "John",
-                Surname = "Doe",
-                Phone = "123456789",
-                Email = "client@example.com",
-                PasswordHash = "password123" // Assuming you have the plaintext password
-            };
-
-            // Act
-            var result = await registerService.Register(clientDto);
-
-            // Assert
-            Assert.Equal(0, result);
-        }
 
         [Fact]
-        public async Task BarberRegister_NewBarber_Success()
+        public async Task Register_Client_Success()
         {
-            // Arrange
+            var adminServiceMock = new Mock<IAdminService>();
             var barberServiceMock = new Mock<IBarberService>();
-            barberServiceMock.Setup(m => m.GetBarberByEmail(It.IsAny<string>())).ReturnsAsync((BarberDto)null);
+            var clientServiceMock = new Mock<IClientService>();
+            var registrationKeyServiceMock = new Mock<IRegistrationKeyService>();
 
-            var registerService = new RegisterService(null, barberServiceMock.Object, null);
+            var registerService = new RegisterService(adminServiceMock.Object, barberServiceMock.Object, clientServiceMock.Object, registrationKeyServiceMock.Object);
 
-            var barberDto = new BarberDto
+            var registrationDto = new RegistrationDto
             {
-                Name = "Jane",
-                Surname = "Smith",
-                Phone = "987654321",
-                Email = "barber@example.com",
-                PasswordHash = "password123" // Assuming you have the plaintext password
+                Email = "test@example.com",
+                Password = "password",
+                UserType = (_UserType)UserType.Client
             };
 
+            clientServiceMock.Setup(x => x.GetClientByEmail(It.IsAny<string>())).ReturnsAsync((ClientDto)null);
+            clientServiceMock.Setup(x => x.InsertClient(It.IsAny<ClientDto>())).Returns(Task.CompletedTask);
+
             // Act
-            var result = await registerService.BarberRegister(barberDto);
+            var result = await registerService.Register(registrationDto);
 
             // Assert
-            Assert.Equal(0, result);
+            Assert.Equal("", result.ErrorMsg);
+            Assert.IsType<UserExtDto>(result);
+            Assert.Equal("test@example.com", result.Email);
         }
 
         [Fact]
-        public async Task AdminRegister_NewAdmin_Success()
+        public async Task Register_Barber_Success()
+        {
+            var adminServiceMock = new Mock<IAdminService>();
+            var barberServiceMock = new Mock<IBarberService>();
+            var clientServiceMock = new Mock<IClientService>();
+            var registrationKeyServiceMock = new Mock<IRegistrationKeyService>();
+
+            var registerService = new RegisterService(adminServiceMock.Object, barberServiceMock.Object, clientServiceMock.Object, registrationKeyServiceMock.Object);
+            var registrationDto = new RegistrationDto
+            {
+                Email = "test@example.com",
+                Password = "password",
+                UserType = (_UserType)UserType.Barber,
+                RegistrationKey = "qwerty123"
+            };
+            barberServiceMock.Setup(x => x.GetBarberByEmail(It.IsAny<string>())).ReturnsAsync((BarberDto)null);
+            barberServiceMock.Setup(x => x.InsertBarber(It.IsAny<BarberDto>())).Returns(Task.CompletedTask);
+            // Act
+            registrationKeyServiceMock.Setup(x => x.GetRegistrationKeyFirst()).ReturnsAsync(new RegistrationKeyDto { Key = "valid_key" });
+
+            // Act
+            var result = await registerService.Register(registrationDto);
+
+            // Assert
+            Assert.Null(result.ErrorMsg);
+            Assert.IsType<UserExtDto>(result);
+            Assert.Equal("test@example.com", result.Email);
+            // Add more assertions as needed
+        }
+
+        [Fact]
+        public async Task Register_Admin_Success()
         {
             // Arrange
             var adminServiceMock = new Mock<IAdminService>();
-            adminServiceMock.Setup(m => m.GetAdminByEmail(It.IsAny<string>())).ReturnsAsync((AdminDto)null);
+            var barberServiceMock = new Mock<IBarberService>();
+            var clientServiceMock = new Mock<IClientService>();
+            var registrationKeyServiceMock = new Mock<IRegistrationKeyService>();
 
-            var registerService = new RegisterService(null, null, adminServiceMock.Object);
-
-            var adminDto = new AdminDto
+            var registerService = new RegisterService(adminServiceMock.Object, barberServiceMock.Object, clientServiceMock.Object, registrationKeyServiceMock.Object);
+            var registrationDto = new RegistrationDto
             {
-                Name = "Admin",
-                Surname = "User",
-                Phone = "555555555",
-                Email = "admin@example.com",
-                PasswordHash = "password123" // Assuming you have the plaintext password
+                Email = "test@example.com",
+                Password = "password",
+                UserType = (_UserType)UserType.Admin,
+                RegistrationKey = "qwerty123"
             };
+            adminServiceMock.Setup(x => x.GetAdminByEmail(It.IsAny<string>())).ReturnsAsync((AdminDto)null);
+            adminServiceMock.Setup(x => x.InsertAdmin(It.IsAny<AdminDto>())).Returns(Task.CompletedTask);
+            // Act
+            registrationKeyServiceMock.Setup(x => x.GetRegistrationKeyFirst()).ReturnsAsync(new RegistrationKeyDto { Key = "valid_key" });
 
             // Act
-            var result = await registerService.AdminRegister(adminDto);
+            var result = await registerService.Register(registrationDto);
 
             // Assert
-            Assert.Equal(0, result);
+            Assert.Null(result.ErrorMsg);
+            Assert.IsType<UserExtDto>(result);
+            Assert.Equal("test@example.com", result.Email);
         }
     }
+
+
 }

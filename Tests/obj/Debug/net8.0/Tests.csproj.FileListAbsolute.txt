@@ -134,4 +134,3 @@ C:\Users\Anton\source\repos\barbernew\Tests\obj\Debug\net8.0\refint\Tests.dll
 C:\Users\Anton\source\repos\barbernew\Tests\obj\Debug\net8.0\Tests.pdb
 C:\Users\Anton\source\repos\barbernew\Tests\obj\Debug\net8.0\Tests.genruntimeconfig.cache
 C:\Users\Anton\source\repos\barbernew\Tests\obj\Debug\net8.0\ref\Tests.dll
-C:\Users\Anton\source\repos\barbernew\Tests\bin\Debug\net8.0\BCrypt.Net.dll

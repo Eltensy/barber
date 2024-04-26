@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Anton\source\repos\barbernew\BarberLayered
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/Account/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -26,12 +30,36 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/AdminHome/AdminAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Ib21lXEFkbWluQWNjb3VudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/AdminHome/AdminViewPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Ib21lXEFkbWluVmlld1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/AdminHome/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Ib21lXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/BarberHome/BarberHomePartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFyYmVySG9tZVxCYXJiZXJIb21lUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/BarberHome/EditProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFyYmVySG9tZVxFZGl0UHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/BarberHome/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFyYmVySG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/BarberInformation/BarberInformationClient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFyYmVySW5mb3JtYXRpb25cQmFyYmVySW5mb3JtYXRpb25DbGllbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/BarberInformation/BarberInformationPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFyYmVySW5mb3JtYXRpb25cQmFyYmVySW5mb3JtYXRpb25QYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/BarberInformation/Index.cshtml]
@@ -42,16 +70,48 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFyYmVyU2VydmljZVxBZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/BarberService/BarberServiceClient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFyYmVyU2VydmljZVxCYXJiZXJTZXJ2aWNlQ2xpZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/BarberService/BarberServicePartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFyYmVyU2VydmljZVxCYXJiZXJTZXJ2aWNlUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/BarberService/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFyYmVyU2VydmljZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/BarberShop/BarberShopPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFyYmVyU2hvcFxCYXJiZXJTaG9wUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/BarberShop/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFyYmVyU2hvcFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/Barbers/BarbersPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFyYmVyc1xCYXJiZXJzUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/Barbers/ClientBarbers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFyYmVyc1xDbGllbnRCYXJiZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/Barbers/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFyYmVyc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/ClientHome/ClientAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50SG9tZVxDbGllbnRBY2NvdW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/ClientHome/ClientPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50SG9tZVxDbGllbnRQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/ClientHome/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50SG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Anton/source/repos/barbernew/BarberLayered/Views/Home/Index.cshtml]
