@@ -2,7 +2,7 @@
 using BusinessLogicLayer.DTOs;
 using BusinessLogicLayer.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Serilog;
+using Microsoft.AspNetCore.Http;
 
 namespace BarberLayered.Controllers
 {
@@ -11,13 +11,17 @@ namespace BarberLayered.Controllers
     {
         private readonly ILoginService _loginService;
         private readonly IRegisterService _registerService;
-        private readonly IRegistrationKeyService _registrationKeyService;
+        private readonly IChangePasswordService _changePasswordService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        
 
-        public AccountController(ILoginService loginService, IRegisterService registerService, IRegistrationKeyService registrationKeyService)
+        public AccountController(ILoginService loginService, IRegisterService registerService,
+            IHttpContextAccessor httpContextAccessor, IChangePasswordService changePasswordService)
         {
             _loginService = loginService;
             _registerService = registerService;
-            _registrationKeyService = registrationKeyService;
+            _httpContextAccessor = httpContextAccessor;
+            _changePasswordService = changePasswordService;
         }
 
         // GET: /Account/Index
@@ -36,24 +40,30 @@ namespace BarberLayered.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginModel)
         {
-            Log.Information("Login attempt with email: {Email}, password: {Password}", loginModel.Email, loginModel.Password);
-            int result = await _loginService.Login(loginModel.Email, loginModel.Password);
-            
-
-            switch (result)
+            var result = await _loginService.Login(loginModel.Email, loginModel.Password);
+            if (result.ErrorMsg != "")
             {
-                case -1: // Not found
-                    TempData["ErrorMessage"] = "Invalid email or password.";
-                    return View(loginModel);
-                case 1: // Client
-                    return RedirectToAction("Index", "BarberShop");
-                case 2: // Barber
-                    return RedirectToAction("Index", "BarberHome", new { barberId = 2 });
-                case 3: // Admin
-                    return RedirectToAction("Index", "AdminHome", new { adminId = 1});
+                TempData["ErrorMessage"] = result.ErrorMsg;
+                return View(loginModel);
+            }
+            var session = _httpContextAccessor.HttpContext.Session;
+
+            session.SetInt32("UserType", (int)result.UserType);
+            session.SetInt32("Id", result.Id);
+
+            switch (result.UserType)
+            {
+                case _UserType.Admin:
+                    return RedirectToAction("Index", "AdminHome",
+                        new Admin(result));
+                case _UserType.Barber:
+                    return RedirectToAction("Index", "BarberHome",
+                        new Barber(result));
+                case _UserType.Client:
+                    return RedirectToAction("Index", "ClientHome", 
+                        new Client(result));
                 default:
                     return View(loginModel);
-
             }
         }
 
@@ -67,81 +77,107 @@ namespace BarberLayered.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModelWithKey registerViewModel)
         {
-            Log.Information("Register attempt with email: {Email}, password: {Password}, name: {FirstName} {LastName}", registerViewModel.Email, registerViewModel.Password, registerViewModel.FirstName, registerViewModel.LastName);
-
             if (!registerViewModel.Password.Equals(registerViewModel.ConfirmPassword))
             {
-                Log.Information("Register failed (passwords doesnt match) with email: {Email}, password: {Password}, name: {FirstName} {LastName}", registerViewModel.Email, registerViewModel.Password, registerViewModel.FirstName, registerViewModel.LastName);
                 TempData["ErrorMessage"] = "The password and confirmation password do not match.";
                 return View(registerViewModel);
             }
 
-            int result = -1;
-
-            var registrationKey = await _registrationKeyService.GetRegistrationKeyById(1);
-
-            switch (registerViewModel.UserType)
+            UserExtDto result;
+            RegistrationDto registrationDto = new RegistrationDto()
             {
-                case UserType.Barber:
-                    if (registerViewModel.RegistrationKey.ToString().Equals(registrationKey.Key.ToString()))
-                    {
-                        var barberDto = new BarberDto()
-                        {
-                            Name = registerViewModel.FirstName,
-                            Surname = registerViewModel.LastName,
-                            Phone = registerViewModel.Phone,
-                            Email = registerViewModel.Email,
-                            PasswordHash = registerViewModel.Password,
-                        };
-                        result = await _registerService.BarberRegister(barberDto);
-                        if(result == 0)
-                        {
-                            return RedirectToAction("Index", "Barbers");
-                        }
-                    }
-                    break;
-                case UserType.Admin:
-                    if (registerViewModel.RegistrationKey.ToString().Equals(registrationKey.Key.ToString()))
-                    {
-                        var adminDto = new AdminDto()
-                        {
-                            Name = registerViewModel.FirstName,
-                            Surname = registerViewModel.LastName,
-                            Phone = registerViewModel.Phone,
-                            Email = registerViewModel.Email,
-                            PasswordHash = registerViewModel.Password,
-                        };
-                        result = await _registerService.AdminRegister(adminDto);
-                        if (result == 0)
-                        {
-                            return RedirectToAction("Index", "BarberService");
-                        }
-                    }
-                    break;
+                RegistrationKey = registerViewModel.RegistrationKey,
+                Name = registerViewModel.FirstName,
+                Surname = registerViewModel.LastName,
+                Email = registerViewModel.Email,
+                Password = registerViewModel.Password,
+                Phone = registerViewModel.Phone,
+                UserType = (_UserType)registerViewModel.UserType
+            };
+
+            result = await _registerService.Register(registrationDto);
+            if (result.ErrorMsg != "")
+            {
+                TempData["ErrorMessage"] = result.ErrorMsg;
+                return View(registerViewModel);
+            }
+
+            var session = _httpContextAccessor.HttpContext.Session;
+
+            session.SetInt32("UserType", (int)result.UserType);
+            session.SetInt32("Id", result.Id);
+
+            switch (result.UserType)
+            {
+                case _UserType.Admin:
+                    return RedirectToAction("Index", "AdminHome",
+                        new Admin(result));
+                case _UserType.Barber:
+                    return RedirectToAction("Index", "BarberHome",
+                        new Barber(result));
+                case _UserType.Client:
+                    return RedirectToAction("Index", "ClientHome",
+                        new Client(result));
                 default:
-                    var newClient = new ClientDto()
-                    {
-                        Name = registerViewModel.FirstName,
-                        Surname = registerViewModel.LastName,
-                        Phone = registerViewModel.Phone,
-                        Email = registerViewModel.Email,
-                        PasswordHash = registerViewModel.Password
-                    };
-                    result = await _registerService.Register(newClient);
-                    if(result == 0) 
-                    {
-                        return RedirectToAction("Index", "BarberShop");
-                    }
-                    break;
+                    return RedirectToAction("Index", "BarberShop");
             }
-
-            if (result == -1) // Client with such email already exists
-            {
-                Log.Information("Register failed with email: {Email}, name: {FirstName} {LastName}", registerViewModel.Email, registerViewModel.FirstName, registerViewModel.LastName);
-            }
-
-            return RedirectToAction("Index", "BarberShop");
         }
+
+        // GET: /Account/ChangePassword
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+
+        // POST: /Account/ChangePassword
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (!model.NewPassword.Equals(model.ConfirmNewPassword))
+            {
+                TempData["ErrorMessage"] = "The password and confirmation password do not match.";
+                return View(model);
+            }
+
+            UserExtDto result;
+            var session = _httpContextAccessor.HttpContext.Session;
+
+            ChangePasswordDto changePasswordDto = new ChangePasswordDto()
+            {
+                Id = session.GetInt32("Id") ?? default,
+                UserType = (_UserType)(session.GetInt32("UserType") ?? default),
+                ConfirmNewPassword = model.ConfirmNewPassword,
+                CurrentPassword = model.CurrentPassword,
+                NewPassword = model.NewPassword,
+                ErrorMsg = ""
+            };
+
+            result = await _changePasswordService.ChangePassword(changePasswordDto);
+            if (result.ErrorMsg != "")
+            {
+                TempData["ErrorMessage"] = result.ErrorMsg;
+                return View(model);
+            }
+            else
+            {
+                switch (result.UserType)
+                {
+                    case _UserType.Admin:
+                        return RedirectToAction("Index", "AdminHome",
+                            new Admin(result));
+                    case _UserType.Barber:
+                        return RedirectToAction("Index", "BarberHome",
+                            new Barber(result));
+                    case _UserType.Client:
+                        return RedirectToAction("Index", "ClientHome",
+                            new Client(result));
+                    default:
+                        return RedirectToAction("Index", "BarberShop");
+                }
+            }
+        }
+
 
         // POST: /Account/Logout
         [HttpPost]

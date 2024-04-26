@@ -31,7 +31,38 @@ namespace BarberLayered.Controllers
                     _barbers.Add(new Barber(barber));
                 }
             }
-            
+
+            string infoPath = "Index";
+            string servicePath = "Index";
+
+            ViewData["infoPath"] = infoPath;
+            ViewData["servicePath"] = servicePath;
+
+            return View(_barbers);
+        }
+
+        public async Task<IActionResult> ClientBarbers()
+        {
+            var barbers = await _barberService.GetBarbers();
+            if (!barbers.Any()) // No barbers in DB
+            {
+                Log.Error("No Barbers in DataBase");
+            }
+            else
+            {
+                _barbers = new List<Barber>();
+                foreach (var barber in barbers)
+                {
+                    _barbers.Add(new Barber(barber));
+                }
+            }
+
+            string infoPath = "BarberInformationClient";
+            string servicePath = "BarberServiceClient";
+
+            ViewData["infoPath"] = infoPath;
+            ViewData["servicePath"] = servicePath;
+
             return View(_barbers);
         }
     }

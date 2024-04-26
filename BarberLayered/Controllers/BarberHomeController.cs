@@ -8,36 +8,25 @@ namespace BarberLayered.Controllers
 {
     public class BarberHomeController : Controller
     {
-        private readonly IBarberService _barberService;
         private readonly IBarberHomeService _barberHomeService;
         private Models.Barber? _barber;
         private readonly List<Models.Visit> _visits;
 
-        public BarberHomeController(IBarberService barberService, IBarberHomeService barberHomeService)
+        public BarberHomeController(IBarberHomeService barberHomeService)
         {
-            _barberService = barberService;
             _barberHomeService = barberHomeService;
             _barber = null;
             _visits = new List<Visit>();
         }
 
-        public async Task<IActionResult> Index(int barberId)
+        public async Task<IActionResult> Index(Barber barber)
         {
+            _barber = barber;
 
-            var barber = await _barberService.GetBarberById(barberId);
-            if( barber == null )
-            {
-                Log.Error("No Barber with id={Id} information in DataBase", barberId);
-            }
-            else
-            {
-                _barber = new Barber(barber);
-            }
-
-            var visits = await _barberHomeService.GetVisitsByBarberId(barberId);
+            var visits = await _barberHomeService.GetVisitsByBarberId(_barber.Id);
             if (!visits.Any())
             {
-                Log.Error("No visits for barber id={Id} in DataBase", barberId);
+                Log.Error("No visits for barber id={Id} in DataBase", _barber.Id);
             }
             else
             {
@@ -46,11 +35,32 @@ namespace BarberLayered.Controllers
                     _visits.Add(new Visit(visit));
                 }
             }
-            
+
             ViewBag.Barber = _barber;
             ViewBag.Visits = _visits;
 
-            return View();
+            return View(_barber);
         }
+
+        public IActionResult EditProfile(Barber barber)
+        {
+            _barber = barber;
+
+            return View(_barber);
+        }
+
+        //[HttpPost]
+        //public IActionResult EditProfile(Barber barber)
+        //{
+        //    _barber.Name = barber.Name;
+        //    _barber.Surname = barber.Surname;
+        //    _barber.Phone = barber.Phone;
+        //    _barber.Email = barber.Email;
+        //    _barber.Description = barber.Description;
+        //    _barber.PhotoUri = barber.PhotoUri;
+        //    _barber.PortfolioUri = barber.PortfolioUri;
+
+        //    return Redirect("/BarberHome/Index");
+        //}
     }
 }

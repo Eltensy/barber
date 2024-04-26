@@ -28,6 +28,10 @@ namespace BarberLayered.Controllers
                 _barberShop = new BarberShop(barberShop);
             }
 
+            string path = "/Barbers/Index";
+
+            ViewData["Path"] = path;
+
             return View(_barberShop);
         }
     }

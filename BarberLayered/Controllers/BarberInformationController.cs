@@ -50,5 +50,22 @@ namespace BarberLayered.Controllers
 
             return View();
         }
+
+        public async Task<IActionResult> BarberInformationClient(int id)
+        {
+            var barber = await _barberService.GetBarberById(id);
+            if (barber == null)
+            {
+                Log.Error("No info about Barber with id={Id} was found in the DataBase", id);
+            }
+            else
+            {
+                _barber = new Barber(barber);
+            }
+
+            ViewBag.Barber = _barber;
+
+            return View();
+        }
     }
 }

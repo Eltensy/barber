@@ -1,7 +1,9 @@
-﻿namespace BusinessLogicLayer.Services.Interfaces
+﻿using BusinessLogicLayer.DTOs;
+
+namespace BusinessLogicLayer.Services.Interfaces
 {
     public interface ILoginService
     {
-        Task<int> Login(string email, string password);
+        Task<UserExtDto> Login(string email, string password);
     }
 }

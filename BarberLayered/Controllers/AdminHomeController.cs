@@ -7,34 +7,35 @@ namespace BarberLayered.Controllers
 {
     public class AdminHomeController : Controller
     {
-        private readonly IAdminService _adminService;
         private readonly IBarberShopService _barberShopService;
         private Admin? _admin;
         private BarberShop? _barberShop;
 
-        public AdminHomeController(IAdminService adminService, IBarberShopService barberShopService)
+        public AdminHomeController(IBarberShopService barberShopService)
         {
-            _adminService = adminService;
             _barberShopService = barberShopService;
             _admin = null;
             _barberShop = null;
         }
-        public async Task<IActionResult> Index(int adminId)
+        public async Task<IActionResult> Index(Admin admin)
         {
             var barberShop = await _barberShopService.GetBarberShopFirst();
             
             if(barberShop != null)
                 _barberShop = new BarberShop(barberShop);
 
-            var admin = await _adminService.GetAdminById(adminId);
-            if (admin != null)
-                _admin = new Admin(admin);
-
+            _admin = admin;
 
             ViewBag.Admin = _admin;
 
             return View(_barberShop);
         }
 
+        public async Task<IActionResult> AdminAccount(Admin admin)
+        {
+            _admin = admin;
+
+            return View(_admin);
+        }
     }
 }
