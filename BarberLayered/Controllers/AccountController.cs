@@ -1,6 +1,8 @@
-﻿using BarberLayered.Models;
+using BarberLayered.Models;
 using BusinessLogicLayer.DTOs;
 using BusinessLogicLayer.Services.Interfaces;
+using BusinessLogicLayer.Services.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 
@@ -10,17 +12,18 @@ namespace BarberLayered.Controllers
     {
         private readonly ILoginService _loginService;
         private readonly IRegisterService _registerService;
+        private readonly IEmailSenderService _emailSender;
         private readonly IChangePasswordService _changePasswordService;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        
+        private readonly IHttpContextAccessor _httpContextAccessor;       
 
         public AccountController(ILoginService loginService, IRegisterService registerService,
-            IHttpContextAccessor httpContextAccessor, IChangePasswordService changePasswordService)
+            IHttpContextAccessor httpContextAccessor, IChangePasswordService changePasswordService, IEmailSenderService emailSender)
         {
             _loginService = loginService;
             _registerService = registerService;
             _httpContextAccessor = httpContextAccessor;
             _changePasswordService = changePasswordService;
+            _emailSender = emailSender;
         }
 
         // GET: /Account/Index
@@ -59,8 +62,10 @@ namespace BarberLayered.Controllers
                     return RedirectToAction("Index", "BarberHome",
                         new Barber(result));
                 case _UserType.Client:
-                    return RedirectToAction("Index", "ClientHome", 
-                        new Client(result));
+                    // await _emailSender.SendEmailAsync("ste2806murosl@gmail.com", "Chernyi Hui", "Rostyk LOH; Hi-Hi");
+                    return RedirectToAction("Index", "BarberShop");
+                    //return RedirectToAction("Index", "ClientHome", 
+                    //    new Client(result));
                 default:
                     return View(loginModel);
             }
@@ -180,6 +185,7 @@ namespace BarberLayered.Controllers
 
         // POST: /Account/Logout
         [HttpPost]
+        [Authorize]
         public IActionResult Logout()
         {
             // User session close logic
