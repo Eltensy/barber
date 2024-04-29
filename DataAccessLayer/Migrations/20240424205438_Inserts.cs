@@ -2,28 +2,13 @@
 
 #nullable disable
 
-namespace BarberLayered.Migrations
+namespace DataAccessLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class BasicInserts : Migration
+    public partial class Inserts : Migration
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
+        private void govno_insert(MigrationBuilder migrationBuilder)
         {
-            // Clear previous data
-            migrationBuilder.Sql("DELETE FROM \"Visits\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Reviews\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Schedules\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Services\"", true);
-            migrationBuilder.Sql("DELETE FROM \"BarberShops\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Barbers\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Admins\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Reviews\"", true);
-            migrationBuilder.Sql("DELETE FROM \"History\"", true);
-            migrationBuilder.Sql("DELETE FROM \"RegistrationKeys\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Clients\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Guests\"", true);
-
             // Insert fresh one
             // BarberShops
             migrationBuilder.Sql(
@@ -113,8 +98,7 @@ namespace BarberLayered.Migrations
                 true);
         }
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
+        private void govno_delete(MigrationBuilder migrationBuilder)
         {
             // Clear previous data
             migrationBuilder.Sql("DELETE FROM \"Visits\"", true);
@@ -129,6 +113,19 @@ namespace BarberLayered.Migrations
             migrationBuilder.Sql("DELETE FROM \"RegistrationKeys\"", true);
             migrationBuilder.Sql("DELETE FROM \"Clients\"", true);
             migrationBuilder.Sql("DELETE FROM \"Guests\"", true);
+        }
+
+
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            govno_insert(migrationBuilder);
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            govno_delete(migrationBuilder);
         }
     }
 }
