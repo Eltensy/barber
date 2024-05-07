@@ -1,11 +1,13 @@
 ﻿using BarberLayered.Models;
 using BusinessLogicLayer.DTOs;
 using BusinessLogicLayer.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
 namespace BarberLayered.Controllers
 {
+    [Authorize(Roles = "Barber")]
     public class BarberHomeController : Controller
     {
         private readonly IBarberHomeService _barberHomeService;
