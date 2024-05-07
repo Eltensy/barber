@@ -117,13 +117,20 @@
         </div>
         <h3 class="reviews">Відгуки:</h3>
         <div class="reviews">
-            @foreach (var review in reviews)
+            @if (!reviews.Any())
             {
-                <div class="review-item">
-                    <p class="review-text">@review.Text</p>
-                    <p class="review-details">Автор: Client @review.fk_ClientId | Дата: @review.Date.ToShortDateString()</p>
-                    <p class="review-rating">Оцінка: @review.Rating/5</p>
-                </div>
+                <h3 style="text-align: center; color: forestgreen; margin-top: 100px;">Ще немає відгуків</h3>
+            }
+            else
+            {
+                @foreach (var review in reviews)
+                {
+                    <div class="review-item">
+                        <p class="review-text">@review.Text</p>
+                        <p class="review-details">Автор: Client @review.fk_ClientId | Дата: @review.Date.ToShortDateString()</p>
+                        <p class="review-rating">Оцінка: @review.Rating/5</p>
+                    </div>
+                }
             }
         </div>
     </div>

@@ -74,7 +74,7 @@
             }
 
         .schedule {
-            margin-top: 20px;
+            margin-top: 50px;
         }
 
         table {
@@ -123,47 +123,49 @@
 </head>
 <body>
 
-    @Html.Partial("~/Views/BarberHome/BarberHomePartial.cshtml", Model)
+    @await Html.PartialAsync("~/Views/BarberHome/BarberHomePartial.cshtml", Model)
 
 
 
     <div class="container">
         <div class="content">
-            <h1>Вітаємо, @barber.Name!</h1>
-            <p>Номер телефону: @barber.Phone</p>
-            <p>Елекронна адреса: @barber.Email</p>
-            <p> @barber.Description</p>
+            <h1>Вітаємо, @barber?.Name!</h1>
+            <p>Номер телефону: @barber?.Phone</p>
+            <p>Елекронна адреса: @barber?.Email</p>
+            <p> @barber?.Description</p>
 
             <div class="schedule">
                 <h2>Сьогоднішні записи :</h2>
-                <table>
-                    <tr>
-                        <th>Дата</th>
-                        <th>Час початку</th>
-                        <th>Час кінця</th>
-                        <th>Клієнт</th>
-                        <th>Послуга</th>
-                    </tr>
-                    @* <tr>
-                    <td>2024-04-12</td>
-                    <td>&nbsp;13:00:00</td>
-                    <td>Клієнт7</td>
-                    <td>Стрижка</td>
-                    </tr> *@
-
-                    @foreach (var @visit in @visits)
-                    {
+                @{
+                    var todayVisits = @visits?.Where(v => v.Date == DateOnly.FromDateTime(DateTime.Today)).ToList();
+                }
+                @if (todayVisits != null && todayVisits.Any())
+                {
+                    <table>
                         <tr>
-                            <td>@visit.Date</td>
-                            <td>&nbsp;@visit.StartTime</td>
-                            <td>&nbsp;@visit.EndTime</td>
-                            @* <td>@visit.fk_ClientId</td> *@
-                            <td>@visit.VisitorFullName</td>
-                            @* <td>@visit.fk_ServiceId</td> *@
-                            <td>@visit.ServiceTitle</td>
+                            <th>Дата</th>
+                            <th>Час початку</th>
+                            <th>Час кінця</th>
+                            <th>Клієнт</th>
+                            <th>Послуга</th>
                         </tr>
-                    }
-                </table>
+
+                        @foreach (var visit in todayVisits)
+                        {
+                            <tr>
+                                <td>@visit.Date</td>
+                                <td>&nbsp;@visit.StartTime</td>
+                                <td>&nbsp;@visit.EndTime</td>
+                                <td>@visit.VisitorFullName</td>
+                                <td>@visit.ServiceTitle</td>
+                            </tr>
+                        }
+                    </table>
+                }
+                else
+                {
+                    <h2 style="color: forestgreen; margin-top: 100px;">Сьогодні у вас немає записів</h2>
+                }
             </div>
         </div>
 
