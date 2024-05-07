@@ -41,7 +41,7 @@ namespace BarberLayered.Controllers
             return View(_barbers);
         }
 
-        public async Task<IActionResult> ClientBarbers()
+        public async Task<IActionResult> ClientBarbers(int clientId)
         {
             var barbers = await _barberService.GetBarbers();
             if (!barbers.Any()) // No barbers in DB
@@ -60,6 +60,7 @@ namespace BarberLayered.Controllers
             string infoPath = "BarberInformationClient";
             string servicePath = "BarberServiceClient";
 
+            ViewBag.Barbers = _barbers;
             ViewData["infoPath"] = infoPath;
             ViewData["servicePath"] = servicePath;
 

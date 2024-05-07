@@ -6,6 +6,9 @@ namespace BarberLayered.Models
     public class Visit
     {
         public int Id { get; set; }
+        public int? fk_ClientId { get; set; }
+        public int fk_BarberId { get; set; }
+        public int fk_ServiceId { get; set; }
         public string VisitorFullName { get; set; }
         public string ServiceTitle { get; set; }
         public DateOnly Date { get; set; }
@@ -15,6 +18,9 @@ namespace BarberLayered.Models
         public Visit(VisitExtDto visitExtDto)
         {
             Id = visitExtDto.Id;
+            fk_ClientId = visitExtDto.fk_ClientId;
+            fk_BarberId = visitExtDto.fk_BarberId;
+            fk_ServiceId = visitExtDto.fk_ServiceId;
             VisitorFullName = visitExtDto.VisitorFullName;
             ServiceTitle = visitExtDto.ServiceTitle;
             Date = visitExtDto.Date;

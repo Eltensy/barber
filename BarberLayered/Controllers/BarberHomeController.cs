@@ -47,7 +47,7 @@ namespace BarberLayered.Controllers
         public IActionResult EditProfile(Barber barber)
         {
             _barber = barber;
-
+            ViewBag.Barber = _barber;
             return View(_barber);
         }
 
