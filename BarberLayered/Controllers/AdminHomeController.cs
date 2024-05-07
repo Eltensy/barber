@@ -37,5 +37,10 @@ namespace BarberLayered.Controllers
 
             return View(_admin);
         }
+
+        public ActionResult AddBarber()
+        {
+            return View();
+        }
     }
 }

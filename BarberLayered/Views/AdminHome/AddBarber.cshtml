@@ -1,12 +1,11 @@
-﻿ @model BarberLayered.Models.Client
-@{
+﻿@{
     Layout = null;
 }
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Налаштування акаунта</title>
+    <title>Додавання барбера</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <style>
         body {
@@ -30,13 +29,14 @@
         label {
             display: block;
             margin-bottom: 5px;
+            text-align: left;
         }
 
         input[type="text"], input[type="email"], input[type="tel"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #FFA500;
             border-radius: 5px;
             box-sizing: border-box;
         }
@@ -45,7 +45,7 @@
             background-color: #905B22;
             color: #fff;
             border: none;
-            padding: 10px 20px;
+            padding: 15px 25px;
             border-radius: 5px;
             cursor: pointer;
             margin-right: 10px;
@@ -106,7 +106,7 @@
             height: 100%;
             overflow: auto;
             background-color: rgba(0,0,0,0.4);
-            / padding-top: 60px;
+            padding-top: 60px;
         }
 
         .modal-content {
@@ -151,35 +151,37 @@
             }
 
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
 
-    @await Html.PartialAsync("~/Views/ClientHome/ClientPartial.cshtml")
+    @await Html.PartialAsync("~/Views/AdminHome/AdminViewPartial.cshtml")
 
     <div class="container">
-        <h1>Налаштування акаунта</h1>
-        <h3 style="text-align: left;">Редагування інформації:</h3>
+        <h1 style="margin-bottom:65px;">Додавання барбера</h1>
+        <h3 style="text-align: left;">Заповніть дані:</h3>
         <form>
             <label for="name">Ім'я:</label>
-            <input type="text" id="name" name="name" value="@Model.Name">
+            <input type="text" id="name" name="name" required>
 
             <label for="surname">Прізвище:</label>
-            <input type="text" id="surname" name="surname" value="@Model.Surname">
+            <input type="text" id="surname" name="surname" required>
 
             <label for="phone">Телефон:</label>
-            <input type="tel" id="phone" name="phone" value="@Model.Phone">
+            <input type="tel" id="phone" name="phone" required>
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="@Model.Email">
+            <input type="email" id="email" name="email" required>
 
-            <button type="submit" style="display: block; margin: 15px auto; text-align: center;">Зберегти зміни</button>
+            <label for="description">Опис:</label>
+            @* <textarea id="description" name="Description" style="outline: none; max-width:600px; min-width:400px; width:100%; max-height:300px; #FFA500;"></textarea> *@
+            <textarea id="description" name="Description" style="outline: none; max-width:600px; min-width:400px; width:100%; max-height:300px; border: 1px solid #FFA500;"></textarea>
+
+            <label for="surname">Код:</label>
+            <input type="text" id="code" name="code" required>
+
+            <button type="submit" style="display: block; margin: 25px auto; text-align: center;">Додати барбера</button>
 
         </form>
-
-        <a href="/Account/ChangePassword" class="button-link">Змінити пароль</a>
-
-        <button class="warning-button" onclick="showConfirmationModal()">Вийти з акаунта</button>
 
     </div>
 
@@ -187,9 +189,9 @@
 
     <div id="confirmationModal" class="confirmation-modal" style="display: none;">
         <div class="confirmation-box">
-            <h2 style="text-align: center;">Підтвердіть вихід</h2>
-            <p>Ви впевнені, що хочете вийти з облікового запису?</p>
-            <button onclick="logout()" style="float: left; margin-left: 50px; padding: 10px 30px;">Так</button>
+            <h2 style="text-align: center;">Підтвердіть додавання барбера</h2>
+            <p>Ви впевнені, що хочете додати нового барбера?</p>
+            <button onclick="saveChanges()" style="float: left; margin-left: 50px; padding: 10px 30px;">Так</button>
             <button onclick="hideConfirmationModal()" style="float: right; margin-right: 50px; padding: 10px 30px;">Ні</button>
         </div>
     </div>
@@ -207,27 +209,6 @@
             document.getElementById('confirmationModal').style.display = 'none';
         }
 
-        function logout() {
-            window.location.href = "/BarberShop/Index";
-        }
-
-        var errorMessage = '@TempData["SuccessMessage"]';
-        if (errorMessage !== 'null' && errorMessage !== '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Упс...',
-                text: errorMessage
-            });
-        }
-
-        var successMessage = '@TempData["SuccessMessage"]';
-        if (successMessage !== 'null' && successMessage !== '') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Успішно!',
-                text: successMessage
-            });
-        }
     </script>
 
 </body>

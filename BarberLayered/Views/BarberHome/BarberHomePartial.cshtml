@@ -66,7 +66,7 @@
             display: none;
             position: absolute;
             background-color: #f9f9f9;
-            min-width: 200px;
+            min-width: 230px;
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
             z-index: 1;
             right: 0;
@@ -178,10 +178,10 @@
         <div class="dropdown">
             <i class="material-icons account-icon" onclick="toggleDropdown()">account_circle</i>
             <div class="dropdown-content" id="dropdownMenu">
-                <a href="#">Записи</a>
-                <a href="#">Історія записів</a>
-                <a href="#">Розклад</a>
-                <a href="#">Мої відгуки</a>
+                <a href="@Url.Action("BarberAppointments", "BarberAppointments", new { barberId = ViewBag.Barber.Id })" class="service-button">Майбутні записи</a>
+                <a href="@Url.Action("BarberAppointmentsHistory", "BarberAppointments", new { barberId = ViewBag.Barber.Id })" class="service-button">Історія записів</a>
+                <a href="@Url.Action("BarberSchedule", "BarberSchedule", new { barberId = ViewBag.Barber.Id })" class="service-button">Мій розклад</a>
+                <a href="@Url.Action("BarberReviews", "BarberReviews", new { barberId = ViewBag.Barber.Id })" class="service-button">Відгуки про мене</a>
                 <a href="/BarberHome/EditProfile">Налаштування акаунта</a>
                 <a href="#" onclick="showConfirmationModal()">Вихід</a>
             </div>

@@ -51,8 +51,9 @@ namespace BarberLayered.Controllers
             return View();
         }
 
-        public async Task<IActionResult> BarberInformationClient(int id)
+        public async Task<IActionResult> BarberInformationClient(int id, int clientId)
         {
+
             var barber = await _barberService.GetBarberById(id);
             if (barber == null)
             {
@@ -63,7 +64,21 @@ namespace BarberLayered.Controllers
                 _barber = new Barber(barber);
             }
 
+            var reviews = await _reviewService.GetReviewsByBarberId(id);
+            if (!reviews.Any()) // No reviews logic for the view
+            {
+                Log.Information("No reviews for the Barber with id={Id} was found in the DataBase", id);
+            }
+            else
+            {
+                foreach (var review in reviews)
+                {
+                    _reviews.Add(new Review(review));
+                }
+            }
+
             ViewBag.Barber = _barber;
+            ViewBag.Reviews = _reviews;
 
             return View();
         }
