@@ -1,47 +1,41 @@
-﻿//using Microsoft.AspNetCore.Mvc;
-//using BarberLayered.Models;
-//using BusinessLogicLayer.Services.Interfaces;
-//using BusinessLogicLayer.Services.Implementations;
+﻿using BarberLayered.Models;
+using BusinessLogicLayer.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
-//namespace BarberLayered.Controllers
-//{
-//    public class ClientHomeController : Controller
-//    {
-//        private readonly IClientService _clientService;
-//        private Client? _client;
-//        private BarberShop? _barberShop;
+namespace BarberLayered.Controllers
+{
+    public class ClientHomeController : Controller
+    {
+        private readonly IBarberShopService _barberShopService;
+        private BarberShop? _barberShop;
+        private Client? _client;
 
-//        public ClientHomeController(IClientService clientService)
-//        {
-//            _clientService = clientService;
-//            _client = null;
-//            _barberShop = null;
-//        }
+        public ClientHomeController(IBarberShopService barberShopService)
+        {
+            _barberShopService = barberShopService;
+            _barberShop = null;
+            _client = null;
+        }
+        public async Task<IActionResult> Index(Client client)
+        {
+            _client = client;
 
-//        public async Task<IActionResult> Index(Client client)
-//        {
-//            //var barberShop = await _clientService.();
+            var barberShop = await _barberShopService.GetBarberShopFirst();
 
-//            if (barberShop != null)
-//                _barberShop = new BarberShop(barberShop);
+            if (barberShop != null)
+                _barberShop = new BarberShop(barberShop);
 
-//            _client = client;
+            ViewBag.Client = _client;
 
-//            ViewBag.Client = _client;
+            return View(_barberShop);
+        }
 
-            //string path = "/Barbers/ClientBarbers";
-
-            //ViewData["Path"] = path;
-
-//            return View(_barberShop);
-//        }
-
-//        public async Task<IActionResult> ClientAccount(Client client)
-//        {
-//            _client = client;
-
-//            return View(_client);
-//        }
-//    }
-//}
+        public IActionResult ClientAccount(Client client)
+        {
+            _client = client;
+            ViewBag.Client = _client;
+            return View(_client);
+        }
+    }
+}
 

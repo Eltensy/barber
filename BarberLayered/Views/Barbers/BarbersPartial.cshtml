@@ -95,22 +95,32 @@
 <body>
 
     <h1>Наші барбери</h1>
-
     <div class="barbers-container">
-        @foreach (var barber in Model)
+        @if (Model.Count == 0)
         {
-            <div class="barber-card">
-                <img src="@barber.PhotoUri" alt="@barber.Name" class="barber-photo">
-                <div class="barber-info">
-                    <h2>@barber.Name @barber.Surname</h2>
-                    <p>@barber.Description</p>
-                    <div class="buttons">
-                        <a href="@Url.Action(ViewData["infoPath"].ToString(), "BarberInformation", new { id = barber.Id })" class="info-button">Інформація</a>
+            <h2 style="text-align: center; color: forestgreen; margin-top: 100px;">На даний момент ще немає барберів</h2>
+        }
+        else
+        {
+            @foreach (var barber in Model)
+            {
+                <div class="barber-card">
+                    <img src="@barber.PhotoUri" alt="@barber.Name" class="barber-photo">
+                    <div class="barber-info">
+                        <h2>@barber.Name @barber.Surname</h2>
+                        <p>@barber.Description</p>
+                        <div class="buttons">
+                            <a href="@(ViewBag.ClientId != null ?
+                            Url.Action(ViewData["infoPath"].ToString(), "BarberInformation", new { id = barber.Id, clientId = ViewBag.ClientId }) :
+                            Url.Action(ViewData["infoPath"].ToString(), "BarberInformation", new { id = barber.Id }))" class="info-button">Інформація</a>
 
-                        <a href="@Url.Action(ViewData["servicePath"].ToString(), "BarberService", new { id = barber.Id })" class="book-button">Записатись</a>
+                            @* <a href="@Url.Action(ViewData["infoPath"].ToString(), "BarberInformation", new { id = barber.Id })" class="info-button">Інформація</a> *@
+
+                            <a href="@Url.Action(ViewData["servicePath"].ToString(), "BarberService", new { id = barber.Id })" class="book-button">Записатись</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         }
     </div>
 

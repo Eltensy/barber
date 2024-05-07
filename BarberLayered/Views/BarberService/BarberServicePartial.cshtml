@@ -90,35 +90,40 @@
         </div>
 
         <h1>Послуги</h1>
-
-        <table>
-            <tr>
-                <th>Назва</th>
-                <th>Опис</th>
-                <th>Тривалість</th>
-                <th>Ціна (₴)</th>
-                <th></th>
-            </tr>
-            @foreach (var service in services)
+        @if (!services.Any())
             {
-                <tr>
-                    <td>@service.Title</td>
-                    <td>@service.Description</td>
-                    @* <td>@service.Duration.Minute</td> *@
-                    @* <td>@service.Duration.Hour год @service.Duration.Minute хв @service.Duration.Second сек</td> *@
-                    <td>
-                        @{
-                            var durationString = $"{(service.Duration.Hour > 0 ? service.Duration.Hour + " год " : "")}{(service.Duration.Minute > 0 ? service.Duration.Minute + " хв " : "")}{(service.Duration.Second > 0 ? service.Duration.Second + " сек" : "")}";
-                            @durationString
-                        }
-                    </td>
-                    <td>@service.Price</td>
-                    @* <td><a href="#" class="service-button">Записатись</a></td> *@
-                    @* <td><a href="@Url.Action(ViewData["Path"].ToString(), "ServiceAppointment", new { barberId = barber.Id, serviceId = service.Id })" class="service-button">Записатись</a></td> *@
-                    <td><a href="#" class="service-button">Записатись</a></td>
-                </tr>
+                <h2 style="text-align: center; color: forestgreen; margin-top: 100px;">Ще немає доступних послуг</h2>
             }
-        </table>
+        else
+            {
+            <table>
+                <tr>
+                    <th>Назва</th>
+                    <th>Опис</th>
+                    <th>Тривалість</th>
+                    <th style="white-space: nowrap;">Ціна (₴)</th>
+                    <th></th>
+                </tr>
+                @foreach (var service in services)
+                {
+                    <tr>
+                        <td>@service.Title</td>
+                        <td>@service.Description</td>
+                        <td>
+                            @{
+                                var durationString = $"{(service.Duration.Hour > 0 ? service.Duration.Hour + " год " : "")}{(service.Duration.Minute > 0 ? service.Duration.Minute + " хв " : "")}{(service.Duration.Second > 0 ? service.Duration.Second + " сек" : "")}";
+                                @durationString
+                            }
+                        </td>
+                        <td>@service.Price</td>
+                        @* <td><a href="#" class="service-button">Записатись</a></td> *@
+                        @* <td><a href="@Url.Action(ViewData["Path"].ToString(), "ServiceAppointment", new { barberId = barber.Id, serviceId = service.Id })" class="service-button">Записатись</a></td> *@
+                        <td><a href="/ServiceAppointment/ServiceAppointment" class="service-button">Записатись</a></td>
+
+                    </tr>
+                }
+            </table>
+            }
     </div>
 
     <!-- Кнопка назад -->
