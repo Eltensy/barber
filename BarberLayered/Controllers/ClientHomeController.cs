@@ -1,4 +1,4 @@
-﻿using BarberLayered.Models;
+using BarberLayered.Models;
 using BusinessLogicLayer.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,4 +38,3 @@ namespace BarberLayered.Controllers
         }
     }
 }
-
