@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity.UI.Services;
 using BarberLayered.Filters;
 using BusinessLogicLayer.Services.Implementations;
 using BusinessLogicLayer.Services.Interfaces;
@@ -10,6 +11,7 @@ using Serilog;
 using DataAccessLayer.Data;
 using Microsoft.AspNetCore.Identity;
 using DataAccessLayer.Entities;
+using BusinessLogicLayer.Services;
 
 IConfigurationRoot configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
@@ -69,9 +71,10 @@ builder.Services.AddDbContext<DataAccessLayer.Data.DataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("BarberBook_Connection"), x => x.MigrationsAssembly("DataAccessLayer"));
 });
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false).AddRoles<IdentityRole>().AddEntityFrameworkStores<DataContext>();
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>().AddEntityFrameworkStores<DataContext>();
 
 builder.Services.AddTransient<IEmailSenderService, EmailSenderService>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
