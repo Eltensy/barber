@@ -8,50 +8,70 @@ namespace DataAccessLayer.Repositories.Implementations
     public class AdminRepository : IAdminRepository
     {
         private readonly DataContext _context;
+        private ApplicationUsersHelper _applicationUsersHelper;
 
-        public AdminRepository(DataContext context)
+        public AdminRepository(DataContext context, ApplicationUsersHelper applicationUsersHelper)
         {
             _context = context;
+            _applicationUsersHelper = applicationUsersHelper;
         }
 
         public async Task<IEnumerable<Admin>> GetAdmins()
         {
-            return await _context.Admins.ToListAsync();
+            List<Admin> admins = new List<Admin>();
+
+            var adminRoles = _applicationUsersHelper.GetRolesToUsers("Admin");
+            foreach (var adminRole in adminRoles)
+            {
+                admins.Add(new Admin(adminRole));
+            }
+
+            return admins.ToList();
         }
 
-        public async Task<Admin?> GetAdminByID(int adminId)
+        public async Task<Admin?> GetAdminByID(string adminId)
         {
-            return await _context.Admins.FindAsync(adminId);
+            var appUser = await _context.ApplicationUsers.FindAsync(adminId);
+            if (appUser == null)
+            {
+                return null;
+            }
+            return new Admin(appUser);
         }
 
-        public async Task InsertAdmin(Admin admin)
-        {
-            await _context.Admins.AddAsync(admin);
-            await Save();
-        }
+        //public async Task InsertAdmin(Admin admin)
+        //{
+        //    await _context.Admins.AddAsync(admin);
+        //    await Save();
+        //}
 
-        public async Task DeleteAdmin(int adminId)
-        {
-            Admin? admin = await _context.Admins.FindAsync(adminId);
-            if (null != admin) _context.Admins.Remove(admin);
-            await Save();
-        }
+        //public async Task DeleteAdmin(int adminId)
+        //{
+        //    Admin? admin = await _context.Admins.FindAsync(adminId);
+        //    if (null != admin) _context.Admins.Remove(admin);
+        //    await Save();
+        //}
 
-        public async Task UpdateAdmin(Admin admin)
-        {
-            _context.Entry(admin).State = EntityState.Modified;
-            await Save();
-        }
+        //public async Task UpdateAdmin(Admin admin)
+        //{
+        //    _context.Entry(admin).State = EntityState.Modified;
+        //    await Save();
+        //}
 
         public async Task<Admin?> GetAdminByEmail(string email)
         {
-            Admin? admin = await _context.Admins.SingleOrDefaultAsync(x => x.Email.Equals(email));
-            return admin;
+            ApplicationUser? appUser = await _context.ApplicationUsers.SingleOrDefaultAsync(x => x.Email.Equals(email));
+            if (appUser == null)
+            {
+                return null;
+            }
+
+            return new Admin(appUser);
         }
 
-        public async Task Save()
-        {
-            await _context.SaveChangesAsync();
-        }
+        //public async Task Save()
+        //{
+        //    await _context.SaveChangesAsync();
+        //}
     }
 }
