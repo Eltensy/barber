@@ -2,7 +2,7 @@
 {
     public class Barber
     {
-        public int Id { get; set; }
+        public required string Id { get; set; }
         public required string Name { get; set; }
         public required string Surname { get; set; }
         public required string Phone { get; set; }
@@ -11,5 +11,23 @@
         public string? PhotoUri { get; set; }
         public string? Description { get; set; }
         public string? PortfolioUri { get; set; }
+
+        public Barber ApplicationUserToBarber(ApplicationUser applicationUser)
+        {
+            Barber barber = new Barber()
+            {
+                Id = applicationUser.Id,
+                Name = applicationUser.UserName ?? "",
+                Surname = "",
+                Phone = applicationUser.PhoneNumber ?? "",
+                Email = applicationUser.Email ?? "",
+                PasswordHash = applicationUser.PasswordHash ?? "",
+                PhotoUri = applicationUser.PhotoUri,
+                Description = applicationUser.Description,
+                PortfolioUri = applicationUser.PortfolioUri
+            };
+
+            return barber;
+        }
     }
 }

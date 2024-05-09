@@ -11,16 +11,16 @@ namespace BarberLayered.Controllers
     public class AccountController : Controller
     {
         private readonly ILoginService _loginService;
-        private readonly IRegisterService _registerService;
+        // private readonly IRegisterService _registerService;
         private readonly IEmailSenderService _emailSender;
         private readonly IChangePasswordService _changePasswordService;
         private readonly IHttpContextAccessor _httpContextAccessor;       
 
-        public AccountController(ILoginService loginService, IRegisterService registerService,
+        public AccountController(ILoginService loginService, //IRegisterService registerService,
             IHttpContextAccessor httpContextAccessor, IChangePasswordService changePasswordService, IEmailSenderService emailSender)
         {
             _loginService = loginService;
-            _registerService = registerService;
+            //_registerService = registerService;
             _httpContextAccessor = httpContextAccessor;
             _changePasswordService = changePasswordService;
             _emailSender = emailSender;
