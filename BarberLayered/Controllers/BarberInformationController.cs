@@ -2,6 +2,8 @@
 using BusinessLogicLayer.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
+using BusinessLogicLayer.DTOs;
+using System.Net;
 
 namespace BarberLayered.Controllers
 {
@@ -82,5 +84,30 @@ namespace BarberLayered.Controllers
 
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> AddReview(int barberId, string reviewerName, string comment, int rating,int clientId)
+        {
+            if (string.IsNullOrWhiteSpace(comment))
+            {
+               
+                TempData["ErrorMessage"] = "Error: Your review is empty ";
+                return RedirectToAction("BarberInformationClient", new { id = barberId });
+            }
+
+            var reviewDto = new ReviewDto
+            {
+                fk_BarberId = barberId,
+                fk_ClientId = clientId,
+                Text = comment,
+                Rating = rating, 
+                Date = DateTime.UtcNow
+            };
+
+            await _reviewService.InsertReview(reviewDto);
+
+            return RedirectToAction("BarberInformationClient", new { id = barberId });
+        }
+
+
     }
 }

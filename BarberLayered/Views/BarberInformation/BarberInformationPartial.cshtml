@@ -18,6 +18,49 @@
             margin: 0;
             padding: 0;
         }
+         .addReview-button {
+                    background-color: #905B22;
+                    color: #fff;
+                    border: none;
+                    padding: 8px 15px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+                    text-decoration: none;
+                }
+        
+                .addReview-button:hover {
+                    background-color: #684116;
+                }
+                #addReviewForm {
+                            margin-top: 20px;
+                            background-color: #f9f9f9;
+                            padding: 20px;
+                            border-radius: 10px;
+                            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                        }
+                
+                        #addReviewForm label {
+                            display: block;
+                            margin-bottom: 5px;
+                            font-weight: bold;
+                        }
+                
+                        #addReviewForm input[type="text"],
+                        #addReviewForm textarea,
+                        #addReviewForm input[type="number"],
+                        #addReviewForm input[type="submit"] {
+                            width: 100%;
+                            padding: 8px;
+                            margin-bottom: 10px;
+                            border-radius: 5px;
+                            border: 1px solid #ccc;
+                            box-sizing: border-box;
+                        }
+                
+                        #addReviewForm textarea {
+                            height: 100px;
+                        }
 
         .container {
             max-width: 1200px;
@@ -134,6 +177,35 @@
             }
         </div>
     </div>
+   <div class="container">
+       <!-- Кнопка "Додати відгук" -->
+       <button id="showReviewFormButton"class="addReview-button">Додати відгук</button>
+   
+       <!-- Форма для додавання відгука (початково прихована) -->
+       <form id="addReviewForm" action="@Url.Action("AddReview", "BarberInformation", new { barberId = ViewBag.Barber.Id })" method="post" style="display: none;">
+          <!--<label for="reviewerName">Автор:</label><br>
+           <input type="text" id="reviewerName" name="reviewerName"><br>*/-->
+           <label for="comment">Відгук:</label><br>
+           <textarea id="comment" name="comment"></textarea><br>
+           <label for="rating">Оцінка:</label><br>
+           <input type="number" id="rating" name="rating" min="1" max="5"><br>
+           <input type="submit" value="Додати відгук"class="addReview-button">
+       </form>
+   </div>
+   
+   <script>
+       
+       var showReviewFormButton = document.getElementById("showReviewFormButton");
+       var addReviewForm = document.getElementById("addReviewForm");
+   
+       
+       showReviewFormButton.addEventListener("click", function() {
+           // Показуємо форму при натисканні на кнопку
+           addReviewForm.style.display = "block";
+        
+           showReviewFormButton.style.display = "none";
+       });
+   </script>
 
     <!-- Кнопка назад -->
     <button class="back-button" onclick="goBack()">&#10094;</button>
