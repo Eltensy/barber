@@ -182,7 +182,7 @@
                 <a href="@Url.Action("BarberAppointmentsHistory", "BarberAppointments", new { barberId = ViewBag.Barber.Id })" class="service-button">Історія записів</a>
                 <a href="@Url.Action("BarberSchedule", "BarberSchedule", new { barberId = ViewBag.Barber.Id })" class="service-button">Мій розклад</a>
                 <a href="@Url.Action("BarberReviews", "BarberReviews", new { barberId = ViewBag.Barber.Id })" class="service-button">Відгуки про мене</a>
-                <a href="/BarberHome/EditProfile">Налаштування акаунта</a>
+                <a href="@Url.Action("EditProfile", "BarberHome", new { barberId = ViewBag.Barber.Id })" class="service-button">Налаштування акаунта</a>
                 <a href="#" onclick="showConfirmationModal()">Вихід</a>
             </div>
         </div>
@@ -197,6 +197,7 @@
         <div class="confirmation-box">
             <h2 style="text-align: center;">Підтвердіть вихід</h2>
             <p>Ви впевнені, що хочете вийти з облікового запису?</p>
+            @* <button asp-controller="Account" asp-action="Logout" style="float: left; margin-left: 50px; padding: 10px 30px;">Так</button> *@
             <button onclick="logout()" style="float: left; margin-left: 50px; padding: 10px 30px;">Так</button>
             <button onclick="hideConfirmationModal()" style="float: right; margin-right: 50px; padding: 10px 30px;">Ні</button>
         </div>

@@ -9,12 +9,14 @@ namespace BarberLayered.Controllers
     public class BarberHomeController : Controller
     {
         private readonly IBarberHomeService _barberHomeService;
+        private readonly IBarberService _barberService;
         private Models.Barber? _barber;
         private readonly List<Models.Visit> _visits;
 
-        public BarberHomeController(IBarberHomeService barberHomeService)
+        public BarberHomeController(IBarberHomeService barberHomeService, IBarberService barberService)
         {
             _barberHomeService = barberHomeService;
+            _barberService = barberService;
             _barber = null;
             _visits = new List<Visit>();
         }
@@ -42,25 +44,57 @@ namespace BarberLayered.Controllers
             return View(_barber);
         }
 
-        public IActionResult EditProfile(Barber barber)
+        public async Task<IActionResult> EditProfile(int barberId)
         {
-            _barber = barber;
+            var barber = await _barberService.GetBarberById(barberId);
+
+            if (barber == null)
+            {
+                Log.Error("No info about Barber with id={Id} was found in the DataBase", barberId);
+            }
+            else
+            {
+                _barber = new Barber(barber);
+            }
+
             ViewBag.Barber = _barber;
             return View(_barber);
         }
 
-        //[HttpPost]
-        //public IActionResult EditProfile(Barber barber)
-        //{
-        //    _barber.Name = barber.Name;
-        //    _barber.Surname = barber.Surname;
-        //    _barber.Phone = barber.Phone;
-        //    _barber.Email = barber.Email;
-        //    _barber.Description = barber.Description;
-        //    _barber.PhotoUri = barber.PhotoUri;
-        //    _barber.PortfolioUri = barber.PortfolioUri;
+        [HttpPost]
+        public async Task<IActionResult> UpdateBarber(Barber barber)
+        {
+            if (ModelState.IsValid)
+            {
+                BarberDto barberDto = new BarberDto()
+                {
+                    Id = barber.Id,
+                    Name = barber.Name,
+                    Surname = barber.Surname,
+                    Phone = barber.Phone,
+                    Email = barber.Email,
+                };
 
-        //    return Redirect("/BarberHome/Index");
-        //}
+                try
+                {
+                    // Update the barber
+                    await _barberService.UpdateBarber(barberDto);
+
+                    TempData["SuccessMessage"] = "Your data has been successfully updated!";
+                }
+                catch (Exception ex)
+                {
+                    // Handling errors during data update
+                    TempData["ErrorMessage"] = "Incorrectly entered data";
+                }
+            }
+            else
+            {
+                //TempData["ErrorMessage"] = "Incorrectly entered data";
+            }
+
+            return RedirectToAction("EditProfile", new { barberId = barber.Id });
+        }
+
     }
 }

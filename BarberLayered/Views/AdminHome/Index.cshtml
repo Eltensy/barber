@@ -232,8 +232,8 @@
             <li><a href="#" class="active" onclick="changeTab(event)">BarberBook Інформація</a></li>
             <li><a href="#" onclick="changeTab(event)">Усі барбери</a></li>
             <li><a href="#" onclick="changeTab(event)">Користувачі</a></li>
-            <li><a href="/AdminHome/AddBarber" ">Додати барбера</a></li>
-            <li><a href="/AdminHome/AdminAccount" onclick="changeTab(event)">Акаунт</a></li>
+            <li><a href="/AdminHome/AddBarber">Додати барбера</a></li>
+            <li><a href="@Url.Action("AdminAccount", "AdminHome", new { AdminId = ViewBag.Admin.Id })" onclick="changeTab(event)">Акаунт</a></li>
         </ul>
     </div>
 
@@ -285,8 +285,17 @@
         if (errorMessage !== 'null' && errorMessage !== '') {
             Swal.fire({
                 icon: 'error',
-                title: 'Oops...',
+                title: 'Упс...',
                 text: errorMessage
+            });
+        }
+
+        var successMessage = '@TempData["SuccessMessage"]';
+        if (successMessage !== 'null' && successMessage !== '') {
+            Swal.fire({
+                icon: 'success',
+                title: 'Успішно!',
+                text: successMessage
             });
         }
     </script>
