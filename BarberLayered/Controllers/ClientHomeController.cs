@@ -1,4 +1,4 @@
-﻿using BarberLayered.Models;
+using BarberLayered.Models;
 using BusinessLogicLayer.DTOs;
 using BusinessLogicLayer.Services.Implementations;
 using BusinessLogicLayer.Services.Interfaces;
