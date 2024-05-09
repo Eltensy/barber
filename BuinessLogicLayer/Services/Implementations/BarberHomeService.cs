@@ -1,12 +1,6 @@
 ﻿using BusinessLogicLayer.DTOs;
 using BusinessLogicLayer.Services.Interfaces;
-using DataAccessLayer.Entities;
 using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Services.Implementations
 {
@@ -25,7 +19,7 @@ namespace BusinessLogicLayer.Services.Implementations
             _guestService = guestService;
             _clientService = clientService;
         }
-        public async Task<List<VisitExtDto>> GetVisitsByBarberId(int fk_BarberId)
+        public async Task<List<VisitExtDto>> GetVisitsByBarberId(string fk_BarberId)
         {
             var visits = await _visitService.GetVisitsByBarberId(fk_BarberId);
             List<VisitExtDto> _visits = new List<VisitExtDto>();

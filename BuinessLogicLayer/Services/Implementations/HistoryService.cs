@@ -17,15 +17,15 @@ namespace BusinessLogicLayer.Services.Implementations
         {
             var histories = await _historyRepository.GetHistorys();
             var historiesDtos = from history in histories
-                                select new HistoryDto()
-                                {
-                                    Id = history.Id,
-                                    ClientPhone = history.ClientPhone,
-                                    BarberPhone = history.BarberPhone,
-                                    Service = history.Service,
-                                    Date = history.Date,
-                                    Time = history.Time
-                                };
+                                select new HistoryDto(history);
+                                //{
+                                //    Id = history.Id,
+                                //    ClientPhone = history.ClientPhone,
+                                //    BarberPhone = history.BarberPhone,
+                                //    Service = history.Service,
+                                //    Date = history.Date,
+                                //    Time = history.Time
+                                //};
 
             return historiesDtos.ToList();
         }
@@ -36,31 +36,31 @@ namespace BusinessLogicLayer.Services.Implementations
             HistoryDto? historyDto = null;
             if (history != null)
             {
-                historyDto = new HistoryDto()
-                {
-                    Id = history.Id,
-                    ClientPhone = history.ClientPhone,
-                    BarberPhone = history.BarberPhone,
-                    Service = history.Service,
-                    Date = history.Date,
-                    Time = history.Time
-                };
+                historyDto = new HistoryDto(history);
+                //{
+                //    Id = history.Id,
+                //    ClientPhone = history.ClientPhone,
+                //    BarberPhone = history.BarberPhone,
+                //    Service = history.Service,
+                //    Date = history.Date,
+                //    Time = history.Time
+                //};
             }
             return historyDto;
         }
 
         public async Task InsertHistory(HistoryDto historyDto)
         {
-            History history = new History()
-            {
-                Id = historyDto.Id,
-                ClientPhone = historyDto.ClientPhone,
-                BarberPhone = historyDto.BarberPhone,
-                Service = historyDto.Service,
-                Date = historyDto.Date,
-                Time = historyDto.Time
-            };
-
+            //History history = new History()
+            //{
+            //    Id = historyDto.Id,
+            //    ClientPhone = historyDto.ClientPhone,
+            //    BarberPhone = historyDto.BarberPhone,
+            //    Service = historyDto.Service,
+            //    Date = historyDto.Date,
+            //    Time = historyDto.Time
+            //};
+            History history = historyDto.ToEntity();
             await _historyRepository.InsertHistory(history);
         }
 
@@ -71,15 +71,16 @@ namespace BusinessLogicLayer.Services.Implementations
 
         public async Task UpdateHistory(HistoryDto historyDto)
         {
-            History history = new History()
-            {
-                Id = historyDto.Id,
-                ClientPhone = historyDto.ClientPhone,
-                BarberPhone = historyDto.BarberPhone,
-                Service = historyDto.Service,
-                Date = historyDto.Date,
-                Time = historyDto.Time
-            };
+            //History history = new History()
+            //{
+            //    Id = historyDto.Id,
+            //    ClientPhone = historyDto.ClientPhone,
+            //    BarberPhone = historyDto.BarberPhone,
+            //    Service = historyDto.Service,
+            //    Date = historyDto.Date,
+            //    Time = historyDto.Time
+            //};
+            History history = historyDto.ToEntity();
             await _historyRepository.UpdateHistory(history);
         }
     }

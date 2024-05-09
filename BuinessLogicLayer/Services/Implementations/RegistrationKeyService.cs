@@ -25,12 +25,12 @@ namespace BusinessLogicLayer.Services.Implementations
             RegistrationKeyDto? registrationKeyDto = null;
             if (null != registrationKey)
             {
-                registrationKeyDto = new RegistrationKeyDto()
-                {
-                    Id = registrationKey.Id,
-                    Key = registrationKey.Key,
-                    Timestamp = registrationKey.Timestamp,
-                };
+                registrationKeyDto = new RegistrationKeyDto(registrationKey);
+                //{
+                //    Id = registrationKey.Id,
+                //    Key = registrationKey.Key,
+                //    Timestamp = registrationKey.Timestamp,
+                //};
             }
             return registrationKeyDto;
         }
@@ -42,12 +42,12 @@ namespace BusinessLogicLayer.Services.Implementations
             RegistrationKeyDto? registrationKeyDto = null;
             if (null != registrationKey)
             {
-                registrationKeyDto = new RegistrationKeyDto()
-                {
-                    Id = registrationKey.Id,
-                    Key = registrationKey.Key,
-                    Timestamp = registrationKey.Timestamp,
-                };
+                registrationKeyDto = new RegistrationKeyDto(registrationKey);
+                //{
+                //    Id = registrationKey.Id,
+                //    Key = registrationKey.Key,
+                //    Timestamp = registrationKey.Timestamp,
+                //};
             }
             return registrationKeyDto;
         }
@@ -56,35 +56,36 @@ namespace BusinessLogicLayer.Services.Implementations
         {
             var registrationKeys = await _registrationKeyRepository.GetRegistrationKeys();
             var registrationKeyDtos = from registrationKey in registrationKeys
-                                      select new RegistrationKeyDto()
-                                      {
-                                          Id = registrationKey.Id,
-                                          Key = registrationKey.Key,
-                                          Timestamp = registrationKey.Timestamp,
-                                      };
+                                      select new RegistrationKeyDto(registrationKey);
+                                      //{
+                                      //    Id = registrationKey.Id,
+                                      //    Key = registrationKey.Key,
+                                      //    Timestamp = registrationKey.Timestamp,
+                                      //};
             return registrationKeyDtos.ToList();
         }
 
         public async Task InsertRegistrationKey(RegistrationKeyDto registrationKeyDto)
         {
-            RegistrationKey registrationKey = new RegistrationKey()
-            {
-                Id = registrationKeyDto.Id,
-                Key = registrationKeyDto.Key,
-                Timestamp = registrationKeyDto.Timestamp,
-            };
+            //RegistrationKey registrationKey = new RegistrationKey()
+            //{
+            //    Id = registrationKeyDto.Id,
+            //    Key = registrationKeyDto.Key,
+            //    Timestamp = registrationKeyDto.Timestamp,
+            //};
+            RegistrationKey registrationKey = registrationKeyDto.ToEntity();
             await _registrationKeyRepository.InsertRegistrationKey(registrationKey);
         }
 
         public async Task UpdateRegistrationKey(RegistrationKeyDto registrationKeyDto)
         {
-            RegistrationKey registrationKey = new RegistrationKey()
-            {
-                Id = registrationKeyDto.Id,
-                Key = registrationKeyDto.Key,
-                Timestamp = registrationKeyDto.Timestamp,
-            };
-
+            //RegistrationKey registrationKey = new RegistrationKey()
+            //{
+            //    Id = registrationKeyDto.Id,
+            //    Key = registrationKeyDto.Key,
+            //    Timestamp = registrationKeyDto.Timestamp,
+            //};
+            RegistrationKey registrationKey = registrationKeyDto.ToEntity();
             await _registrationKeyRepository.UpdateRegistrationKey(registrationKey);
         }
     }

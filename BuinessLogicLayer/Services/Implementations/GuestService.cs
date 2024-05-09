@@ -17,13 +17,13 @@ namespace BusinessLogicLayer.Services.Implementations
         {
             var guests = await _guestRepository.GetGuests();
             var guestsDtos = from guest in guests
-                             select new GuestDto()
-                             {
-                                 Id = guest.Id,
-                                 Name = guest.Name,
-                                 Surname = guest.Surname,
-                                 Phone = guest.Phone
-                             };
+                             select new GuestDto(guest);
+                             //{
+                             //    Id = guest.Id,
+                             //    Name = guest.Name,
+                             //    Surname = guest.Surname,
+                             //    Phone = guest.Phone
+                             //};
             return guestsDtos.ToList();
         }
         public async Task<GuestDto?> GetGuestById(int guestId)
@@ -32,25 +32,26 @@ namespace BusinessLogicLayer.Services.Implementations
             GuestDto? guestDto = null;
             if (guest != null)
             {
-                guestDto = new GuestDto()
-                {
-                    Id = guest.Id,
-                    Name = guest.Name,
-                    Surname = guest.Surname,
-                    Phone = guest.Phone
-                };
+                guestDto = new GuestDto(guest);
+                //{
+                //    Id = guest.Id,
+                //    Name = guest.Name,
+                //    Surname = guest.Surname,
+                //    Phone = guest.Phone
+                //};
             }
             return guestDto;
         }
         public async Task InsertGuest(GuestDto guestDto)
         {
-            Guest guest = new Guest()
-            {
-                Id = guestDto.Id,
-                Name = guestDto.Name,
-                Surname = guestDto.Surname,
-                Phone = guestDto.Phone
-            };
+            //Guest guest = new Guest()
+            //{
+            //    Id = guestDto.Id,
+            //    Name = guestDto.Name,
+            //    Surname = guestDto.Surname,
+            //    Phone = guestDto.Phone
+            //};
+            Guest guest = guestDto.ToEntity();
             await _guestRepository.InsertGuest(guest);
         }
         public async Task DeleteGuest(int guestId)
@@ -59,14 +60,14 @@ namespace BusinessLogicLayer.Services.Implementations
         }
         public async Task UpdateGuest(GuestDto guestDto)
         {
-            Guest guest = new Guest()
-            {
-                Id = guestDto.Id,
-                Name = guestDto.Name,
-                Surname = guestDto.Surname,
-                Phone = guestDto.Phone
-            };
-
+            //Guest guest = new Guest()
+            //{
+            //    Id = guestDto.Id,
+            //    Name = guestDto.Name,
+            //    Surname = guestDto.Surname,
+            //    Phone = guestDto.Phone
+            //};
+            Guest guest = guestDto.ToEntity();
             await _guestRepository.UpdateGuest(guest);
         }
     }
