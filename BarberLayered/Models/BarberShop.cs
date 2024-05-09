@@ -12,6 +12,8 @@ namespace BarberLayered.Models
         public string? Description { get; set; }
         public string? PhotoUri { get; set; }
 
+        public BarberShop() { }
+
         public BarberShop(BarberShopDto barberShopDto)
         {
             Id = barberShopDto.Id;

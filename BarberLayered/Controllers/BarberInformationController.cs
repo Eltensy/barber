@@ -9,18 +9,18 @@ namespace BarberLayered.Controllers
     {
         private readonly IBarberService _barberService;
         private readonly IReviewService _reviewService;
-        private List<BarberLayered.Models.Review> _reviews;
-        private Models.Barber? _barber;
+        private List<Review> _reviews;
+        private Barber? _barber;
 
         public BarberInformationController(IBarberService barberService, IReviewService reviewService)
         {
             _barberService = barberService;
             _reviewService = reviewService;
             _barber = null;
-            _reviews = new List<Models.Review>();
+            _reviews = new List<Review>();
         }
 
-        public async Task<IActionResult> Index(int id)
+        public async Task<IActionResult> Index(string id)
         {
             var barber = await _barberService.GetBarberById(id);
             if (barber == null)
@@ -51,7 +51,7 @@ namespace BarberLayered.Controllers
             return View();
         }
 
-        public async Task<IActionResult> BarberInformationClient(int id, int clientId)
+        public async Task<IActionResult> BarberInformationClient(string id, int clientId)
         {
 
             var barber = await _barberService.GetBarberById(id);

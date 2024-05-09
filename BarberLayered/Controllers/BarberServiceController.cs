@@ -8,8 +8,8 @@ namespace BarberLayered.Controllers
 {
     public class BarberServiceController : Controller
     {
-        private List<BarberLayered.Models.Service> _services;
-        private BarberLayered.Models.Barber? _barber;
+        private List<Service> _services;
+        private Barber? _barber;
         private readonly IServiceService _serviceService;
         private readonly IBarberService _barberService;
 
@@ -19,9 +19,10 @@ namespace BarberLayered.Controllers
             _serviceService = serviceService;
             _barberService = barberService;
             _barber = null;
+            _services = new List<Service>();
         }
 
-        public async Task<IActionResult> Index(int id)
+        public async Task<IActionResult> Index(string id)
         {
             var barber = await _barberService.GetBarberById(id);
             if (barber == null) 
@@ -40,10 +41,10 @@ namespace BarberLayered.Controllers
             }
             else
             {
-                _services = new List<Models.Service>();
+                _services = new List<Service>();
                 foreach (var service in services)
                 {
-                    _services.Add(new Models.Service(service));
+                    _services.Add(new Service(service));
 
                 }
             }
@@ -58,7 +59,7 @@ namespace BarberLayered.Controllers
             return View();
         }
 
-        public async Task<IActionResult> BarberServiceClient(int id)
+        public async Task<IActionResult> BarberServiceClient(string id)
         {
             var barber = await _barberService.GetBarberById(id);
             if (barber == null)
@@ -77,10 +78,10 @@ namespace BarberLayered.Controllers
             }
             else
             {
-                _services = new List<Models.Service>();
+                _services = new List<Service>();
                 foreach (var service in services)
                 {
-                    _services.Add(new Models.Service(service));
+                    _services.Add(new Service(service));
 
                 }
             }
@@ -95,7 +96,7 @@ namespace BarberLayered.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Add(int id)
+        public async Task<IActionResult> Add(string id)
         {
             var barber = await _barberService.GetBarberById(id);
             if (barber == null)
@@ -113,10 +114,10 @@ namespace BarberLayered.Controllers
             }
             else
             {
-                _services = new List<Models.Service>();
+                _services = new List<Service>();
                 foreach (var service in services)
                 {
-                    _services.Add(new Models.Service(service));
+                    _services.Add(new Service(service));
                     
                 }
             }
@@ -128,7 +129,7 @@ namespace BarberLayered.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetServices(int id)
+        public async Task<IActionResult> GetServices(string id)
         {
 
             var services = await _serviceService.GetServicesByBarberId(id);
@@ -138,10 +139,10 @@ namespace BarberLayered.Controllers
             }
             else
             {
-                _services = new List<Models.Service>();
+                _services = new List<Service>();
                 foreach (var service in services)
                 {
-                    _services.Add(new Models.Service(service));
+                    _services.Add(new Service(service));
                 }
             }
             var barberServices = _services;
