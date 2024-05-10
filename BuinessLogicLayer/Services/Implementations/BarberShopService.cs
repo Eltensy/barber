@@ -27,18 +27,6 @@ namespace BusinessLogicLayer.Services.Implementations
             if (null != barbershop)
             {
                 barbershopDto = new BarberShopDto(barbershop);
-                //{
-                //    Id = barbershop.Id,
-                //    Name = barbershop.Name,
-                //    Address = barbershop.Address,
-                //    Phone = barbershop.Phone,
-                //    PhoneSecond = barbershop.PhoneSecond,
-                //    Description = barbershop.Description,
-                //    PhotoUri = barbershop.PhotoUri,
-                //    SocialUri = barbershop.SocialUri,
-                //    SocialUriSecond = barbershop.SocialUriSecond,
-                //    SocialUriThird = barbershop.SocialUriThird,
-                //};
             }
             return barbershopDto;
         }
@@ -49,23 +37,11 @@ namespace BusinessLogicLayer.Services.Implementations
             var barbershop = await _barbershopRepository.GetBarberShopFirst();
             if (barbershop == null) // No info about BarberShop in DB
             {
-                throw new Exception("No info about BarberShop in DB");
+               // Logger log
             }
             else
             {
                 barbershopDto = new BarberShopDto(barbershop);
-                //{
-                //    Id = barbershop.Id,
-                //    Name = barbershop.Name,
-                //    Address = barbershop.Address,
-                //    Phone = barbershop.Phone,
-                //    PhoneSecond = barbershop.PhoneSecond,
-                //    Description = barbershop.Description,
-                //    PhotoUri = barbershop.PhotoUri,
-                //    SocialUri = barbershop.SocialUri,
-                //    SocialUriSecond = barbershop.SocialUriSecond,
-                //    SocialUriThird = barbershop.SocialUriThird,
-                //};
             }
 
             return barbershopDto;
