@@ -6,8 +6,8 @@ namespace BarberLayered.Models
     public class Visit
     {
         public int Id { get; set; }
-        public int? fk_ClientId { get; set; }
-        public int fk_BarberId { get; set; }
+        public string? fk_ClientId { get; set; }
+        public string fk_BarberId { get; set; }
         public int fk_ServiceId { get; set; }
         public string VisitorFullName { get; set; }
         public string ServiceTitle { get; set; }

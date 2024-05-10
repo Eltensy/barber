@@ -8,9 +8,9 @@ namespace DataAccessLayer.Repositories.Implementations
     public class AdminRepository : IAdminRepository
     {
         private readonly DataContext _context;
-        private ApplicationUsersHelper _applicationUsersHelper;
+        private IApplicationUsersHelper _applicationUsersHelper;
 
-        public AdminRepository(DataContext context, ApplicationUsersHelper applicationUsersHelper)
+        public AdminRepository(DataContext context, IApplicationUsersHelper applicationUsersHelper)
         {
             _context = context;
             _applicationUsersHelper = applicationUsersHelper;
@@ -20,7 +20,7 @@ namespace DataAccessLayer.Repositories.Implementations
         {
             List<Admin> admins = new List<Admin>();
 
-            var adminRoles = _applicationUsersHelper.GetRolesToUsers("Admin");
+            var adminRoles = await _applicationUsersHelper.GetRolesToUsers("Admin");
             foreach (var adminRole in adminRoles)
             {
                 admins.Add(new Admin(adminRole));
@@ -60,7 +60,9 @@ namespace DataAccessLayer.Repositories.Implementations
 
         public async Task<Admin?> GetAdminByEmail(string email)
         {
-            ApplicationUser? appUser = await _context.ApplicationUsers.SingleOrDefaultAsync(x => x.Email.Equals(email));
+            //ApplicationUser? appUser = await _context.ApplicationUsers.SingleOrDefaultAsync(x => x.Email.Equals(email));
+            var appUsers = await _applicationUsersHelper.GetRolesToUsers("Admin");
+            ApplicationUser? appUser = appUsers.Where(x => x.Email.Equals(email)).FirstOrDefault();
             if (appUser == null)
             {
                 return null;

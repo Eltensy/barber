@@ -1,10 +1,11 @@
-﻿using BusinessLogicLayer.DTOs;
+﻿using System.Diagnostics.CodeAnalysis;
+using BusinessLogicLayer.DTOs;
 
 namespace BarberLayered.Models
 {
     public class Admin
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Phone { get; set; }
