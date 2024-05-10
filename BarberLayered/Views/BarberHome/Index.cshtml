@@ -8,11 +8,6 @@
     var barber = ViewBag.Barber as BarberLayered.Models.Barber;
     var visits = ViewBag.Visits as List<BarberLayered.Models.Visit>;
 }
-
-@{
-    Layout= null;
-}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,9 +117,6 @@
     </style>
 </head>
 <body>
-
-    @await Html.PartialAsync("~/Views/BarberHome/BarberHomePartial.cshtml", Model)
-
 
 
     <div class="container">

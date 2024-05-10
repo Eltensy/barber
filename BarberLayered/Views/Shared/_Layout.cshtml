@@ -82,7 +82,6 @@
     </style>
 </head>
 <body>
-    @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")
 
     <header>
         <a href="/BarberShop/Index">BarberBook</a>
@@ -91,14 +90,7 @@
         {
             <a href="/Barbers/Index" style="margin: auto;">Наші барбери</a>
         }
-
-        <div class="dropdown">
-            <a href="#" style="margin: auto;">Увійти</a>
-            <div class="dropdown-content">
-                <a href="/Account/Login">Увійти</a>
-                <a href="/Account/Register">Зареєструватись</a>
-            </div>
-        </div>
+        @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")
     </header>
 
     <main role="main" class="pb-3">
