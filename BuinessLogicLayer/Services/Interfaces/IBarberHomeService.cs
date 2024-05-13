@@ -9,6 +9,6 @@ namespace BusinessLogicLayer.Services.Interfaces
 {
     public interface IBarberHomeService
     {
-        public Task<List<VisitExtDto>> GetVisitsByBarberId(int fk_BarberId);
+        public Task<List<VisitExtDto>> GetVisitsByBarberId(string fk_BarberId);
     }
 }

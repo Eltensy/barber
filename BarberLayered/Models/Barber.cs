@@ -1,10 +1,11 @@
 ﻿using BusinessLogicLayer.DTOs;
+using Microsoft.AspNetCore.Identity;
 
 namespace BarberLayered.Models
 {
     public class Barber
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Phone { get; set; }
@@ -13,7 +14,17 @@ namespace BarberLayered.Models
         public string? Description { get; set; }
         public string? PortfolioUri { get; set; } 
 
-        public Barber() { }
+        public Barber() 
+        {
+            Id = "";
+            Name = "";
+            Surname = "";
+            Phone = "";
+            Email = "";
+            PhotoUri = "";
+            Description = "";
+            PortfolioUri = "";
+        }
         public Barber(BarberDto barberDto)
         {
             Id = barberDto.Id;

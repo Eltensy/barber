@@ -6,7 +6,7 @@ namespace BusinessLogicLayer.Services.Interfaces
     {
         Task<List<ServiceDto>> GetServices();
         Task<ServiceDto?> GetServiceByID(int serviceId);
-        Task<List<ServiceDto>> GetServicesByBarberId(int fkBarberId);
+        Task<List<ServiceDto>> GetServicesByBarberId(string fkBarberId);
         Task InsertService(ServiceDto serviceDto);
         Task DeleteService(int serviceId);
         Task UpdateService(ServiceDto serviceDto);

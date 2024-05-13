@@ -4,14 +4,22 @@ namespace BarberLayered.Models
 {
     public class Client
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
 
-        public Client() { }
+        public Client() 
+        {
+            Id = "";
+            Name = "";
+            Surname = "";
+            Phone = "";
+            Email = "";
+            PasswordHash = "";
+        }
         public Client(ClientDto clientDto)
         {
             Id = clientDto.Id;

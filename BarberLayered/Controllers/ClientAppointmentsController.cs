@@ -23,7 +23,7 @@ namespace BarberLayered.Controllers
             _visitService = visitService;
         }
 
-        public async Task<IActionResult> ClientAppointments(int clientId)
+        public async Task<IActionResult> ClientAppointments(string clientId)
         {
             var client = await _clientService.GetClientById(clientId);
             if (client == null)
@@ -53,7 +53,7 @@ namespace BarberLayered.Controllers
 
         }
 
-        public async Task<IActionResult> ClientAppointmentsHistory(int clientId)
+        public async Task<IActionResult> ClientAppointmentsHistory(string clientId)
         {
             var client = await _clientService.GetClientById(clientId);
             if (client == null)
@@ -83,7 +83,7 @@ namespace BarberLayered.Controllers
 
         }
 
-        public async Task<IActionResult> DeleteAppointment(int id, int clientId)
+        public async Task<IActionResult> DeleteAppointment(int id, string clientId)
         {
             //var result = await _visitService.DeleteVisit(id);
             //if (result)
