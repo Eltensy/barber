@@ -52,7 +52,6 @@
 
 using BarberLayered.Models;
 using BusinessLogicLayer.Services.Interfaces;
-using DataAccessLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
@@ -62,18 +61,18 @@ namespace BarberLayered.Controllers
     {
         private readonly IBarberService _barberService;
         private readonly IReviewService _reviewService;
-        private List<BarberLayered.Models.Review> _reviews;
-        private Models.Barber? _barber;
+        private List<Review> _reviews;
+        private Barber? _barber;
 
         public BarberReviewsController(IBarberService barberService, IReviewService reviewService)
         {
             _barberService = barberService;
             _reviewService = reviewService;
             _barber = null;
-            _reviews = new List<Models.Review>();
+            _reviews = new List<Review>();
         }
 
-        public async Task<IActionResult> BarberReviews(int id)
+        public async Task<IActionResult> BarberReviews(string id)
         {
             var barber = await _barberService.GetBarberById(id);
             if (barber == null)
@@ -82,15 +81,15 @@ namespace BarberLayered.Controllers
             }
             else
             {
-                _barber = new BarberLayered.Models.Barber(barber);
+                _barber = new Barber(barber);
             }
 
-            //var reviews = await _reviewService.GetReviewsByBarberId(id);
+            //var reviews = await _reviewService.GetReviews();
+            //var barberReviews = reviews.FindAll(review => review.fk_BarberId == id);
 
-            var reviews = await _reviewService.GetReviews();
-            var barberReviews = reviews.FindAll(review => review.fk_BarberId == id);
+            var barberReviews = await _reviewService.GetReviewsByBarberId(id);
 
-            if (!reviews.Any()) // No reviews logic for the view
+            if (!barberReviews.Any()) // No reviews logic for the view
             {
                 Log.Information("No reviews for the Barber with id={Id} was found in the DataBase", id);
             }
@@ -98,7 +97,7 @@ namespace BarberLayered.Controllers
             {
                 foreach (var review in barberReviews)
                 {
-                    _reviews.Add(new BarberLayered.Models.Review(review));
+                    _reviews.Add(new Review(review));
                 }
             }
 

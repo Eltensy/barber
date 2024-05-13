@@ -1,12 +1,6 @@
 ﻿using BusinessLogicLayer.DTOs;
 using BusinessLogicLayer.Services.Interfaces;
-using DataAccessLayer.Entities;
 using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Services.Implementations
 {
@@ -25,7 +19,7 @@ namespace BusinessLogicLayer.Services.Implementations
             _guestService = guestService;
             _clientService = clientService;
         }
-        public async Task<List<VisitExtDto>> GetVisitsByBarberId(int fk_BarberId)
+        public async Task<List<VisitExtDto>> GetVisitsByBarberId(string fk_BarberId)
         {
             var visits = await _visitService.GetVisitsByBarberId(fk_BarberId);
             List<VisitExtDto> _visits = new List<VisitExtDto>();
@@ -52,20 +46,7 @@ namespace BusinessLogicLayer.Services.Implementations
                         fullname = guest.Name + " " + guest.Surname;
                     }
 
-                    _visits.Add(new VisitExtDto
-                    {
-                        Id = visit.Id,
-                        fk_ClientId = visit.fk_ClientId,
-                        fk_GuestId = visit.fk_GuestId,
-                        fk_BarberId = visit.fk_BarberId,
-                        fk_ServiceId = visit.fk_ServiceId,
-                        Date = visit.Date,
-                        Time = visit.Time,
-                        VisitorFullName = fullname,
-                        ServiceTitle = service.Title,
-                        StartTime = visit.Time,
-                        EndTime = visit.Time.Add(service.Duration.ToTimeSpan())
-                    });
+                    _visits.Add(new VisitExtDto(visit, fullname, service.Title, service.Duration));
 
                 }
             }

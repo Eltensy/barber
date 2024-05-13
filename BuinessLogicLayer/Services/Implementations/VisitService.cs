@@ -18,35 +18,15 @@ namespace BusinessLogicLayer.Services.Implementations
         {
             var visits = await _visitRepository.GetVisits();
             var visitsDtos = from visit in visits
-                             select new VisitDto()
-                             {
-                                 Id = visit.Id,
-                                 fk_ClientId = visit.fk_ClientId,
-                                 fk_GuestId = visit.fk_GuestId,
-                                 fk_BarberId = visit.fk_BarberId,
-                                 fk_ServiceId = visit.fk_ServiceId,
-                                 Date = visit.Date,
-                                 Time = visit.Time
-                             };
-
+                             select new VisitDto(visit);
             return visitsDtos.ToList();
         }
 
-        public async Task<IEnumerable<VisitDto>> GetVisitsByBarberId(int fk_BarberId)
+        public async Task<IEnumerable<VisitDto>> GetVisitsByBarberId(string fk_BarberId)
         {
             var visits = await _visitRepository.GetVisitsByBarberId(fk_BarberId);
             var visitsDtos = from visit in visits
-                             select new VisitDto()
-                             {
-                                 Id = visit.Id,
-                                 fk_ClientId = visit.fk_ClientId,
-                                 fk_GuestId = visit.fk_GuestId,
-                                 fk_BarberId = visit.fk_BarberId,
-                                 fk_ServiceId = visit.fk_ServiceId,
-                                 Date = visit.Date,
-                                 Time = visit.Time
-                             };
-
+                             select new VisitDto(visit);
             return visitsDtos.ToList();
         }
 
@@ -56,33 +36,14 @@ namespace BusinessLogicLayer.Services.Implementations
             VisitDto? visitDto = null;
             if (visit != null)
             {
-                visitDto = new VisitDto()
-                {
-                    Id = visit.Id,
-                    fk_ClientId = visit.fk_ClientId,
-                    fk_GuestId = visit.fk_GuestId,
-                    fk_BarberId = visit.fk_BarberId,
-                    fk_ServiceId = visit.fk_ServiceId,
-                    Date = visit.Date,
-                    Time = visit.Time
-                };
+                visitDto = new VisitDto(visit);
             }
             return visitDto;
         }
 
         public async Task InsertVisit(VisitDto visitDto)
         {
-            Visit visit = new Visit()
-            {
-                Id = visitDto.Id,
-                fk_ClientId = visitDto.fk_ClientId,
-                fk_GuestId = visitDto.fk_GuestId,
-                fk_BarberId = visitDto.fk_BarberId,
-                fk_ServiceId = visitDto.fk_ServiceId,
-                Date = visitDto.Date,
-                Time = visitDto.Time
-            };
-
+            Visit visit = visitDto.ToEntity();
             await _visitRepository.InsertVisit(visit);
         }
 
@@ -93,16 +54,7 @@ namespace BusinessLogicLayer.Services.Implementations
 
         public async Task UpdateVisit(VisitDto visitDto)
         {
-            Visit visit = new Visit()
-            {
-                Id = visitDto.Id,
-                fk_ClientId = visitDto.fk_ClientId,
-                fk_GuestId = visitDto.fk_GuestId,
-                fk_BarberId = visitDto.fk_BarberId,
-                fk_ServiceId = visitDto.fk_ServiceId,
-                Date = visitDto.Date,
-                Time = visitDto.Time
-            };
+            Visit visit = visitDto.ToEntity();
             await _visitRepository.UpdateVisit(visit);
         }
     }
