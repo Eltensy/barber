@@ -2,13 +2,6 @@
 {
     public class Admin
     {
-        //public required string Id { get; set; }
-        //public required string Name { get; set; }
-        //public required string Surname { get; set; }
-        //public required string Phone { get; set; }
-        //public required string Email { get; set; }
-        //public required string PasswordHash { get; set; }
-
         public string Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -18,12 +11,12 @@
 
         public Admin()
         {
-            //Id = "";
-            //Name = "";
-            //Surname = "";
-            //Phone = "";
-            //Email = "";
-            //PasswordHash = "";
+            Id = "";
+            Name = "";
+            Surname = "";
+            Phone = "";
+            Email = "";
+            PasswordHash = "";
         }
 
         public Admin(ApplicationUser? applicationUser)
