@@ -9,7 +9,13 @@ namespace BusinessLogicLayer.DTOs
         public string? Surname { get; set; }
         public string Phone { get; set; }
 
-        public GuestDto() { }
+        public GuestDto() 
+        {
+            Id = 0;
+            Name = "";
+            Surname = "";
+            Phone = "";
+        }
 
         public GuestDto(Guest guest)
         {

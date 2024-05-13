@@ -19,14 +19,6 @@ namespace BusinessLogicLayer.Services.Implementations
             var reviews = await _reviewRepository.GetReviews();
             var reviewsDtos = from review in reviews
                               select new ReviewDto(review);
-                              //{
-                              //    Id = review.Id,
-                              //    fk_ClientId = review.fk_ClientId,
-                              //    fk_BarberId = review.fk_BarberId,
-                              //    Text = review.Text,
-                              //    Rating = review.Rating,
-                              //    Date = review.Date
-                              //};
             return reviewsDtos.ToList();
         }
 
@@ -37,14 +29,6 @@ namespace BusinessLogicLayer.Services.Implementations
             if (review != null)
             {
                 reviewDto = new ReviewDto(review);
-                //{
-                //    Id = review.Id,
-                //    fk_ClientId = review.fk_ClientId,
-                //    fk_BarberId = review.fk_BarberId,
-                //    Text = review.Text,
-                //    Rating = review.Rating,
-                //    Date = review.Date
-                //};
             }
             return reviewDto;
         }
@@ -55,14 +39,6 @@ namespace BusinessLogicLayer.Services.Implementations
             var reviews = await _reviewRepository.GetReviewsByBarberId(fkBarberId);
             var reviewsDtos = from review in reviews
                               select new ReviewDto(review);
-                              //{
-                              //    Id = review.Id,
-                              //    fk_ClientId = review.fk_ClientId,
-                              //    fk_BarberId = review.fk_BarberId,
-                              //    Text = review.Text,
-                              //    Rating = review.Rating,
-                              //    Date = review.Date
-                              //};
             return reviewsDtos.ToList();
         }
 
@@ -77,32 +53,12 @@ namespace BusinessLogicLayer.Services.Implementations
 
         public async Task InsertReview(ReviewDto reviewDto)
         {
-            //Review review = new Review()
-            //{
-            //    Id = reviewDto.Id,
-            //    fk_ClientId = reviewDto.fk_ClientId,
-            //    fk_BarberId = reviewDto.fk_BarberId,
-            //    Text = reviewDto.Text,
-            //    Rating = reviewDto.Rating,
-            //    Date = reviewDto.Date
-            //};
-
             Review review = reviewDto.ToEntity();
             await _reviewRepository.InsertReview(review);
         }
 
         public async Task UpdateReview(ReviewDto reviewDto)
         {
-            //Review review = new Review()
-            //{
-            //    Id = reviewDto.Id,
-            //    fk_ClientId = reviewDto.fk_ClientId,
-            //    fk_BarberId = reviewDto.fk_BarberId,
-            //    Text = reviewDto.Text,
-            //    Rating = reviewDto.Rating,
-            //    Date = reviewDto.Date
-            //};
-
             Review review = reviewDto.ToEntity();
             await _reviewRepository.UpdateReview(review);
         }

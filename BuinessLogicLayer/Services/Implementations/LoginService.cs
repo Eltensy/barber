@@ -39,7 +39,7 @@ namespace BusinessLogicLayer.Services.Implementations
                     userExtDto.ErrorMsg = "Wrong password";
                 }
 
-                goto finish;
+                return userExtDto;
             }
 
             var barber = await _barberService.GetBarberByEmail(email);
@@ -57,7 +57,7 @@ namespace BusinessLogicLayer.Services.Implementations
                     userExtDto.ErrorMsg = "Wrong password";
                 }
 
-                goto finish;
+                return userExtDto;
             }
 
             var admin = await _adminService.GetAdminByEmail(email);
@@ -75,12 +75,11 @@ namespace BusinessLogicLayer.Services.Implementations
                     userExtDto.ErrorMsg = "Wrong password";
                 }
 
-                goto finish;
+                return userExtDto;
             }
 
             userExtDto.ErrorMsg = $"No user with email {email} was found";
 
-            finish:
             return userExtDto;
         }
     }

@@ -6,9 +6,6 @@ namespace BusinessLogicLayer.Services.Interfaces
     {
         Task<List<AdminDto>> GetAdmins();
         Task<AdminDto?> GetAdminById(string adminId);
-        //Task InsertAdmin(AdminDto adminDto);
-        //Task DeleteAdmin(int adminId);
-        //Task UpdateAdmin(AdminDto adminDto);
         Task<AdminDto?> GetAdminByEmail(string email);
     }
 }

@@ -11,7 +11,15 @@ namespace BusinessLogicLayer.DTOs
         public TimeOnly Duration { get; set; }
         public int Price { get; set; }
 
-        public ServiceDto() { }
+        public ServiceDto() 
+        {
+            Id = 0;
+            fk_BarberId = "";
+            Title = "";
+            Description = "";
+            Duration = new TimeOnly();
+            Price = 0;
+        }
 
         public ServiceDto(Service service)
         {

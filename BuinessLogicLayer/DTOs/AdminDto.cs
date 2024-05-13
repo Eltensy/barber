@@ -11,7 +11,15 @@ namespace BusinessLogicLayer.DTOs
         public string Email { get; set; }
         public string PasswordHash { get; set; }
 
-        public AdminDto() { }
+        public AdminDto() 
+        {
+            Id = "";
+            Name = "";
+            Surname = "";
+            Phone = "";
+            Email = "";
+            PasswordHash = "";
+        }
 
         public AdminDto(Admin admin)
         {

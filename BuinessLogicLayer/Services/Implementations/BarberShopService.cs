@@ -52,55 +52,17 @@ namespace BusinessLogicLayer.Services.Implementations
             var barbershops = await _barbershopRepository.GetBarberShops();
             var barbershopsDtos = from barbershop in barbershops
                                   select new BarberShopDto(barbershop);
-                                  //{
-                                  //    Id = barbershop.Id,
-                                  //    Name = barbershop.Name,
-                                  //    Address = barbershop.Address,
-                                  //    Phone = barbershop.Phone,
-                                  //    PhoneSecond = barbershop.PhoneSecond,
-                                  //    Description = barbershop.Description,
-                                  //    PhotoUri = barbershop.PhotoUri,
-                                  //    SocialUri = barbershop.SocialUri,
-                                  //    SocialUriSecond = barbershop.SocialUriSecond,
-                                  //    SocialUriThird = barbershop.SocialUriThird,
-                                  //};
             return barbershopsDtos.ToList();
         }
 
         public async Task InsertBarberShop(BarberShopDto barbershopDto)
         {
-            //BarberShop barbershop = new BarberShop()
-            //{
-            //    Id = barbershopDto.Id,
-            //    Name = barbershopDto.Name,
-            //    Address = barbershopDto.Address,
-            //    Phone = barbershopDto.Phone,
-            //    PhoneSecond = barbershopDto.PhoneSecond,
-            //    Description = barbershopDto.Description,
-            //    PhotoUri = barbershopDto.PhotoUri,
-            //    SocialUri = barbershopDto.SocialUri,
-            //    SocialUriSecond = barbershopDto.SocialUriSecond,
-            //    SocialUriThird = barbershopDto.SocialUriThird,
-            //};
             BarberShop barbershop = barbershopDto.ToEntity();
             await _barbershopRepository.InsertBarberShop(barbershop);
         }
 
         public async Task UpdateBarberShop(BarberShopDto barbershopDto)
         {
-            //BarberShop barbershop = new BarberShop()
-            //{
-            //    Id = barbershopDto.Id,
-            //    Name = barbershopDto.Name,
-            //    Address = barbershopDto.Address,
-            //    Phone = barbershopDto.Phone,
-            //    PhoneSecond = barbershopDto.PhoneSecond,
-            //    Description = barbershopDto.Description,
-            //    PhotoUri = barbershopDto.PhotoUri,
-            //    SocialUri = barbershopDto.SocialUri,
-            //    SocialUriSecond = barbershopDto.SocialUriSecond,
-            //    SocialUriThird = barbershopDto.SocialUriThird,
-            //};
             BarberShop barbershop = barbershopDto.ToEntity();
             await _barbershopRepository.UpdateBarberShop(barbershop);
         }

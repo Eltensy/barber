@@ -21,7 +21,14 @@ namespace BusinessLogicLayer.DTOs
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
 
-        public ScheduleDto() { }
+        public ScheduleDto() 
+        {
+            Id = 0;
+            fk_BarberId = "";
+            DayOfWeek = Enum_DayOfWeek.Monday;
+            StartTime = new TimeOnly();
+            EndTime = new TimeOnly();
+        }
 
         public ScheduleDto(Schedule schedule)
         {

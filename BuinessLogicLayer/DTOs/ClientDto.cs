@@ -11,7 +11,15 @@ namespace BusinessLogicLayer.DTOs
         public string Email { get; set; }
         public string PasswordHash { get; set; }
 
-        public ClientDto() { }
+        public ClientDto() 
+        {
+            Id = "";
+            Name = "";
+            Surname = "";
+            Phone = "";
+            Email = "";
+            PasswordHash = "";
+        }
 
         public ClientDto(Client client)
         {

@@ -11,7 +11,15 @@ namespace BusinessLogicLayer.DTOs
         public DateOnly Date { get; set; }
         public TimeOnly Time { get; set; }
 
-        public HistoryDto() { }
+        public HistoryDto() 
+        {
+            Id = 0;
+            ClientPhone = "";
+            BarberPhone = "";
+            Service = "";
+            Date = new DateOnly();
+            Time = new TimeOnly();
+        }
 
         public HistoryDto(History history)
         {

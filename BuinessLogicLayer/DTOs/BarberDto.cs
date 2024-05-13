@@ -14,7 +14,18 @@ namespace BusinessLogicLayer.DTOs
         public string? Description { get; set; }
         public string? PortfolioUri { get; set; }
 
-        public BarberDto() { }
+        public BarberDto() 
+        {
+            Id = "";
+            Name = "";
+            Surname = "";
+            Phone = "";
+            Email = "";
+            PasswordHash = "";
+            PhotoUri = "";
+            Description = "";
+            PortfolioUri = "";
+        }
 
         public BarberDto(Barber barber)
         {

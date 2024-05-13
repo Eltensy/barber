@@ -15,7 +15,19 @@ namespace BusinessLogicLayer.DTOs
         public string? SocialUriSecond { get; set; }
         public string? SocialUriThird { get; set; }
 
-        public BarberShopDto() { }
+        public BarberShopDto() 
+        {
+            Id = 0;
+            Name = "";
+            Address = "";
+            Phone = "";
+            PhoneSecond = null;
+            Description = "";
+            PhotoUri = "";
+            SocialUri = "";
+            SocialUriSecond = null;
+            SocialUriThird = null;
+        }
 
         public BarberShopDto(BarberShop barbershop)
         {

@@ -6,9 +6,6 @@ namespace BusinessLogicLayer.Services.Interfaces
     {
         Task<List<BarberDto>> GetBarbers();
         Task<BarberDto?> GetBarberById(string barberId);
-        //Task InsertBarber(BarberDto barberDto);
-        //Task DeleteBarber(int barberId);
-        //Task UpdateBarber(BarberDto barberDto);
         Task<BarberDto?> GetBarberByEmail(string email);
     }
 }

@@ -23,13 +23,6 @@ namespace BusinessLogicLayer.Services.Implementations
             var schedules = await _scheduleRepository.GetSchedules();
             var schedulesDtos = from schedule in schedules
                                 select new ScheduleDto(schedule);
-                                //{
-                                //    Id = schedule.Id,
-                                //    fk_BarberId = schedule.fk_BarberId,
-                                //    DayOfWeek = (DTOs.Enum_DayOfWeek)schedule.DayOfWeek,
-                                //    StartTime = schedule.StartTime,
-                                //    EndTime = schedule.EndTime
-                                //};
             return schedulesDtos.ToList();
         }
 
@@ -40,13 +33,6 @@ namespace BusinessLogicLayer.Services.Implementations
             if (schedule != null)
             {
                 scheduleDto = new ScheduleDto(schedule);
-                //{
-                //    Id = schedule.Id,
-                //    fk_BarberId = schedule.fk_BarberId,
-                //    DayOfWeek = (DTOs.Enum_DayOfWeek)schedule.DayOfWeek,
-                //    StartTime = schedule.StartTime,
-                //    EndTime = schedule.EndTime
-                //};
             }
             return scheduleDto;
         }
@@ -63,28 +49,12 @@ namespace BusinessLogicLayer.Services.Implementations
 
         public async Task InsertSchedule(ScheduleDto scheduleDto)
         {
-            //Schedule schedule = new Schedule()
-            //{
-            //    Id = scheduleDto.Id,
-            //    fk_BarberId = scheduleDto.fk_BarberId,
-            //    DayOfWeek = (DataAccessLayer.Entities.Enum_DayOfWeek)scheduleDto.DayOfWeek,
-            //    StartTime = scheduleDto.StartTime,
-            //    EndTime = scheduleDto.EndTime
-            //};
             Schedule schedule = scheduleDto.ToEntity();
             await _scheduleRepository.InsertSchedule(schedule);
         }
 
         public async Task UpdateSchedule(ScheduleDto scheduleDto)
         {
-            //Schedule schedule = new Schedule()
-            //{
-            //    Id = scheduleDto.Id,
-            //    fk_BarberId = scheduleDto.fk_BarberId,
-            //    DayOfWeek = (DataAccessLayer.Entities.Enum_DayOfWeek)scheduleDto.DayOfWeek,
-            //    StartTime = scheduleDto.StartTime,
-            //    EndTime = scheduleDto.EndTime
-            //};
             Schedule schedule = scheduleDto.ToEntity();
             await _scheduleRepository.UpdateSchedule(schedule);
         }

@@ -46,20 +46,7 @@ namespace BusinessLogicLayer.Services.Implementations
                         fullname = guest.Name + " " + guest.Surname;
                     }
 
-                    _visits.Add(new VisitExtDto
-                    {
-                        Id = visit.Id,
-                        fk_ClientId = visit.fk_ClientId,
-                        fk_GuestId = visit.fk_GuestId,
-                        fk_BarberId = visit.fk_BarberId,
-                        fk_ServiceId = visit.fk_ServiceId,
-                        Date = visit.Date,
-                        Time = visit.Time,
-                        VisitorFullName = fullname,
-                        ServiceTitle = service.Title,
-                        StartTime = visit.Time,
-                        EndTime = visit.Time.Add(service.Duration.ToTimeSpan())
-                    });
+                    _visits.Add(new VisitExtDto(visit, fullname, service.Title, service.Duration));
 
                 }
             }

@@ -8,7 +8,12 @@ namespace BusinessLogicLayer.DTOs
         public string Key { get; set; }
         public DateTime Timestamp { get; set; }
 
-        public RegistrationKeyDto() { }
+        public RegistrationKeyDto() 
+        {
+            Id = 0;
+            Key = "";
+            Timestamp = DateTime.Now;
+        }
 
         public RegistrationKeyDto(RegistrationKey registrationKey)
         {

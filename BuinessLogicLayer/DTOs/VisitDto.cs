@@ -12,7 +12,16 @@ namespace BusinessLogicLayer.DTOs
         public DateOnly Date { get; set; }
         public TimeOnly Time { get; set; }
 
-        public VisitDto() { }
+        public VisitDto() 
+        {
+            Id = 0;
+            fk_ClientId = null;
+            fk_GuestId = 0;
+            fk_BarberId = "";
+            fk_ServiceId = 0;
+            Date = new DateOnly();
+            Time = new TimeOnly();
+        }
 
         public VisitDto(Visit visit) 
         {
