@@ -12,7 +12,16 @@ namespace BarberLayered.Models
         public string? Description { get; set; }
         public string? PhotoUri { get; set; }
 
-        public BarberShop() { }
+        public BarberShop() 
+        {
+            Id = 0;
+            Name = "";
+            Address = "";
+            Phone = "";
+            PhoneSecond = null;
+            Description = "";
+            PhotoUri = "";
+        }
 
         public BarberShop(BarberShopDto barberShopDto)
         {

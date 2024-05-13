@@ -22,7 +22,14 @@ namespace BarberLayered.Models
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
 
-        public Schedule() { }
+        public Schedule() 
+        {
+            Id = 0;
+            fk_BarberId = "";
+            DayOfWeek = Enum_DayOfWeek.Monday;
+            StartTime = new TimeOnly();
+            EndTime = new TimeOnly();
+        }
 
         public Schedule(ScheduleDto scheduleDto)
         {

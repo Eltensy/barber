@@ -12,6 +12,16 @@ namespace BarberLayered.Models
         public TimeOnly Duration { get; set; }
         public int Price { get; set; }
 
+        public Service()
+        {
+            Id = 0;
+            fk_BarberId = "";
+            Title = "";
+            Description = "";
+            Duration = new TimeOnly();
+            Price = 0;
+        }
+
         public Service(ServiceDto serviceDto)
         {
             Id = serviceDto.Id;

@@ -12,7 +12,15 @@ namespace BarberLayered.Models
         public string Email { get; set; }
         public string PasswordHash { get; set; }
 
-        public Admin() { }
+        public Admin() 
+        {
+            Id = "";
+            Name = "";
+            Surname = "";
+            Phone = "";
+            Email = "";
+            PasswordHash = "";
+        }
         public Admin(AdminDto adminDto)
         {
             Id = adminDto.Id;

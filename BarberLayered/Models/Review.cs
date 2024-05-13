@@ -11,6 +11,16 @@ namespace BarberLayered.Models
         public float Rating { get; set; }
         public DateTime Date { get; set; }
 
+        public Review()
+        {
+            Id = 0;
+            fk_ClientId = "";
+            fk_BarberId = "";
+            Text = "";
+            Rating = 0;
+            Date = DateTime.Now;
+        }
+
         public Review(ReviewDto reviewDto)
         {
             Id = reviewDto.Id;

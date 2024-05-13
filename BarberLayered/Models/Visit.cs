@@ -15,6 +15,19 @@ namespace BarberLayered.Models
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
 
+        public Visit()
+        {
+            Id = 0;
+            fk_ClientId = "";
+            fk_BarberId = "";
+            fk_ServiceId = 0;
+            Date = new DateOnly();
+            VisitorFullName = "";
+            ServiceTitle = "";
+            StartTime = new TimeOnly();
+            EndTime = new TimeOnly();
+        }
+
         public Visit(VisitExtDto visitExtDto)
         {
             Id = visitExtDto.Id;
