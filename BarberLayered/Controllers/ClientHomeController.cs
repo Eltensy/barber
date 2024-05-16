@@ -1,4 +1,4 @@
-﻿using BarberLayered.Models;
+using BarberLayered.Models;
 using BusinessLogicLayer.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,6 +33,7 @@ namespace BarberLayered.Controllers
         public IActionResult ClientAccount(Client client)
         {
             _client = client;
+            ViewBag.Client = _client;
             return View(_client);
         }
     }

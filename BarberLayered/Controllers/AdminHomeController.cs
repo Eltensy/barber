@@ -2,9 +2,11 @@
 using BarberLayered.Models;
 using BusinessLogicLayer.Services.Interfaces;
 using BusinessLogicLayer.Services.Implementations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BarberLayered.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminHomeController : Controller
     {
         private readonly IBarberShopService _barberShopService;
@@ -36,6 +38,11 @@ namespace BarberLayered.Controllers
             _admin = admin;
 
             return View(_admin);
+        }
+
+        public ActionResult AddBarber()
+        {
+            return View();
         }
     }
 }

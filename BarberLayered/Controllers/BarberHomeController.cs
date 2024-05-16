@@ -1,16 +1,18 @@
 ﻿using BarberLayered.Models;
 using BusinessLogicLayer.DTOs;
 using BusinessLogicLayer.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
 namespace BarberLayered.Controllers
 {
+    [Authorize(Roles = "Barber")]
     public class BarberHomeController : Controller
     {
         private readonly IBarberHomeService _barberHomeService;
         private Models.Barber? _barber;
-        private readonly List<Models.Visit> _visits;
+        private readonly List<Visit> _visits;
 
         public BarberHomeController(IBarberHomeService barberHomeService)
         {
@@ -45,7 +47,7 @@ namespace BarberLayered.Controllers
         public IActionResult EditProfile(Barber barber)
         {
             _barber = barber;
-
+            ViewBag.Barber = _barber;
             return View(_barber);
         }
 

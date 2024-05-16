@@ -2,28 +2,13 @@
 
 #nullable disable
 
-namespace BarberLayered.Migrations
+namespace DataAccessLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class BasicInserts : Migration
+    public partial class Inserts : Migration
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
+        private void govno_insert(MigrationBuilder migrationBuilder)
         {
-            // Clear previous data
-            migrationBuilder.Sql("DELETE FROM \"Visits\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Reviews\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Schedules\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Services\"", true);
-            migrationBuilder.Sql("DELETE FROM \"BarberShops\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Barbers\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Admins\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Reviews\"", true);
-            migrationBuilder.Sql("DELETE FROM \"History\"", true);
-            migrationBuilder.Sql("DELETE FROM \"RegistrationKeys\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Clients\"", true);
-            migrationBuilder.Sql("DELETE FROM \"Guests\"", true);
-
             // Insert fresh one
             // BarberShops
             migrationBuilder.Sql(
@@ -49,7 +34,7 @@ namespace BarberLayered.Migrations
                 "insert into \"Clients\"(\"Id\", \"Name\", \"Surname\", \"Phone\", \"Email\", \"PasswordHash\")\r\n" +
                 "values(100, 'Andrew', 'Skvarko', '+38(068)8627181', 'skvarkoandriy@gmail.com', '$2a$11$A/Uv6.4InMkVcjTTOc7lPuLb80jCPg428IYFOIpuwDy7jkUNs2aFi'),\r\n" +
                 "(101, 'Rostyk', 'Stets', '+12(345)6789000', 'rostyk@meil.com', '$2a$11$A/Uv6.4InMkVcjTTOc7lPuLb80jCPg428IYFOIpuwDy7jkUNs2aFi')",
-                true);
+                true);  
             // Admins
             migrationBuilder.Sql(
                 "insert into \"Admins\"(\"Id\", \"Name\", \"Surname\", \"Phone\", \"Email\", \"PasswordHash\")\r\n" +
@@ -113,8 +98,7 @@ namespace BarberLayered.Migrations
                 true);
         }
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
+        private void govno_delete(MigrationBuilder migrationBuilder)
         {
             // Clear previous data
             migrationBuilder.Sql("DELETE FROM \"Visits\"", true);
@@ -129,6 +113,39 @@ namespace BarberLayered.Migrations
             migrationBuilder.Sql("DELETE FROM \"RegistrationKeys\"", true);
             migrationBuilder.Sql("DELETE FROM \"Clients\"", true);
             migrationBuilder.Sql("DELETE FROM \"Guests\"", true);
+        }
+
+        private void barberShopSeed(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.Sql("DELETE FROM \"BarberShops\"", true);
+
+            // Insert fresh one
+            // BarberShops
+            migrationBuilder.Sql(
+                "insert into \"BarberShops\"" +
+                "(\"Id\",\"Name\", \"Address\", \"Phone\", \"Description\")\r\n" +
+                "values(100, 'Родинний барбершоп', '123 Paper St', " +
+                "'+38(099)3456789', \r\n  " +
+                "'Наш барбершоп - це сучасний заклад, де кожен клієнт " +
+                "отримує персоналізований сервіс від професійних барберів. " +
+                "Ми знаходимося в центрі міста і пропонуємо широкий спектр послуг, " +
+                "від стрижок і гоління до догляду за бородою та вусами. " +
+                "Наш колектив складається з досвідчених майстрів, " +
+                "які завжди готові задовольнити ваші потреби в стилі та догляді.')",
+                true);
+        }
+
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            // govno_insert(migrationBuilder);
+            barberShopSeed(migrationBuilder);
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            // govno_delete(migrationBuilder);
         }
     }
 }

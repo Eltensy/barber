@@ -24,9 +24,14 @@ namespace DataAccessLayer.Repositories.Implementations
             return await _context.Reviews.FindAsync(reviewId);
         }
 
-        public async Task<IEnumerable<Review>> GetReviewsByBarberId(int fkBarberId)
+        public async Task<IEnumerable<Review>> GetReviewsByBarberId(string fkBarberId)
         {
             return await _context.Reviews.Where(x => x.fk_BarberId == fkBarberId).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Review>> GetReviewsByClientId(string fkClientId)
+        {
+            return await _context.Reviews.Where(x => x.fk_ClientId == fkClientId).ToListAsync();
         }
 
         public async Task InsertReview(Review review)
