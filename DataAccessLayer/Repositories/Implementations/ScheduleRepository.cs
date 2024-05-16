@@ -24,6 +24,11 @@ namespace DataAccessLayer.Repositories.Implementations
             return await _context.Schedules.FindAsync(scheduleId);
         }
 
+        public async Task<IEnumerable<Schedule>> GetScheduleByBarberID(string fkBarberId)
+        {
+            return await _context.Schedules.Where(x => x.fk_BarberId == fkBarberId).ToListAsync();
+        }
+
         public async Task InsertSchedule(Schedule schedule)
         {
             await _context.Schedules.AddAsync(schedule);

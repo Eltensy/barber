@@ -12,7 +12,7 @@ namespace BarberLayered.Controllers
     {
         private readonly IBarberHomeService _barberHomeService;
         private Models.Barber? _barber;
-        private readonly List<Models.Visit> _visits;
+        private readonly List<Visit> _visits;
 
         public BarberHomeController(IBarberHomeService barberHomeService)
         {

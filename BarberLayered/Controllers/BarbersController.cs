@@ -41,7 +41,7 @@ namespace BarberLayered.Controllers
             return View(_barbers);
         }
 
-        public async Task<IActionResult> ClientBarbers(int clientId)
+        public async Task<IActionResult> ClientBarbers(string clientId)
         {
             var barbers = await _barberService.GetBarbers();
             if (!barbers.Any()) // No barbers in DB

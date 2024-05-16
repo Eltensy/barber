@@ -23,7 +23,7 @@ namespace BarberLayered.Controllers
             _visitService = visitService;
         }
 
-        public async Task<IActionResult> BarberAppointments(int barberId)
+        public async Task<IActionResult> BarberAppointments(string barberId)
         {
             var barber = await _barberService.GetBarberById(barberId);
             if (barber == null)
@@ -52,7 +52,7 @@ namespace BarberLayered.Controllers
             return View(groupedAppointments);
         }
 
-        public async Task<IActionResult> BarberAppointmentsHistory(int barberId)
+        public async Task<IActionResult> BarberAppointmentsHistory(string barberId)
         {
             var barber = await _barberService.GetBarberById(barberId);
             if (barber == null)
@@ -81,7 +81,7 @@ namespace BarberLayered.Controllers
             return View(groupedAppointments);
         }
 
-        public async Task<IActionResult> DeleteAppointment(int id, int barberId)
+        public async Task<IActionResult> DeleteAppointment(int id, string barberId)
         {
             //var result = await _visitService.DeleteVisit(id);
             //if (result)

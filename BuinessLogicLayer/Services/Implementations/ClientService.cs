@@ -18,71 +18,20 @@ namespace BusinessLogicLayer.Services.Implementations
         {
             var clients = await _clientRepository.GetClients();
             var clientsDtos = from client in clients
-                              select new ClientDto()
-                              {
-                                  Id = client.Id,
-                                  Name = client.Name,
-                                  Surname = client.Surname,
-                                  Phone = client.Phone,
-                                  Email = client.Email,
-                                  PasswordHash = client.PasswordHash
-                              };
-
+                              select new ClientDto(client);
             return clientsDtos.ToList();
         }
 
-        public async Task<ClientDto?> GetClientById(int clientId)
+        public async Task<ClientDto?> GetClientById(string clientId)
         {
             var client = await _clientRepository.GetClientByID(clientId);
 
             ClientDto? clientDto = null;
             if (null != client)
             {
-                clientDto = new ClientDto()
-                {
-                    Id = client.Id,
-                    Name = client.Name,
-                    Surname = client.Surname,
-                    Phone = client.Phone,
-                    Email = client.Email,
-                    PasswordHash = client.PasswordHash
-                };
+                clientDto = new ClientDto(client);
             }
             return clientDto;
-        }
-
-        public async Task InsertClient(ClientDto clientDto)
-        {
-            Client client = new Client()
-            {
-                Id = clientDto.Id,
-                Name = clientDto.Name,
-                Surname = clientDto.Surname,
-                Phone = clientDto.Phone,
-                Email = clientDto.Email,
-                PasswordHash = clientDto.PasswordHash
-            };
-            await _clientRepository.InsertClient(client);
-        }
-
-        public async Task DeleteClient(int clientId)
-        {
-            await _clientRepository.DeleteClient(clientId);
-        }
-
-        public async Task UpdateClient(ClientDto clientDto)
-        {
-            Client client = new Client()
-            {
-                Id = clientDto.Id,
-                Name = clientDto.Name,
-                Surname = clientDto.Surname,
-                Phone = clientDto.Phone,
-                Email = clientDto.Email,
-                PasswordHash = clientDto.PasswordHash
-            };
-
-            await _clientRepository.UpdateClient(client);
         }
 
         public async Task<ClientDto?> GetClientByEmail(string email)
@@ -91,15 +40,7 @@ namespace BusinessLogicLayer.Services.Implementations
             ClientDto? clientDto = null;
             if (client != null)
             {
-                clientDto = new ClientDto()
-                {
-                    Id = client.Id,
-                    Name = client.Name,
-                    Surname = client.Surname,
-                    Phone = client.Phone,
-                    Email = client.Email,
-                    PasswordHash = client.PasswordHash
-                };
+                clientDto = new ClientDto(client);
             }
             return clientDto;
         }
