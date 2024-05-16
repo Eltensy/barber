@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity.UI.Services;
 using BarberLayered.Filters;
 using BusinessLogicLayer.Services.Implementations;
 using BusinessLogicLayer.Services.Interfaces;
@@ -10,6 +11,8 @@ using Serilog;
 using DataAccessLayer.Data;
 using Microsoft.AspNetCore.Identity;
 using DataAccessLayer.Entities;
+using BusinessLogicLayer.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 IConfigurationRoot configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
@@ -33,6 +36,7 @@ builder.Services.AddScoped<LogActionFilter>();
 
 // Repositories
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
+builder.Services.AddScoped<IApplicationUsersHelper, ApplicationUsersHelper>();
 builder.Services.AddScoped<IBarberRepository, BarberRepository>();
 builder.Services.AddScoped<IBarberShopRepository, BarberShopRepository>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
@@ -54,17 +58,17 @@ builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IGuestService, GuestService>();
 builder.Services.AddScoped<IHistoryService, HistoryService>();
-builder.Services.AddScoped<IRegisterService, RegisterService>();
+//builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddScoped<IRegistrationKeyService, RegistrationKeyService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IVisitService, VisitService>();
-builder.Services.AddScoped<IChangePasswordService, ChangePasswordService>();
+//builder.Services.AddScoped<IChangePasswordService, ChangePasswordService>();
 
 
 // DbContext
-builder.Services.AddDbContext<DataAccessLayer.Data.DataContext>(options =>
+builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("BarberBook_Connection"), x => x.MigrationsAssembly("DataAccessLayer"));
 });
@@ -72,6 +76,7 @@ builder.Services.AddDbContext<DataAccessLayer.Data.DataContext>(options =>
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false).AddRoles<IdentityRole>().AddEntityFrameworkStores<DataContext>();
 
 builder.Services.AddTransient<IEmailSenderService, EmailSenderService>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
@@ -83,6 +88,14 @@ builder.Services.AddSession(options =>
 
 builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//}).AddCookie(options =>
+//{
+//    options.LoginPath = "/Areas/Identity/Pages/Account/Login";
+//});
+
 var app = builder.Build();
 Log.Information("Application built, service started");
 
@@ -93,11 +106,13 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
@@ -111,7 +126,7 @@ app.MapRazorPages();
 
 using (var scope = app.Services.CreateScope())
 {
-    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<Microsoft.AspNetCore.Identity.RoleManager<IdentityRole>>();
 
     var roles = new[] { "Admin", "Barber", "Client" };
 

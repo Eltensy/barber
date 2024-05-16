@@ -78,7 +78,7 @@ namespace BarberLayered.Controllers
     {
         private readonly IClientService _clientService;
         private readonly IReviewService _reviewService;
-        private List<Models.Review> _reviews;
+        private List<Review> _reviews;
 
         public ClientReviewsController(IClientService clientService, IReviewService reviewService)
         {
@@ -87,7 +87,7 @@ namespace BarberLayered.Controllers
             _reviews = new List<Models.Review>();
         }
 
-        public async Task<IActionResult> ClientReviews(int clientId)
+        public async Task<IActionResult> ClientReviews(string clientId)
         {
             var client = await _clientService.GetClientById(clientId);
             if (client == null)
@@ -95,8 +95,10 @@ namespace BarberLayered.Controllers
                 return NotFound();
             }
 
-            var reviews = await _reviewService.GetReviews();
-            var clientReviews = reviews.FindAll(review => review.fk_ClientId == clientId);
+            //var reviews = await _reviewService.GetReviews();
+            //var clientReviews = reviews.FindAll(review => review.fk_ClientId == clientId);
+
+            var clientReviews = await _reviewService.GetReviewsByClientId(clientId);
 
             if (!clientReviews.Any()) // No reviews logic for the view
             {
@@ -116,7 +118,7 @@ namespace BarberLayered.Controllers
             return View(_reviews);
         }
 
-        public async Task<IActionResult> DeleteReview(int reviewId, int clientId)
+        public async Task<IActionResult> DeleteReview(int reviewId, string clientId)
         {
             //var result = await _reviewService.DeleteReview(reviewId);
             //if (result)

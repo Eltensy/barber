@@ -1,57 +1,53 @@
 ﻿using DataAccessLayer.Data;
 using DataAccessLayer.Entities;
 using DataAccessLayer.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Repositories.Implementations
 {
     public class AdminRepository : IAdminRepository
     {
         private readonly DataContext _context;
+        private readonly IApplicationUsersHelper _applicationUsersHelper;
 
-        public AdminRepository(DataContext context)
+        public AdminRepository(DataContext context, IApplicationUsersHelper applicationUsersHelper)
         {
             _context = context;
+            _applicationUsersHelper = applicationUsersHelper;
         }
 
         public async Task<IEnumerable<Admin>> GetAdmins()
         {
-            return await _context.Admins.ToListAsync();
+            List<Admin> admins = new List<Admin>();
+
+            var adminRoles = await _applicationUsersHelper.GetRolesToUsers("Admin");
+            foreach (var adminRole in adminRoles)
+            {
+                admins.Add(new Admin(adminRole));
+            }
+
+            return admins.ToList();
         }
 
-        public async Task<Admin?> GetAdminByID(int adminId)
+        public async Task<Admin?> GetAdminByID(string adminId)
         {
-            return await _context.Admins.FindAsync(adminId);
-        }
-
-        public async Task InsertAdmin(Admin admin)
-        {
-            await _context.Admins.AddAsync(admin);
-            await Save();
-        }
-
-        public async Task DeleteAdmin(int adminId)
-        {
-            Admin? admin = await _context.Admins.FindAsync(adminId);
-            if (null != admin) _context.Admins.Remove(admin);
-            await Save();
-        }
-
-        public async Task UpdateAdmin(Admin admin)
-        {
-            _context.Entry(admin).State = EntityState.Modified;
-            await Save();
+            var appUser = await _context.ApplicationUsers.FindAsync(adminId);
+            if (appUser == null)
+            {
+                return null;
+            }
+            return new Admin(appUser);
         }
 
         public async Task<Admin?> GetAdminByEmail(string email)
         {
-            Admin? admin = await _context.Admins.SingleOrDefaultAsync(x => x.Email.Equals(email));
-            return admin;
-        }
+            var appUsers = await _applicationUsersHelper.GetRolesToUsers("Admin");
+            ApplicationUser? appUser = appUsers.Where(x => x.Email.Equals(email)).FirstOrDefault();
+            if (appUser == null)
+            {
+                return null;
+            }
 
-        public async Task Save()
-        {
-            await _context.SaveChangesAsync();
+            return new Admin(appUser);
         }
     }
 }

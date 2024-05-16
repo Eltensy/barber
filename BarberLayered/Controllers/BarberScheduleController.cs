@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using BarberLayered.Models;
 using Serilog;
 using BusinessLogicLayer.Services.Interfaces;
 
@@ -17,7 +16,7 @@ namespace BarberLayered.Controllers
             _scheduleService = scheduleService;
         }
 
-        public async Task<IActionResult> BarberSchedule(int barberId)
+        public async Task<IActionResult> BarberSchedule(string barberId)
         {
             var barber = await _barberService.GetBarberById(barberId);
             if (barber == null)
@@ -26,8 +25,9 @@ namespace BarberLayered.Controllers
                 return NotFound();
             }
 
-            var allSchedules = await _scheduleService.GetSchedules();
-            var barberSchedules = allSchedules.Where(s => s.fk_BarberId == barberId).ToList();
+            //var allSchedules = await _scheduleService.GetSchedules();
+            var barberSchedules = await _scheduleService.GetScheduleByBarberID(barberId);
+            //var barberSchedules = allSchedules.Where(s => s.fk_BarberId == barberId).ToList();
 
             ViewBag.Barber = barber;
             ViewBag.Schedules = barberSchedules;
