@@ -10,3 +10,18 @@ D:\Університет\ІІІ курс\ІІ семестр\Програмна
 D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookLayered\DataAccessLayer\obj\Debug\net8.0\refint\DataAccessLayer.dll
 D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookLayered\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.pdb
 D:\Університет\ІІІ курс\ІІ семестр\Програмна інженерія\BarberBookLayered\DataAccessLayer\obj\Debug\net8.0\ref\DataAccessLayer.dll
+C:\Users\Anton\source\repos\barbernew\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.deps.json
+C:\Users\Anton\source\repos\barbernew\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.runtimeconfig.json
+C:\Users\Anton\source\repos\barbernew\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.dll
+C:\Users\Anton\source\repos\barbernew\DataAccessLayer\bin\Debug\net8.0\DataAccessLayer.pdb
+C:\Users\Anton\source\repos\barbernew\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\Anton\source\repos\barbernew\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Anton\source\repos\barbernew\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfoInputs.cache
+C:\Users\Anton\source\repos\barbernew\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.AssemblyInfo.cs
+C:\Users\Anton\source\repos\barbernew\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\Anton\source\repos\barbernew\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.sourcelink.json
+C:\Users\Anton\source\repos\barbernew\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.dll
+C:\Users\Anton\source\repos\barbernew\DataAccessLayer\obj\Debug\net8.0\refint\DataAccessLayer.dll
+C:\Users\Anton\source\repos\barbernew\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.pdb
+C:\Users\Anton\source\repos\barbernew\DataAccessLayer\obj\Debug\net8.0\DataAccessLayer.genruntimeconfig.cache
+C:\Users\Anton\source\repos\barbernew\DataAccessLayer\obj\Debug\net8.0\ref\DataAccessLayer.dll

@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("BarberLayered")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+03cc289ebf5991197efd16eb00526a3d9a646a0b")]
 [assembly: System.Reflection.AssemblyProductAttribute("BarberLayered")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BarberLayered")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
