@@ -9,13 +9,15 @@ namespace BarberLayered.Controllers
     {
         private readonly IBarberService _barberService;
         private readonly IReviewService _reviewService;
+        private readonly IClientService _clientService;
         private List<BarberLayered.Models.Review> _reviews;
         private Models.Barber? _barber;
 
-        public BarberInformationController(IBarberService barberService, IReviewService reviewService)
+        public BarberInformationController(IBarberService barberService, IReviewService reviewService, IClientService clientService = null)
         {
             _barberService = barberService;
             _reviewService = reviewService;
+            _clientService = clientService;
             _barber = null;
             _reviews = new List<Models.Review>();
         }
@@ -53,7 +55,11 @@ namespace BarberLayered.Controllers
 
         public async Task<IActionResult> BarberInformationClient(int id, int clientId)
         {
-
+            var client = await _clientService.GetClientById(clientId);
+            if (client == null)
+            {
+                return NotFound();
+            }
             var barber = await _barberService.GetBarberById(id);
             if (barber == null)
             {
@@ -77,6 +83,7 @@ namespace BarberLayered.Controllers
                 }
             }
 
+            ViewBag.Client = client;
             ViewBag.Barber = _barber;
             ViewBag.Reviews = _reviews;
 

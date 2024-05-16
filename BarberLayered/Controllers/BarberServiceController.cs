@@ -12,13 +12,15 @@ namespace BarberLayered.Controllers
         private BarberLayered.Models.Barber? _barber;
         private readonly IServiceService _serviceService;
         private readonly IBarberService _barberService;
+        private readonly IClientService _clientService;
 
 
-        public BarberServiceController(IServiceService serviceService, IBarberService barberService)
+        public BarberServiceController(IServiceService serviceService, IBarberService barberService, IClientService clientService = null)
         {
             _serviceService = serviceService;
             _barberService = barberService;
             _barber = null;
+            _clientService = clientService;
         }
 
         public async Task<IActionResult> Index(int id)
@@ -58,8 +60,13 @@ namespace BarberLayered.Controllers
             return View();
         }
 
-        public async Task<IActionResult> BarberServiceClient(int id)
+        public async Task<IActionResult> BarberServiceClient(int id, int clientId)
         {
+            var client = await _clientService.GetClientById(clientId);
+            if (client == null)
+            {
+                return NotFound();
+            }
             var barber = await _barberService.GetBarberById(id);
             if (barber == null)
             {
@@ -87,6 +94,7 @@ namespace BarberLayered.Controllers
 
             ViewBag.Barber = _barber;
             ViewBag.Services = _services;
+            ViewBag.Client = client;
 
             string Path = "ServiceAppointmentClient";
 

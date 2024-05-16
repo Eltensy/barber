@@ -172,9 +172,10 @@
 <body>
     <header>
         <span style="font-weight: bold; font-size: 20px; margin-left: 10px;">BarberBook</span>
-
-        <a href="/BarberHome/Index">Моя сторінка</a>
-
+        <span style="font-weight: bold; font-size: 20px; text-align: center;">Моя сторінка</span>
+        @* <a href="@Url.Action("Index", "BarberHome")" class="service-button">Моя сторінка</a> *@
+        @* <a href="/BarberHome/Index">Моя сторінка</a> *@
+         
         <div class="dropdown">
             <i class="material-icons account-icon" onclick="toggleDropdown()">account_circle</i>
             <div class="dropdown-content" id="dropdownMenu">
