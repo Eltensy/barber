@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using BarberLayered.Models;
 using BusinessLogicLayer.Services.Interfaces;
 using BusinessLogicLayer.Services.Implementations;
@@ -7,9 +7,11 @@ using DataAccessLayer.Entities;
 using Serilog;
 using BarberShop = BarberLayered.Models.BarberShop;
 using Admin = BarberLayered.Models.Admin;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BarberLayered.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminHomeController : Controller
     {
         private readonly IBarberShopService _barberShopService;
