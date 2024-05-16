@@ -98,7 +98,7 @@
 
         <div class="barber-info">
             <h2>Мій розклад</h2>
-            <h3>Сумарна кількість годин на тиждень: <span id="totalHours">0</span></h3>
+            <h3>Сумарний час роботи на тиждень: <span id="totalHours">0 год 0 хв</span></h3>
         </div>
 
         @if (ViewBag.Schedules == null || ViewBag.Schedules.Count == 0)
@@ -124,6 +124,7 @@
                             <td><input type="text" class="timepicker start-time" value="@schedule.StartTime"></td>
                             <td><input type="text" class="timepicker end-time" value="@schedule.EndTime"></td>
                             <td><input type="checkbox" class="day-off-checkbox"></td>
+                            @* <td><input type="checkbox" class="day-off-checkbox" disabled @((schedule.IsDayOff) ? "checked" : "")></td> *@
                         </tr>
                     }
                 </tbody>
@@ -171,7 +172,7 @@
 
         function calculateTotalHours() {
             var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-            var totalHours = 0;
+            var totalMinutes = 0;
 
             daysOfWeek.forEach(function (day) {
                 var dayTotalMinutes = 0;
@@ -193,11 +194,15 @@
                     dayTotalMinutes += diffMinutes;
                 });
 
-                totalHours += dayTotalMinutes / 60;
+                totalMinutes += dayTotalMinutes;
             });
 
-            $("#totalHours").text(totalHours.toFixed(2));
+            var totalHours = Math.floor(totalMinutes / 60);
+            var remainingMinutes = totalMinutes % 60;
+
+            $("#totalHours").text(totalHours + " год " + remainingMinutes + " хв");
         }
+
 
         function goBack() {
             window.history.back();

@@ -154,12 +154,12 @@
 </head>
 <body>
 
-    @await Html.PartialAsync("~/Views/AdminHome/AdminViewPartial.cshtml")
+    @* @await Html.PartialAsync("~/Views/AdminHome/AdminViewPartial.cshtml") *@
 
     <div class="container">
         <h1 style="margin-bottom:65px;">Додавання барбера</h1>
         <h3 style="text-align: left;">Заповніть дані:</h3>
-        <form>
+        <form id="adminForm" asp-controller="AdminHome" asp-action="AddBarber" method="post">
             <label for="name">Ім'я:</label>
             <input type="text" id="name" name="name" required>
 
@@ -209,6 +209,23 @@
             document.getElementById('confirmationModal').style.display = 'none';
         }
 
+        var errorMessage = '@TempData["ErrorMessage"]';
+        if (errorMessage !== 'null' && errorMessage !== '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Упс...',
+                text: errorMessage
+            });
+        }
+
+        var successMessage = '@TempData["SuccessMessage"]';
+        if (successMessage !== 'null' && successMessage !== '') {
+            Swal.fire({
+                icon: 'success',
+                title: 'Успішно!',
+                text: successMessage
+            });
+        }
     </script>
 
 </body>

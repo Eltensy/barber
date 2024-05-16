@@ -30,7 +30,7 @@
 
         .right-section {
             float: left;
-            width: 50%;
+            width: 45%;
             padding: 20px;
             box-sizing: border-box;
         }
@@ -67,19 +67,25 @@
 </head>
 <body>
 
-    <div class="left-section">
-        <img src="https://heygoldie.com/blog/wp-content/uploads/2021/12/barber-shop-decor-ideas.jpg" alt="Barber Shop Image">
-    </div>
-    <div class="right-section">
-        <h1>@Model.Name</h1>
-        <p>Address: @Model.Address</p>
-        <p>Phone: @Model.Phone</p>
-        <p>@Model.Description</p>
-        <a href="/Barbers/Index">Записатись</a>
-@*         <a href="@ViewData["Path"]">Записатись</a> *@
+    @if (Model == null)
+    {
+        <h2 style="text-align: center; color: forestgreen; margin-top: 100px;">Поки що немає даних про барбершоп</h2>
+    }
+    else
+    {
+        <div class="left-section">
+            <img src="https://heygoldie.com/blog/wp-content/uploads/2021/12/barber-shop-decor-ideas.jpg" alt="Barber Shop Image">
+        </div>
+        <div class="right-section">
+            <h1>@Model.Name</h1>
+            <p>Address: @Model.Address</p>
+            <p>Phone: @Model.Phone</p>
+            <p>@Model.Description</p>
+            @* <a href="/Barbers/Index">Записатись</a> *@
+    @*         <a href="@ViewData["Path"]">Записатись</a> *@
 
-    </div>
-
+        </div>
+    }
     <script>
         var errorMessage = '@TempData["ErrorMessage"]';
         if (errorMessage !== 'null' && errorMessage !== '') {
