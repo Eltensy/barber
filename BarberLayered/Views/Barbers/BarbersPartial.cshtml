@@ -1,5 +1,8 @@
 ﻿@model List<BarberLayered.Models.Barber>
-
+@{
+    var client = ViewBag.Client as BarberLayered.Models.Client;
+    ViewData["Client"] = ViewBag.Client;
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,13 +113,21 @@
                         <h2>@barber.Name @barber.Surname</h2>
                         <p>@barber.Description</p>
                         <div class="buttons">
-                            <a href="@(ViewBag.ClientId != null ?
-                            Url.Action(ViewData["infoPath"].ToString(), "BarberInformation", new { id = barber.Id, clientId = ViewBag.ClientId }) :
-                            Url.Action(ViewData["infoPath"].ToString(), "BarberInformation", new { id = barber.Id }))" class="info-button">Інформація</a>
+@*                             <a href="@(ViewBag.Client.Id != null ?
+                            Url.Action(ViewData["infoPath"].ToString(), "BarberInformation", new { id = barber.Id,  }) :
+                            Url.Action(ViewData["infoPath"].ToString(), "BarberInformation", new { id = barber.Id }))" class="info-button">Інформація</a> *@
+                            @if (ViewData["infoPath"].ToString() == "Index" && ViewData["servicePath"].ToString() == "Index")
+                            {
+                                <a href="@Url.Action(ViewData["infoPath"].ToString(), "BarberInformation", new { id = barber.Id })" class="info-button">Інформація</a>
+                                <a href="@Url.Action(ViewData["servicePath"].ToString(), "BarberService", new { id = barber.Id})" class="book-button">Записатись</a>
+                            }
+                            else if (ViewData["infoPath"].ToString() == "BarberInformationClient" && ViewData["servicePath"].ToString() == "BarberServiceClient")
+							{
+								<a href="@Url.Action(ViewData["infoPath"].ToString(), "BarberInformation", new { id = barber.Id, clientId = ViewBag.Client.Id })" class="info-button">Інформація</a>
+                                <a href="@Url.Action(ViewData["servicePath"].ToString(), "BarberService", new { id = barber.Id, clientId = ViewBag.Client.Id })" class="book-button">Записатись</a>
+							}
 
-                            @* <a href="@Url.Action(ViewData["infoPath"].ToString(), "BarberInformation", new { id = barber.Id })" class="info-button">Інформація</a> *@
-
-                            <a href="@Url.Action(ViewData["servicePath"].ToString(), "BarberService", new { id = barber.Id })" class="book-button">Записатись</a>
+                            @* <a href="@Url.Action(ViewData["servicePath"].ToString(), "BarberService", new { id = barber.Id, clientId = ViewBag.Client.Id })" class="book-button">Записатись</a> *@
                         </div>
                     </div>
                 </div>

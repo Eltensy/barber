@@ -9,11 +9,13 @@ namespace BarberLayered.Controllers
     {
         private List<Barber> _barbers;
         private readonly IBarberService _barberService;
+        private readonly IClientService _clientService; 
 
-        public BarbersController(IBarberService barberService)
+        public BarbersController(IBarberService barberService, IClientService clientService = null)
         {
             _barberService = barberService;
             _barbers = new List<Barber>();
+            _clientService = clientService;
         }
 
         public async Task<IActionResult> Index()
@@ -43,6 +45,12 @@ namespace BarberLayered.Controllers
 
         public async Task<IActionResult> ClientBarbers(int clientId)
         {
+            var client = await _clientService.GetClientById(clientId);
+            if (client == null)
+            {
+                return NotFound();
+            }
+
             var barbers = await _barberService.GetBarbers();
             if (!barbers.Any()) // No barbers in DB
             {
@@ -61,6 +69,7 @@ namespace BarberLayered.Controllers
             string servicePath = "BarberServiceClient";
 
             ViewBag.Barbers = _barbers;
+            ViewBag.Client = client;
             ViewData["infoPath"] = infoPath;
             ViewData["servicePath"] = servicePath;
 

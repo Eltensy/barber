@@ -73,12 +73,12 @@ namespace BarberLayered.Controllers
             _reviews = new List<Models.Review>();
         }
 
-        public async Task<IActionResult> BarberReviews(int id)
+        public async Task<IActionResult> BarberReviews(int barberId)
         {
-            var barber = await _barberService.GetBarberById(id);
+            var barber = await _barberService.GetBarberById(barberId);
             if (barber == null)
             {
-                Log.Error("No info about Barber with id={Id} was found in the DataBase", id);
+                Log.Error("No info about Barber with id={Id} was found in the DataBase", barberId);
             }
             else
             {
@@ -88,11 +88,11 @@ namespace BarberLayered.Controllers
             //var reviews = await _reviewService.GetReviewsByBarberId(id);
 
             var reviews = await _reviewService.GetReviews();
-            var barberReviews = reviews.FindAll(review => review.fk_BarberId == id);
+            var barberReviews = reviews.FindAll(review => review.fk_BarberId == barberId);
 
             if (!reviews.Any()) // No reviews logic for the view
             {
-                Log.Information("No reviews for the Barber with id={Id} was found in the DataBase", id);
+                Log.Information("No reviews for the Barber with id={Id} was found in the DataBase", barberId);
             }
             else
             {
@@ -102,7 +102,8 @@ namespace BarberLayered.Controllers
                 }
             }
 
-            ViewBag.Barber = _barber;
+            ViewBag.Barber = barber;
+            //ViewBag.Barber.Id = barber.Id;
             ViewBag.Reviews = _reviews;
 
             return View(_reviews);
