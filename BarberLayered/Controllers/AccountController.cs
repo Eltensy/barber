@@ -63,10 +63,8 @@ namespace BarberLayered.Controllers
                     return RedirectToAction("Index", "BarberHome",
                         new Barber(result));
                 case _UserType.Client:
-                    // await _emailSender.SendEmailAsync("ste2806murosl@gmail.com", "Chernyi Hui", "Rostyk LOH; Hi-Hi");
-                    return RedirectToAction("Index", "BarberShop");
-                    //return RedirectToAction("Index", "ClientHome", 
-                    //    new Client(result));
+                    return RedirectToAction("Index", "ClientHome", 
+                        new Client(result));
                 default:
                     return View(loginModel);
             }

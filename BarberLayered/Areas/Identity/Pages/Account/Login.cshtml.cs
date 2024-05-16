@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using DataAccessLayer.Entities;
+using BusinessLogicLayer.Services.Interfaces;
+using BusinessLogicLayer.DTOs;
 
 namespace BarberLayered.Areas.Identity.Pages.Account
 {
@@ -22,11 +24,15 @@ namespace BarberLayered.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly ILoginService _loginService;
 
-        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<ApplicationUser> signInManager,
+            ILogger<LoginModel> logger,
+            ILoginService loginService)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _loginService = loginService;
         }
 
         /// <summary>
@@ -102,6 +108,33 @@ namespace BarberLayered.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
+        /// <summary>
+        /// GIGACHAD METHOD
+        /// <para>YOU CAN'T SEE ME (John Cena himself wrote it)</para>
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        private async Task<IActionResult> RedirectByRole(string email, string password)
+        {
+            var result = await _loginService.Login(email, password);
+
+            switch (result.UserType)
+            {
+                case _UserType.Admin:
+                    return RedirectToAction("Index", "AdminHome",
+                        new Models.Admin(result));
+                case _UserType.Barber:
+                    return RedirectToAction("Index", "BarberHome",
+                        new Models.Barber(result));
+                case _UserType.Client:
+                    return RedirectToAction("Index", "ClientHome", 
+                        new Models.Client(result));
+                default:
+                    return Page();
+            }
+        }
+
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
@@ -116,7 +149,8 @@ namespace BarberLayered.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    //return LocalRedirect(returnUrl);
+                    return await RedirectByRole(Input.Email, Input.Password);
                 }
                 if (result.RequiresTwoFactor)
                 {
