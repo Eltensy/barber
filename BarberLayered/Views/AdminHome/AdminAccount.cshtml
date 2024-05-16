@@ -1,4 +1,5 @@
-﻿@{
+﻿@model BarberLayered.Models.Admin
+@{
     Layout = null;
 }
 
@@ -153,13 +154,15 @@
 </head>
 <body>
 
-    @* @Html.Partial("~/Views/AdminHome/AdminHomePartial.cshtml") *@
+    @* @await Html.PartialAsync("~/Views/AdminHome/AdminHomePartial.cshtml") *@
     @await Html.PartialAsync("~/Views/AdminHome/AdminViewPartial.cshtml")
 
     <div class="container">
         <h1>Налаштування акаунта</h1>
         <h3 style="text-align: left;">Редагування інформації:</h3>
-        <form>
+        <form id="adminForm" asp-controller="AdminHome" asp-action="UpdateAdmin" method="post">
+            <input type="hidden" name="Id" value="@Model.Id">
+
             <label for="name">Ім'я:</label>
             <input type="text" id="name" name="name" value="@Model.Name">
 
@@ -188,6 +191,7 @@
         <div class="confirmation-box">
             <h2 style="text-align: center;">Підтвердіть вихід</h2>
             <p>Ви впевнені, що хочете вийти з облікового запису?</p>
+            @* <button asp-controller="Account" asp-action="Logout" style="float: left; margin-left: 50px; padding: 10px 30px;">Так</button> *@
             <button onclick="logout()" style="float: left; margin-left: 50px; padding: 10px 30px;">Так</button>
             <button onclick="hideConfirmationModal()" style="float: right; margin-right: 50px; padding: 10px 30px;">Ні</button>
         </div>
@@ -208,6 +212,24 @@
 
         function logout() {
             window.location.href = "/BarberShop/Index";
+        }
+
+        var errorMessage = '@TempData["ErrorMessage"]';
+        if (errorMessage !== 'null' && errorMessage !== '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Упс...',
+                text: errorMessage
+            });
+        }
+
+        var successMessage = '@TempData["SuccessMessage"]';
+        if (successMessage !== 'null' && successMessage !== '') {
+            Swal.fire({
+                icon: 'success',
+                title: 'Успішно!',
+                text: successMessage
+            });
         }
     </script>
 

@@ -161,13 +161,13 @@
                 this.placeholder = 'Enter your password';
             });
 
-            passwordInput.addEventListener('input', function () {
-                if (this.value.length < 8) {
-                    this.setCustomValidity('Password must be at least 8 characters long');
-                } else {
-                    this.setCustomValidity('');
-                }
-            });
+            // passwordInput.addEventListener('input', function () {
+            //     if (this.value.length < 8) {
+            //         this.setCustomValidity('Password must be at least 8 characters long');
+            //     } else {
+            //         this.setCustomValidity('');
+            //     }
+            // });
 
             var errorMessage = '@TempData["ErrorMessage"]';
             if (errorMessage !== 'null' && errorMessage !== '') {

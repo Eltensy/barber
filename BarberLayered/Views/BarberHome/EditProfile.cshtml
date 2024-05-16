@@ -137,8 +137,9 @@
     <div class="container">
         <h1>Налаштування акаунта</h1>
         <h3>Редагування інформації:</h3>
-        <form method="post" asp-action="EditProfile">
+        <form id="barberForm" asp-controller="BarberHome" asp-action="UpdateBarber" method="post">
             <input type="hidden" name="Id" value="@Model.Id" />
+
             <label for="name">Ім'я:</label>
             <input type="text" id="name" name="Name" value="@Model.Name">
 
@@ -167,7 +168,8 @@
         <div class="confirmation-box">
             <h2>Підтвердіть вихід</h2>
             <p>Ви впевнені, що хочете вийти з облікового запису?</p>
-            <button onclick="logout()">Так</button>
+            @* <button asp-controller="Account" asp-action="Logout" style="float: left; margin-left: 50px; padding: 10px 30px;">Так</button> *@
+            <button onclick="logout()" style="float: left; margin-left: 50px; padding: 10px 30px;">Так</button>
             <button onclick="hideConfirmationModal()">Ні</button>
         </div>
     </div>
@@ -189,7 +191,7 @@
             window.location.href = "/BarberHome/Index";
         }
 
-        var errorMessage = '@TempData["SuccessMessage"]';
+        var errorMessage = '@TempData["ErrorMessage"]';
         if (errorMessage !== 'null' && errorMessage !== '') {
             Swal.fire({
                 icon: 'error',
