@@ -4,7 +4,6 @@ using BusinessLogicLayer.Services.Interfaces;
 using BusinessLogicLayer.Services.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 
 namespace BarberLayered.Controllers
 {
@@ -12,18 +11,11 @@ namespace BarberLayered.Controllers
     {
         private readonly ILoginService _loginService;
         private readonly IRegisterService _registerService;
-        private readonly IEmailSenderService _emailSender;
-        private readonly IChangePasswordService _changePasswordService;
-        private readonly IHttpContextAccessor _httpContextAccessor;       
 
-        public AccountController(ILoginService loginService, IRegisterService registerService,
-            IHttpContextAccessor httpContextAccessor, IChangePasswordService changePasswordService, IEmailSenderService emailSender)
+        public AccountController(ILoginService loginService, IRegisterService registerService)
         {
             _loginService = loginService;
             _registerService = registerService;
-            _httpContextAccessor = httpContextAccessor;
-            _changePasswordService = changePasswordService;
-            _emailSender = emailSender;
         }
 
         // GET: /Account/Index
@@ -48,10 +40,6 @@ namespace BarberLayered.Controllers
                 TempData["ErrorMessage"] = result.ErrorMsg;
                 return View(loginModel);
             }
-            var session = _httpContextAccessor.HttpContext.Session;
-
-            session.SetInt32("UserType", (int)result.UserType);
-            session.SetInt32("Id", result.Id);
 
             switch (result.UserType)
             {
@@ -106,11 +94,6 @@ namespace BarberLayered.Controllers
                 return View(registerViewModel);
             }
 
-            var session = _httpContextAccessor.HttpContext.Session;
-
-            session.SetInt32("UserType", (int)result.UserType);
-            session.SetInt32("Id", result.Id);
-
             switch (result.UserType)
             {
                 case _UserType.Admin:
@@ -138,48 +121,28 @@ namespace BarberLayered.Controllers
         [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-            if (!model.NewPassword.Equals(model.ConfirmNewPassword))
+            if (!ModelState.IsValid)
             {
-                TempData["ErrorMessage"] = "The password and confirmation password do not match.";
                 return View(model);
             }
 
-            UserExtDto result;
-            var session = _httpContextAccessor.HttpContext.Session;
+            try
+            {
+                // Get the ID of the current user changing the password
 
-            ChangePasswordDto changePasswordDto = new ChangePasswordDto()
-            {
-                Id = session.GetInt32("Id") ?? default,
-                UserType = (_UserType)(session.GetInt32("UserType") ?? default),
-                ConfirmNewPassword = model.ConfirmNewPassword,
-                CurrentPassword = model.CurrentPassword,
-                NewPassword = model.NewPassword,
-                ErrorMsg = ""
-            };
+                // Call the password change service
 
-            result = await _changePasswordService.ChangePassword(changePasswordDto);
-            if (result.ErrorMsg != "")
-            {
-                TempData["ErrorMessage"] = result.ErrorMsg;
-                return View(model);
+                // Success message for password change
+                TempData["SuccessMessage"] = "Password has been changed successfully.";
+
             }
-            else
+            catch (Exception ex)
             {
-                switch (result.UserType)
-                {
-                    case _UserType.Admin:
-                        return RedirectToAction("Index", "AdminHome",
-                            new Admin(result));
-                    case _UserType.Barber:
-                        return RedirectToAction("Index", "BarberHome",
-                            new Barber(result));
-                    case _UserType.Client:
-                        return RedirectToAction("Index", "ClientHome",
-                            new Client(result));
-                    default:
-                        return RedirectToAction("Index", "BarberShop");
-                }
+                // Handling errors during password change
+                TempData["ErrorMessage"] = "An error occurred while changing the password: " + ex.Message;
             }
+
+            return View(model);
         }
 
 

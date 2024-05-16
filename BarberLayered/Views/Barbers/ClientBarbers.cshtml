@@ -1,4 +1,4 @@
-﻿@model List<BarberLayered.Models.Barber>
+﻿@* @model List<BarberLayered.Models.Barber>
 
 
 <!DOCTYPE html>
@@ -113,4 +113,29 @@
 
 </body>
 </html>
+ *@
 
+
+@model List<BarberLayered.Models.Barber>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Our barbers</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+    </style>
+</head>
+<body>
+
+    @await Html.PartialAsync("~/Views/ClientHome/ClientPartial.cshtml")
+
+    @await Html.PartialAsync("~/Views/Barbers/BarbersPartial.cshtml", Model)
+
+</body>
+</html>

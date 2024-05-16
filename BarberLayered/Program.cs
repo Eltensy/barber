@@ -5,7 +5,6 @@ using BusinessLogicLayer.Services.Identity;
 using DataAccessLayer.Repositories.Implementations;
 using DataAccessLayer.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Serilog;
 using DataAccessLayer.Data;
 using Microsoft.AspNetCore.Identity;
@@ -60,7 +59,6 @@ builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IVisitService, VisitService>();
-builder.Services.AddScoped<IChangePasswordService, ChangePasswordService>();
 
 
 // DbContext
@@ -100,8 +98,6 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
-app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

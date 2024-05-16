@@ -17,9 +17,10 @@
 </head>
 <body>
 
-    @* @Html.Partial("~/Views/ClientHome/ClientPartial.cshtml", Model) *@
-    @Html.Partial("~/Views/BarberInformation/BarberInformationPartial.cshtml", Model)
 
+    @await Html.PartialAsync("~/Views/ClientHome/ClientPartial.cshtml")
+
+    @await Html.PartialAsync("~/Views/BarberInformation/BarberInformationPartial.cshtml", Model)
 </body>
 </html>
 

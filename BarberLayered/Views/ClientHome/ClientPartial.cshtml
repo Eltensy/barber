@@ -173,9 +173,10 @@
 <body>
 
     <header>
-        <a href="/ClientHome/Index">BarberBook</a>
+        @* <a href="/ClientHome/Index">BarberBook</a> *@
+        <span style="font-weight: bold; font-size: 20px; margin-left: 10px;">BarberBook</span>
         @* <a href="/Barbers/ClientBarbers">Наші барбери</a> *@
-        <a href="@Url.Action("ClientBarbers", "Barbers", new { clientId = ViewBag.Client.Id })" class="service-button">Наші барбери</a>
+        <a href="@Url.Action("ClientBarbers", "Barbers", new { clientId = ViewBag.Client.Id })">Наші барбери</a>
 
         <div class="dropdown">
             <i class="material-icons account-icon" onclick="toggleDropdown()">account_circle</i>
@@ -186,11 +187,11 @@
 
                 @* <a href="#">Мої відгуки</a> *@
 
-                <a href="@Url.Action("ClientAppointments", "ClientAppointments", new { clientId = ViewBag.Client.Id })" class="service-button">Майбутні записи</a>
-                 <a href="@Url.Action("ClientReviews", "ClientReviews", new { clientId = ViewBag.Client.Id })" class="service-button">Мої відгуки</a>
-                <a href="@Url.Action("ClientAppointmentsHistory", "ClientAppointments", new { clientId = ViewBag.Client.Id })" class="service-button">Історія записів</a>
+                <a href="@Url.Action("ClientAppointments", "ClientAppointments", new { clientId = ViewBag.Client.Id })">Майбутні записи</a>
+                 <a href="@Url.Action("ClientReviews", "ClientReviews", new { clientId = ViewBag.Client.Id })">Мої відгуки</a>
+                <a href="@Url.Action("ClientAppointmentsHistory", "ClientAppointments", new { clientId = ViewBag.Client.Id })">Історія записів</a>
                 @*                 <a href="#">Історія записів</a> *@
-                <a href="@Url.Action("ClientAccount", "ClientHome", new { client = ViewBag.Client })" class="service-button">Налаштування акаунта</a>
+                <a href="@Url.Action("ClientAccount", "ClientHome", new { clientId = ViewBag.Client.Id })">Налаштування акаунта</a>
 @*                 <a href="/ClientHome/ClientAccount">Налаштування акаунта</a> *@
                 <a href="#" onclick="showConfirmationModal()">Вихід</a>
             </div>
@@ -206,6 +207,7 @@
         <div class="confirmation-box">
             <h2 style="text-align: center;">Підтвердіть вихід</h2>
             <p>Ви впевнені, що хочете вийти з облікового запису?</p>
+            @* <button asp-controller="Account" asp-action="Logout" style="float: left; margin-left: 50px; padding: 10px 30px;">Так</button> *@
             <button onclick="logout()" style="float: left; margin-left: 50px; padding: 10px 30px;">Так</button>
             <button onclick="hideConfirmationModal()" style="float: right; margin-right: 50px; padding: 10px 30px;">Ні</button>
         </div>

@@ -123,7 +123,7 @@
         <div class="content">
             <h1>Вітаємо, @barber?.Name!</h1>
             <p>Номер телефону: @barber?.Phone</p>
-            <p>Елекронна адреса: @barber?.Email</p>
+            <p>Електронна адреса: @barber?.Email</p>
             <p> @barber?.Description</p>
 
             <div class="schedule">
@@ -165,7 +165,7 @@
             @* <img src="@Model.PhotoUri" alt="@Model.Name" class="barber-photo"> *@
             <img src="@barber.PhotoUri" alt="@barber.Name" class="barber-photo">
             <div class="edit-profile">
-                <a href="@Url.Action("EditProfile", "BarberHome")">Редагувати профіль</a>
+                <a href="@Url.Action("EditProfile", "BarberHome", new { barberId = @barber.Id })" class="service-button">Налаштування акаунта</a>
             </div>
         </div>
     </div>
