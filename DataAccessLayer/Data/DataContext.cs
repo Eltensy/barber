@@ -11,18 +11,18 @@ namespace DataAccessLayer.Data
         public DataContext() { }
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                IConfigurationRoot configuration = new ConfigurationBuilder()
-                   .SetBasePath(Directory.GetCurrentDirectory())
-                   .AddJsonFile("appsettings.json")
-                   .Build();
-                var connectionString = configuration.GetConnectionString("BarberBook_Connection");
-                optionsBuilder.UseNpgsql(connectionString, x => x.MigrationsAssembly("DataAccessLayer"));
-            }
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        IConfigurationRoot configuration = new ConfigurationBuilder()
+        //           .SetBasePath(Directory.GetCurrentDirectory())
+        //           .AddJsonFile("appsettings.json")
+        //           .Build();
+        //        var connectionString = configuration.GetConnectionString("BarberBook_Connection");
+        //        optionsBuilder.UseNpgsql(connectionString, x => x.MigrationsAssembly("DataAccessLayer"));
+        //    }
+        //}
 
         public DbSet<BarberShop> BarberShops { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
