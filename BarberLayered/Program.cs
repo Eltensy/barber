@@ -5,6 +5,9 @@ using BusinessLogicLayer.Services.Interfaces;
 using BusinessLogicLayer.Services.Identity;
 using DataAccessLayer.Repositories.Implementations;
 using DataAccessLayer.Repositories.Interfaces;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using Azure.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Serilog;
@@ -67,10 +70,27 @@ builder.Services.AddScoped<IVisitService, VisitService>();
 //builder.Services.AddScoped<IChangePasswordService, ChangePasswordService>();
 
 
+SecretClientOptions options = new SecretClientOptions()
+{
+    Retry =
+        {
+            Delay= TimeSpan.FromSeconds(2),
+            MaxDelay = TimeSpan.FromSeconds(16),
+            MaxRetries = 5,
+            Mode = RetryMode.Exponential
+         }
+};
+var client = new SecretClient(new Uri("https://barberbookvault.vault.azure.net/"), new DefaultAzureCredential(), options);
+
+KeyVaultSecret secret = client.GetSecret("barberbook-db-azure");
+
+string azureDbConnectionString = secret.Value;
+
 // DbContext
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("BarberBook_Connection"), x => x.MigrationsAssembly("DataAccessLayer"));
+    options.UseNpgsql(azureDbConnectionString, x => x.MigrationsAssembly("DataAccessLayer"));
+    //options.UseNpgsql(builder.Configuration.GetConnectionString("BarberBook_Connection"), x => x.MigrationsAssembly("DataAccessLayer"));
 });
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false).AddRoles<IdentityRole>().AddEntityFrameworkStores<DataContext>();
