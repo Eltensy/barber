@@ -58,7 +58,7 @@ builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IGuestService, GuestService>();
 builder.Services.AddScoped<IHistoryService, HistoryService>();
-//builder.Services.AddScoped<IRegisterService, RegisterService>();
+builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddScoped<IRegistrationKeyService, RegistrationKeyService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();

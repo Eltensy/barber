@@ -1,114 +1,123 @@
-//using BusinessLogicLayer.DTOs;
-//using BusinessLogicLayer.Services.Interfaces;
-//using Serilog;
-//using System.Net;
+using BusinessLogicLayer.DTOs;
+using BusinessLogicLayer.Services.Interfaces;
+using Serilog;
+using System.Net;
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Threading;
+using System.Threading.Tasks;
+using BusinessLogicLayer.Services.Identity;
+using DataAccessLayer.Entities;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Serilog.Core;
 
 
-//namespace BusinessLogicLayer.Services.Implementations
-//{
-//    public class RegisterService : IRegisterService
-//    {
-//        private readonly IAdminService _adminService;
-//        private readonly IBarberService _barberService;
-//        private readonly IClientService _clientService;
-//        private readonly IRegistrationKeyService _registrationKeyService;
+namespace BusinessLogicLayer.Services.Implementations
+{
+    public class RegisterService : IRegisterService
+    {
+        private readonly IAdminService _adminService;
+        private readonly IBarberService _barberService;
 
-//        public RegisterService(IAdminService adminService, IBarberService barberService, IClientService clientService, IRegistrationKeyService registrationKeyService)
-//        {
-//            _adminService = adminService;
-//            _barberService = barberService;
-//            _clientService = clientService;
-//            _registrationKeyService = registrationKeyService;
-//        }
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUserStore<ApplicationUser> _userStore;
+        private readonly IUserEmailStore<ApplicationUser> _emailStore;
+        // private readonly IEmailSenderService _emailSender;
 
-//        public async Task<UserExtDto> Register(RegistrationDto registrationDto)
-//        {
-//            Log.Information("Register attempt with email: {Email}", registrationDto.Email);
-//            UserExtDto userExtDto = new UserExtDto();
-//            string hashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(registrationDto.Password);
+        public RegisterService(IAdminService adminService,
+            IBarberService barberService,
+            UserManager<ApplicationUser> userManager,
+            IUserStore<ApplicationUser> userStore,
+            SignInManager<ApplicationUser> signInManager)
+        {
+            _adminService = adminService;
+            _barberService = barberService;
 
-//            if (registrationDto.UserType == _UserType.Client)
-//            {
-//                var existingClient = await _clientService.GetClientByEmail(registrationDto.Email);
-//                if (existingClient != null)
-//                {
-//                    userExtDto.ErrorMsg = "Client already exists!";
-//                }
-//                else
-//                {
-//                    ClientDto newClient = new ClientDto(registrationDto, hashedPassword);
-//                    await _clientService.InsertClient(newClient);
-//                    userExtDto = new UserExtDto(newClient);
-//                    Log.Information("Successfully registered as client with" +
-//                        "Email: {Email}", newClient.Email);
-//                }
+            _userManager = userManager;
+            _userStore = userStore;
+            _emailStore = GetEmailStore();
+            _signInManager = signInManager;
+        }
 
-//                goto finish;
-//            }
+        public async Task<int> AdminAddBarber(RegistrationDto registrationDto)
+        {
+            Log.Information("Admin add Barber with email: {Email}", registrationDto.Email);
+            UserExtDto userExtDto = new UserExtDto();
 
-//            var regKeyDto = await _registrationKeyService.GetRegistrationKeyFirst();
-//            if (regKeyDto == null)
-//            {
-//                userExtDto.ErrorMsg = "No awailable registration keys!";
-//                Log.Warning("No registration keys in the DataBase!");
-//                goto finish;
-//            }
+            var existingBarber = await _barberService.GetBarberByEmail(registrationDto.Email);
+            if (existingBarber != null)
+            {
+                userExtDto.ErrorMsg = "Barber already exists!";
 
-//            if (registrationDto.UserType == _UserType.Barber)
-//            {
-//                if (!regKeyDto.Key.Equals(
-//                    registrationDto.RegistrationKey.ToString()))
-//                {
-//                    userExtDto.ErrorMsg = "Invalid registration key!";
-//                    goto finish;
-//                }
+                return -1;
+            }
+            else
+            {
+                var user = CreateUser();
 
-//                var existingBarber = await _barberService.GetBarberByEmail(registrationDto.Email);
-//                if (existingBarber != null)
-//                {
-//                    userExtDto.ErrorMsg = "Barber already exists!";
-//                }
-//                else
-//                {
-//                    BarberDto newBarber = new BarberDto(registrationDto, hashedPassword);
-//                    await _barberService.InsertBarber(newBarber);
-//                    userExtDto = new UserExtDto(newBarber);
-//                    Log.Information("Successfully registered as barber with" +
-//                        "Email: {Email}", newBarber.Email);
-//                }
+                await _userStore.SetUserNameAsync(user, registrationDto.Email, CancellationToken.None);
+                await _emailStore.SetEmailAsync(user, registrationDto.Email, CancellationToken.None);
+                var result = await _userManager.CreateAsync(user, registrationDto.Password);
 
-//                goto finish;
-//            }
+                if (result.Succeeded)
+                {
+                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                    {
+                        // return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                    }
+                    else
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        await _userManager.AddToRoleAsync(user, "Barber");
+                    }
 
-//            if (registrationDto.UserType == _UserType.Admin)
-//            {
-//                if (!regKeyDto.Key.Equals(
-//                    registrationDto.RegistrationKey.ToString()))
-//                {
-//                    userExtDto.ErrorMsg = "Invalid registration key!";
-//                    goto finish;
-//                }
+                    //userExtDto = new UserExtDto(newClient);
+                    Log.Information("Admin successfully registered the barber with" +
+                        "Email: {Email}", registrationDto.Email);
 
-//                var existingAdmin = await _adminService.GetAdminByEmail(registrationDto.Email);
-//                if (existingAdmin != null)
-//                {
-//                    userExtDto.ErrorMsg = "Admin already exists!";
-//                }
-//                else
-//                {
-//                    AdminDto newAdmin = new AdminDto(registrationDto, hashedPassword);
-//                    await _adminService.InsertAdmin(newAdmin);
-//                    userExtDto = new UserExtDto(newAdmin);
-//                    Log.Information("Successfully registered as admin with" +
-//                        "Email: {Email}", newAdmin.Email);
-//                }
+                    return 0;
+                }
 
-//                goto finish;
-//            }
+                return -1;
+            }
+        }
 
+        private ApplicationUser CreateUser()
+        {
+            try
+            {
+                return Activator.CreateInstance<ApplicationUser>();
+            }
+            catch
+            {
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
+                    $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+            }
+        }
 
-//            finish:
-//            return userExtDto;
-//        }
-//    }
-//}
+        private IUserEmailStore<ApplicationUser> GetEmailStore()
+        {
+            if (!_userManager.SupportsUserEmail)
+            {
+                throw new NotSupportedException("The default UI requires a user store with email support.");
+            }
+            return (IUserEmailStore<ApplicationUser>)_userStore;
+        }
+    }
+}

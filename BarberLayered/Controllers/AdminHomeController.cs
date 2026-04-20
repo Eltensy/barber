@@ -44,5 +44,11 @@ namespace BarberLayered.Controllers
         {
             return View();
         }
+
+        //public Task<IActionResult> AddNewBarber(Barber barber)
+        //{
+
+        //    return ActionResult();
+        //}
     }
 }
