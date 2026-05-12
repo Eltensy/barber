@@ -1,0 +1,10 @@
+| ID         | Scenario                                      | Preconditions                    | Steps                                        | Expected result                                        |
+| ---------- | --------------------------------------------- | -------------------------------- | -------------------------------------------- | ------------------------------------------------------ |
+| MAN-NF-001 | Perceived performance of login page load      | Application is running           | Open login page                              | Page opens without noticeable delay                    |
+| MAN-NF-002 | Perceived performance of barber list page     | Application is running           | Open barber list page                        | Page opens in acceptable time for normal usage         |
+| MAN-NF-003 | Perceived performance of barber services page | Barber exists                    | Open barber services page                    | Page opens without visible freezing                    |
+| MAN-NF-004 | Perceived performance of appointments page    | Client exists with appointments  | Open appointments page                       | Page renders without abnormal delay                    |
+| MAN-NF-005 | Perceived performance after delete action     | Client has appointment or review | Trigger delete action                        | Result/redirect appears quickly for normal interaction |
+| MAN-NF-006 | Usability of login workflow                   | Application is running           | Attempt login without external instructions  | Workflow is understandable for an average user         |
+| MAN-NF-007 | Usability of add barber workflow              | Admin is logged in               | Try to add a barber using the form           | Form sequence is clear and inputs are self-explanatory |
+| MAN-NF-008 | Usability of appointments navigation          | Client exists                    | Navigate between active and history sections | Navigation is intuitive and easy to understand         |
